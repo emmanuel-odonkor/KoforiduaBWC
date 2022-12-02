@@ -12,13 +12,13 @@
   <!-- All CSS -->
   <!-- fontAwesome -->
   <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
 
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/owl.carousel.min.css" />
   <link rel="stylesheet" href="css/jquery.fancybox.min.css" />
   <link rel="stylesheet" href="css/nice-select.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
 
 
   <!-- custom css if you need -->
@@ -63,28 +63,45 @@
       }
     }
 
+	.bannerv7a{
+		background-size:cover;            
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url('images/homeProphet.jpg');
+
+	}
+
+	#show1 {
+        position: absolute;
+        top: 21%;
+        right: 4%;
+        cursor: pointer;
+    }
+
+	#show {
+        position: absolute;
+        top: 21%;
+        right: 4%;
+        cursor: pointer;
+    }
+
   </style>
 	</head>
 	<body class="home-one">
 	<!-- Header start -->
 	<header class="header" style="background-color: #003bb3">
-		<div class="container d-flex align-items-center d-inline-block">
+		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
-			<!-- <img src="images/favicon.png" style="width: 85px;" alt="" /> -->
-			<img src="images/bwcLogoHome.png" style="width: 85px;" alt="" />
-			<!--<label>Believers Worship Center -- Koforidua Branch</label>-->
+			<img src="images/bwcLogo.png" style="width: 150px;" alt="" />
 		</a>
+		<span style="color:white;">Believers Worship Center</span>
 		<nav class="primary-menu" style="margin-right: 75px;">
 			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
 			<ul>
-			<li><a href="#ourStory" style="font-size: 16px;">Our Story</a></li>
-			<!--<li><a data-toggle="modal" href="#myModal" style="font-size: 16px;">Send Money</a></li>-->
-			<li><a href="#securePaymment" style="font-size: 16px;">Security</a></li>
-
-			<li><a href="faq.html" style="font-size: 16px;">Help</a></li>
-			<li><a href="signup.html" style="font-size: 16px;">Sign up</a></li>
+			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
+			<li><a href="signup.php" style="font-size: 16px;">Sign up</a></li>
 			<li class="login-button" style="position: absolute;top: 14px;">
-				<a href="login.html" class="login btn btn-outline btn-round"
+				<a href="index.php" class="login btn btn-outline btn-round"
 				style="padding-top: 10px !important; padding-bottom: 10px !important;padding-left: 23px !important; padding-right: 23px !important;">
 				<span class="bh"></span><span style="font-size: 15px;">login</span></a>
 			</li>
@@ -94,15 +111,11 @@
   </header>
   <!-- Header end -->
 
-  <section class="banner v7a" style="background-image: url('images/homeProphet.jpg'); width: 100vw;">
+  <section class="bannerv7a">
 		<div class="container d-flex justify-content-center">
-			<div class="card col-lg-7" style="border: none">
+			<div class="card col-lg-7" style="border: none; opacity: 0.9; margin-bottom: 0;">
 				<div class="card-body">
-					<div style="
-								display: flex;
-								justify-content: center;
-								align-items: center;
-							">
+					<div style="display: flex;justify-content: center;align-items: center;">
 						<h3 id="profile" class="card-title text-center"></h3>
 					</div>
 
@@ -110,115 +123,131 @@
 						<div class="form-row">
 							<!--User Header-->
 							<div class="col-12">
-								<div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
+							<div class="row" style="display: flex; align-items: center;justify-content: center;">
+								<img src="images/bwcLogoHome.png" style="width:100px;">
+							</div>
+								<div class="form-header mt-4" style="background-color: #003bb3; border-radius: 0.2rem">
 									<h6 class="mt-2 text-center">
-										User Details&nbsp; <i size="60px" class="fas fa-user"></i>
+										Sign Up -- Personal and Church Information&nbsp; <i class="fa fa-user" style="color:white;size: 60px;" aria-hidden="true"></i>
+
 									</h6>
 								</div>
 							</div>
+
 							<!--User Details-->
 							<div class="col-6">
 								<div class="form-group mt-4">
-									<span class="mx-1" style="position: absolute; margin-top: 12px; color: black">
-										<img src="images/signup_logos/account.png"
-											style="width: 25px; height: 25px" /></span>
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid firstname"
-										class="form-control" placeholder="First Name" required="required" readonly
-										value="Jane" id="f_name" name=""
-										style="font-size: 16px; height: 50px; text-indent: 28px" style="width: 200px" />
+										class="form-control" placeholder="First Name" required="required"
+										value="" id="f_name" name=""
+										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
 							<div class="col-6">
 								<div class="form-group mt-4">
-									<span class="mx-1" style="position: absolute; margin-top: 12px; color: black">
-										<img src="images/signup_logos/account.png"
-											style="width: 25px; height: 25px" /></span>
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid lastname"
-										class="form-control" placeholder="Last Name" readonly value="Doe"
-										required="required" id="l_name" name=""
-										style="font-size: 16px; height: 50px; text-indent: 28px" style="width: 200px" />
+										class="form-control" placeholder="Last Name" value=""
+										required="required" id="" name=""
+										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
-							<div class="col-12">
-								<div class="form-group mt-2">
-									<span class="mx-1" style="position: absolute; margin-top: 12px; color: black"><img
-											src="images/signup_logos/mail-inbox-app.png"
-											style="width: 25px; height: 25px" /></span>
-									<input type="email" pattern="[a-z._0-9-]+@[a-z]+\.[a-z]{2,3}"
-										title="Enter a valid email address" class="form-control" placeholder="Email"
-										required="required" id="email" value="jane.doe@jd.com" readonly name=""
-										style="font-size: 16px; height: 50px; text-indent: 25px" style="width: 200px" />
+							<div class="col-6">
+								<div class="form-group mt-3">
+									<input type="text" pattern="[A-Za-z\s-]+"
+											title="Enter a valid username" class="form-control" placeholder="Username"
+											required="required" id="uname" name=""
+											style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
-								<div class="form-group mt-4 u_number">
+							</div>
+							<div class="col-6">
+								<div class="form-group mt-3 u_number">
 									<input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
-										title="Enter a valid Phone number" class="form-control"
-										placeholder="Mobile Number" required="required" readonly value="+44 1632 960482"
-										id="u_mobile" style="font-size: 16px; height: 50px" size="90" />
+									title="Enter a valid Phone number" class="form-control"
+									placeholder="Mobile Number" required="required" value=""
+									id="u_mobile" style="font-size: 16px; height: 50px" size="90" />
 								</div>
-								<div class="form-group mt-4">
-									<span class="mx-2" style="position: absolute; margin-top: 12px; color: black"><img
-											src="images/signup_logos/date-of-birth.png"
-											style="width: 23px; height: 23px" /></span>
-									<input type="date" title="Enter a valid date of birth" class="form-control"
-										placeholder="Date of Birth" required="required" id="dob" name=""
-										value="1998-10-23" style="font-size: 16px; height: 50px; text-indent: 28px"
-										style="width: 200px; font-size: medium" readonly />
-								</div>
+							</div>
 
-								<!--Card Header-->
-								<div class="form-header mt-5" style="background-color: #003bb3; border-radius: 0.2rem">
+							<div class="col-6">
+								<div class="form-group mt-3">
+									<input type="date" title="Enter a valid date of birth" class="form-control"
+									placeholder="Date of Birth" required="required" id="dob" name=""
+									value="" style="font-size: 16px; height: 50px;"
+									style="width: 200px; font-size: medium"/>
+								</div>
+							</div>
+
+							<div class="col-6">
+								<div class="form-group mt-3">
+									<input type="number" pattern="[0-9]+" title="Entering your date of birth shows your Age" class="form-control"
+									placeholder="Age" required="required" id="age" name=""
+									value="" style="font-size: 16px; height: 50px;"
+									style="width: 200px;" readonly/>
+								</div>
+							</div>
+
+							<div class="col-6">
+								<div class="form-group mt-3">
+										<select id="gender" placeholder="Gender" class="form-control"
+										style="height: 50px;" required>
+										<option name="" value="" style="display:none;">Select Your  Gender</option>
+										<option name="Male" value="Male">Male</option>
+										<option name="Female" value="Female">Female</option>
+										</select>
+								</div>
+							</div>
+
+							<div class="col-6">
+								<div class="form-group mt-3">
+										<select id="grouptype" placeholder="Gender" class="form-control"
+										style="height: 50px;" required>
+										<option name="" value="" style="display:none;">Choose Your Group Type</option>
+										<option name="Adom" value="Adom">Adom</option>
+										<option name="Second Chance" value="Second Chance">Second Chance</option>
+										</select>
+								</div>
+							</div>
+
+							<div class="col-12">
+								<div class="form-header mt-4" style="background-color: #003bb3; border-radius: 0.2rem">
 									<h6 class="mt-2 text-center">
-										ID Card Details&nbsp; <i style="size: 60px;"
-										class="fas fa-id-card"></i>
+										Sign Up -- System Information&nbsp; <i class="fa fa-shield" style="color:white;size: 60px;" aria-hidden="true"></i>
 									</h6>
 								</div>
-								
-								<!--Card Details-->
-								<div class="form-group mt-4">
-									<select id="id_type" placeholder="ID_Type" class="form-control"
-									 style="height: 50px;" required disabled >
-									  <option name="" value="" style="display:none;">Select ID Type</option>
-									  <option name="National ID" value="1">National ID</option>
-									  <option name="Passport" value="2">Passport</option>
-									  <option name="Driver's License" value="3">Driver's License</option>
-									</select>
-								</div>
-								<div class="form-group mt-4">
-									<input type="text" pattern="[A-Za-z0-9\s-]+"
-										title="Enter a valid ID Number" class="form-control" placeholder="ID Number"
-										required="required" id="id_num" value="" name=""
-										style="font-size: 16px; height: 50px;" style="width: 200px" readonly />
+							</div>
+
+							<div class="col-6">	
+								<div class="mt-4 popupinput">
+										<div class="form-group" id="password_input" style="position: relative">
+											<input type="password" title="Enter a valid password"
+												class="form-control" placeholder="Password" required="required"
+												id="new_password" name=""
+												style="font-size: 16px; height: 50px;"
+												style="width: 200px" />
+											<label id="show"
+												style="color: gray; font-size: 13px">Show</label>
+										</div>
 								</div>
 							</div>
 
 							<div class="col-6">
-								<div class="form-group">
-									<label style="font-size:12px;">ID Start date</label>
-									<input type="date" title="Enter a valid start date" class="form-control"
-										placeholder="Start Date" required="required" id="s_date" name=""
-										style="font-size: 16px; height: 50px;"
-										style="width: 200px; font-size: medium" readonly />
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group">
-									<label style="font-size:12px;">ID Expiry date</label>
-									<input type="date" title="Enter a valid expiry date" class="form-control"
-										placeholder="Expiry Date" required="required" id="e_date" name=""
-										style="font-size: 16px; height: 50px;"
-										style="width: 200px; font-size: medium" readonly />
-								</div>
+								<div class="form-group mt-4" id="old_password" style="position: relative">
+                                    <input type="password" title="Enter a valid password"
+                                        class="form-control" placeholder="Confirm Password" required="required"
+                                        id="old_pass" name="" style="font-size: 16px; height: 50px;"
+                                        style="width: 200px"/>
+                                        <label id="show1" style="color: gray; font-size: 13px">Show</label>
+                                </div>
 							</div>
 
 							<div class="form-group mt-4 col-12 mb-5">
 								<button type="submit" class="btn btn-primary btn-block" id="button1"
 									style="background-color: green; border-color: green">
-									Update Profile
+									Log In
 								</button>
 								<div class="text-center mt-3">
-									<label style="font-size:14px;">Do you want to <a href="change_password.html">Change Password?</a></label>
-								</div>
-								
+									<label style="font-size:14px;">Don't have an account? <a href="signup.php">Sign Up</a></label>
+								</div>	
 							</div>
 						</div>
 					</form>
@@ -254,6 +283,58 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+  </script>
+  <!--Country Code and Flag JS Plugin-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/css/intlTelInput.css" />
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/js/intlTelInput-jquery.min.js"></script>
+	<script src="build/js/intlTelInput.js"></script>
+	<script src="js/country_flag_code.js"></script>
+
+	<script>
+		//hide and show password
+		 $("#show1").on("click", function () {
+			var passcode = document.getElementById("old_pass");
+			if (passcode.type === "password") {
+				passcode.type = "text";
+				document.getElementById("show1").innerHTML = "Hide";
+			} else {
+				passcode.type = "password";
+				document.getElementById("show1").innerHTML = "Show";
+			}
+		});
+	</script>
+
+	<script>
+		//Mobile Number section (country codes with flags)
+		const u_mobile = document.querySelector("#u_mobile");
+		const u_mobile_input = window.intlTelInput(u_mobile, {
+			preferredCountries: ["gh", "gb"],
+		});
+
+		$(document).ready(function () {
+			$(".u_number").click(function () {
+				var countryCode = $(".u_number .iti__selected-flag").attr("title");
+				var countryCode = countryCode.replace(/[^0-9]/g, "");
+				$("#u_mobile").val("");
+				$("#u_mobile").val("+" + countryCode + $("#u_mobile").val());
+			});
+		});
+	</script>
+
+	<script>
+		//Sliding of password pop message up and down
+		$("#password_input").click(function () {
+			$("#popup_message").slideDown();
+			var show_word = document.getElementById("show");
+			return false;
+		});
+
+		$(window).click(function () {
+			if ($("#popup_message").is(":visible")) {
+				$("#popup_message").slideUp();
+			}
+		});
 	</script>
 </body>
 </html>

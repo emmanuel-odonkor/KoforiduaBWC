@@ -92,7 +92,7 @@
 			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li><a href="signup.html" style="font-size: 16px;">Sign up</a></li>
+			<li><a href="signup.php" style="font-size: 16px;">Sign up</a></li>
 			<li class="login-button" style="position: absolute;top: 14px;">
 				<a href="index.php" class="login btn btn-outline btn-round"
 				style="padding-top: 10px !important; padding-bottom: 10px !important;padding-left: 23px !important; padding-right: 23px !important;">
@@ -137,12 +137,10 @@
                                 <div class="form-group" id="old_password" style="position: relative">
                                     <input type="password" title="Enter a valid password"
                                         class="form-control" placeholder="Password" required="required"
-                                        id="old_pass" name=""
-                                        style="font-size: 16px; height: 50px;"
+                                        id="old_pass" name="" style="font-size: 16px; height: 50px;"
                                         style="width: 200px"/>
                                         <label id="show1" style="color: gray; font-size: 13px">Show</label>
                                 </div>
-                               
 								
 								
 							</div>
@@ -153,7 +151,7 @@
 									Log In
 								</button>
 								<div class="text-center mt-3">
-									<label style="font-size:14px;">Don't have an account? <a href="change_password.html">Sign Up</a></label>
+									<label style="font-size:14px;">Don't have an account? <a href="signup.php">Sign Up</a></label>
 								</div>	
 							</div>
 						</div>
