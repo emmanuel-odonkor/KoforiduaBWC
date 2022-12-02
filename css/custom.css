@@ -1,0 +1,85 @@
+/* Remitone Calculator Overrides */
+#remitone-calculator {
+  padding: 10px 20px 40px
+}
+
+#remitone-calculator label {
+  top: 6px;
+  left: 12px;
+}
+
+#remitone-calculator .fees_charge_promo_applied_rate_section {
+  margin: 15px 0;
+}
+
+#remitone-calculator .source_amount, 
+#remitone-calculator .destination_amount {
+  padding-top: 35px;
+}
+
+#remitone-calculator .source_amount_currency_section button.btn {
+  padding-top: 27px;
+  padding-bottom: 26px;
+  padding-left: 12px;
+  font-size: 22px;
+}
+
+#remitone-calculator .destination_amount_currency_section button.btn {
+  border-bottom-right-radius: 4px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  font-size: 22px;
+  padding-left: 12px;
+}
+
+#remitone-calculator .btn-default {
+  border-radius: 0 4px 0 0;
+}
+
+#remitone-calculator .btn span { 
+  left: 5px;
+}
+
+@media screen and (min-width: 992px) {
+  #remitone-calculator .btn:first-of-type { 
+    margin-right: unset;
+  }
+}
+
+.banner.v7 {
+  height: 800px;
+}
+
+.banner.v7 .sendMoney {
+  margin-top: 200px;
+  background-color: white;
+  color: black;
+}
+
+@media screen and (max-width: 479px) {
+  .banner.v7 .ban-content {
+    text-align: center
+  }
+
+  .banner.v7 .ban-content h1 {
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .banner.v7 {
+    background-size: auto;
+    background-position: unset;
+  }
+
+  .banner.v7 .sendMoney {
+    margin-top: 100px;
+  }
+}
+
+
+/* Faq page */
+.faq-page .header {
+  background: #37517e;
+}
