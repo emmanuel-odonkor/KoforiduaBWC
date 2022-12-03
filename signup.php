@@ -64,11 +64,14 @@
     }
 
 	.bannerv7a{
+
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)), url("images/home.jpg");
+        background-size: cover;
+		background-attachment: fixed;
 		background-size:cover;            
 		background-repeat: no-repeat;
-		background-position: center center;
-		background-image: url('images/homeProphet.jpg');
-
+		background-position: top;
 	}
 
 	#show1 {
@@ -173,15 +176,14 @@
 									<input type="date" title="Enter a valid date of birth" class="form-control"
 									placeholder="Date of Birth" required="required" id="dob" name=""
 									value="" style="font-size: 16px; height: 50px;"
-									style="width: 200px; font-size: medium"/>
+									style="width: 200px; font-size: medium" onmouseout="ageCalculator()"/>
 								</div>
 							</div>
 
 							<div class="col-6">
 								<div class="form-group mt-3">
 									<input type="number" pattern="[0-9]+" title="Entering your date of birth shows your Age" class="form-control"
-									placeholder="Age" required="required" id="age" name=""
-									value="" style="font-size: 16px; height: 50px;"
+									placeholder="Age" required="required" id="age" name="" style="font-size: 16px; height: 50px;"
 									style="width: 200px;" readonly/>
 								</div>
 							</div>
@@ -217,14 +219,41 @@
 							</div>
 
 							<div class="col-6">	
+
+								<!--Pop up message-->
+                                <div class="form-group mt-4" id="popup_message" style="
+                                font-size: 14px;
+                                background-color: #fcfcfc;
+                                display: none;">
+                                    <label class="mx-1" style="
+                                            font-family: 'Gill Sans', 'Gill Sans MT', Calibri,
+                                                'Trebuchet MS', sans-serif;
+                                        ">
+                                        <i class="fa fa-info-circle" aria-hidden="true" style="color: #003bb3"></i>
+                                        Your password content should be:</label>
+                                    <ul style="
+                                            font-family: 'Gill Sans', 'Gill Sans MT', Calibri,
+                                                'Trebuchet MS', sans-serif;
+                                            text-indent: 22px;
+                                            margin-top: 0px;
+                                            margin-bottom: 20px;
+                                        ">
+                                        <li>8 characters long</li>
+                                        <li>At least 1 Uppercase letter</li>
+                                        <li>At least 1 Lowecase letter</li>
+                                        <li>At least 1 Numeric digit</li>
+                                    </ul>
+                                </div>
+                                <!--End of Pop up message-->
+
 								<div class="mt-4 popupinput">
 										<div class="form-group" id="password_input" style="position: relative">
-											<input type="password" title="Enter a valid password"
+											<input type="text" title="Enter a valid password"
 												class="form-control" placeholder="Password" required="required"
 												id="new_password" name=""
 												style="font-size: 16px; height: 50px;"
-												style="width: 200px" />
-											<label id="show"
+												style="width: 200px" oninput="typePass()" />
+												<label id="show"
 												style="color: gray; font-size: 13px">Show</label>
 										</div>
 								</div>
@@ -293,6 +322,17 @@
 
 	<script>
 		//hide and show password
+		$("#show").on("click", function () {
+			var passcode = document.getElementById("new_password");
+			if (passcode.type === "password") {
+				passcode.type = "text";
+				document.getElementById("show").innerHTML = "Hide";
+			} else {
+				passcode.type = "password";
+				document.getElementById("show").innerHTML = "Show";
+			}
+		});
+
 		 $("#show1").on("click", function () {
 			var passcode = document.getElementById("old_pass");
 			if (passcode.type === "password") {
@@ -335,6 +375,37 @@
 				$("#popup_message").slideUp();
 			}
 		});
+
+		//Removal of saved login in Password section
+		function typePass() {
+			var pass = document.getElementById("password");
+			pass.type = "password";
+		}
+
+	</script>
+
+	<script>
+
+	function ageCalculator() {
+		var userinput = document.getElementById("dob").value;
+		var dob = new Date(userinput);
+		
+		//calculate month difference from current date in time
+		var month_diff = Date.now() - dob.getTime();
+		
+		//convert the calculated difference in date format
+		var age_dt = new Date(month_diff); 
+		
+		//extract year from date    
+		var year = age_dt.getUTCFullYear();
+		
+		//now calculate the age of the user
+		var age = Math.abs(year - 1970);
+		
+		//display the calculated age
+		document.getElementById("age").value =  age ;
+		
+	}
 	</script>
 </body>
 </html>

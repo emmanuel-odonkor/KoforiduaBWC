@@ -67,7 +67,8 @@
 		background-size:cover;            
 		background-repeat: no-repeat;
 		background-position: center center;
-		background-image: url('images/homeProphet.jpg');
+		background-image: url('images/homeProphet.jpg') ;
+		background-attachment: fixed;
 
 	}
 
@@ -140,9 +141,7 @@
                                         id="old_pass" name="" style="font-size: 16px; height: 50px;"
                                         style="width: 200px"/>
                                         <label id="show1" style="color: gray; font-size: 13px">Show</label>
-                                </div>
-								
-								
+                                </div>	
 							</div>
 
 							<div class="form-group mt-4 col-12 mb-5">

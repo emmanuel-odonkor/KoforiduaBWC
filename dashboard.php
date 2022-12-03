@@ -9,6 +9,9 @@
   <!-- Favicon icon -->
   <link rel="shortcut icon" type="image/png" href="images/bwcLogoHome.png" />
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+
   <!-- All CSS -->
   <!-- fontAwesome -->
   <link rel="stylesheet" href="css/all.min.css" />
@@ -89,83 +92,116 @@
       }
     }
 
+	.dropdown-toggle{
+		color:white;
+	}
+
+	.home-one
+	{
+
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)), url("images/sign2.jpg");
+        background-size: cover;
+		background-attachment: fixed;
+		background-size:cover;            
+		background-repeat: no-repeat;
+		background-position: top;
+	}
+
+
   </style>
 	</head>
 	<body class="home-one">
 	<!-- Header start -->
 	<header class="header" style="background-color: #003bb3">
-		<div class="container d-flex align-items-center d-inline-block">
+		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
-			<!-- <img src="images/favicon.png" style="width: 85px;" alt="" /> -->
-			<img src="images/bwcLogoHome.png" style="width: 85px;" alt="" />
-			<!--<label>Believers Worship Center -- Koforidua Branch</label>-->
+			<img src="images/bwcLogo.png" style="width: 150px;" alt="" />
 		</a>
-		<nav class="primary-menu" style="margin-right: 75px;">
+		<span style="color:white;">Welcome to the Dashboard</span>
+		<nav class="primary-menu">
 			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
 			<ul>
-			<li><a href="#ourStory" style="font-size: 16px;">Our Story</a></li>
-			<!--<li><a data-toggle="modal" href="#myModal" style="font-size: 16px;">Send Money</a></li>-->
-			<li><a href="#securePaymment" style="font-size: 16px;">Security</a></li>
-
-			<li><a href="faq.html" style="font-size: 16px;">Help</a></li>
-			<li><a href="signup.html" style="font-size: 16px;">Sign up</a></li>
-			<li class="login-button" style="position: absolute;top: 14px;">
-				<a href="login.html" class="login btn btn-outline btn-round"
-				style="padding-top: 10px !important; padding-bottom: 10px !important;padding-left: 23px !important; padding-right: 23px !important;">
-				<span class="bh"></span><span style="font-size: 15px;">login</span></a>
+			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
+			<li>
+				<div class="dropdown" >
+					<button class="dropbtn dropdown-toggle"
+						data-toggle="dropdown" style="background-color:transparent;border:none;">
+						<img src="images/user.png" style="width: 37px; display: inline-block;" alt="" />
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" style="color:black;padding: 12px;font-size:14px;">Your Name</a>
+						<hr class="dropdown-divider">
+						<a class="dropdown-item" href="#" style="color: red;padding: 12px;font-size:14px;">Log Out</a>
+					</div>
+				</div>
 			</li>
 			</ul>
 		</nav>
 		</div>
   </header>
   <!-- Header end -->
+ 
+		<div class="col-12 logo-heading" style="margin-top: 130px;">
+				<div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
+					<img src="images/bwcLogoHome.png" style="width:120px;">
+					<h6 style="color:white;">Koforidua Philadelphia Movement -- Membership Dues and Funeral Contribution Database</h6>
+				</div>
+		</div>
 
 		<div class="container d-flex justify-content-center">
-			<div class="row d-flex justify-content-center" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-4 g-4 col-sm-10 card1">
+			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
+				<div class="col-lg-3 g-4 col-sm-10 card1">
 					<a href="" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
-								<img src="images/maz4.png" class="gen_image" height="28px" alt="" />
+								<i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
 							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">General Ads</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Add New Member</h5>
 							<p style="font-size: 14px">
-								Come up with Generalized Ad copies using AI.
+								Setup a complete new profile
 							</p>
 						</div>
 					</a>
 				</div>
 
-				<div class="col-lg-4 g-4 col-sm-10 card2">
-					<a href="{{url_for('socialmedia')}}" style="color: inherit; text-decoration: none">
+				<div class="col-lg-3 g-4 col-sm-10 card2">
+					<a href="" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
-								<img src="images/maz4.png" height="25px" class="link_image"
-									alt="" />
-								<img src="images/maz4.png" height="25px" class="insta_image"
-									alt="" />
-								<img src="images/maz4.png" height="25px" class="fboo_image"
-									alt="" />
-								<img src="images/maz4.png" height="25px" class="twit_image"
-									alt="" />
+								<i class="fa fa-users fa-2x" aria-hidden="true"></i>
 							</div>
 
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Social Media Ads</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">View all Members</h5>
 							<p class="pb-5" style="font-size: 14px">
-								Generate catchy Social Media Ads using AI.
+								Bullseye view of all members.
 							</p>
 						</div>
 					</a>
 				</div>
-				<div class="col-lg-4 g-4 col-sm-10 card3">
-					<a href="{{url_for('captions')}}" style="color: inherit; text-decoration: none">
+				<div class="col-lg-3 g-4 col-sm-10 card3">
+					<a href="" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
-								<img src="images/maz4.png" height="28px" class="cap_image" alt="" />
+								<i class="fa fa-pencil-square fa-2x" aria-hidden="true"></i>
 							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Captions</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Update Member Record</h5>
 							<p style="font-size: 14px">
-								Create striking captions for social media posts.
+								Update member records in database.
+							</p>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-lg-3 g-4 col-sm-10 card3">
+					<a href="" style="color: inherit; text-decoration: none">
+						<div class="card-effect">
+							<div class="iconbox">
+								<i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+							</div>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Delete Member Record</h5>
+							<p style="font-size: 14px">
+								Delete member records from database.
 							</p>
 						</div>
 					</a>
