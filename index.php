@@ -1,3 +1,5 @@
+<?php include('functions.php')?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -19,6 +21,7 @@
   <link rel="stylesheet" href="css/nice-select.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
   <!-- custom css if you need -->
@@ -112,7 +115,7 @@
 					<div style="display: flex;justify-content: center;align-items: center;">
 						<h3 id="profile" class="card-title text-center"></h3>
 					</div>
-
+					<?php echo display_error(); ?>
 					<form action="" class="mt-lg-2" method="POST" enctype="multipart/form-data">
 						<div class="form-row">
 							<!--User Header-->
@@ -132,21 +135,21 @@
 								<div class="form-group mt-4">
 									<input type="text" pattern="[A-Za-z\s-]+"
 										title="Enter a valid username" class="form-control" placeholder="Username"
-										required="required" id="uname" name=""
+										required="required" id="uname" name="uname"
 										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
                                 <div class="form-group" id="old_password" style="position: relative">
                                     <input type="password" title="Enter a valid password"
                                         class="form-control" placeholder="Password" required="required"
-                                        id="old_pass" name="" style="font-size: 16px; height: 50px;"
+                                        id="pass" name="pass" style="font-size: 16px; height: 50px;"
                                         style="width: 200px"/>
                                         <label id="show1" style="color: gray; font-size: 13px">Show</label>
                                 </div>	
 							</div>
 
 							<div class="form-group mt-4 col-12 mb-5">
-								<button type="submit" class="btn btn-primary btn-block" id="button1"
-									style="background-color: green; border-color: green">
+								<button type="submit" class="btn btn-primary btn-block" id="button2"
+									name="login_btn" style="background-color: green; border-color: green">
 									Log In
 								</button>
 								<div class="text-center mt-3">

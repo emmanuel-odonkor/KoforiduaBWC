@@ -2,17 +2,20 @@
 
 session_start();
 
-//establishing a connection to the database "tutorsystem"
+//establishing a connection to the database "KoforiduaBWC"
 //Database credentials
 
 
 
-	$conn = mysqli_connect('localhost','id16523746_root','Spartan13!24','id16523746_tutor_system');
+	$conn = mysqli_connect('localhost','root','','koforiduabwc');
 
 
 	//variable declaration
-	$uname = "";
-	$uemail = "";
+	$ufname = "";
+	$ulname = "";
+    $uname = "";
+	$ucontact = "";
+
 	$errors = array();
 
 if(!$conn){
@@ -29,49 +32,46 @@ if(!$conn){
 
 	function register(){
 
-		global $conn, $errors, $uname, $uemail;
+		global $conn, $errors, $success, $ufname, $ulname, $uname, $ucontact;
 
+		$ufname = ($_POST['f_name']);
+		$ulname = ($_POST['l_name']);
 		$uname = ($_POST['uname']);
-		$uemail = ($_POST['uemail']);
-		$upass = ($_POST['upass']);
+		$ucontact = ($_POST['umobile']);
+		$upass = ($_POST['new_password']);
 		$cpass = ($_POST['cpass']);
 
-		if(empty($uname)){
-			array_push($errors, "<script>swal('Error','Username is required','error')</script>");
+		if(empty($ufname)){
+			array_push($errors, "<script>alert('Firstname is required')</script>");
 		}
-		if(empty($uemail)){
-			array_push($errors, "<script>swal('Error','Email is required','error')</script>");
+		if(empty($ulname)){
+			array_push($errors, "<script>alert('Lastname is required')</script>");
+		}
+		if(empty($uname)){
+			array_push($errors, "<script>alert('Username is required')</script>");
+		}
+		if(empty($ucontact)){
+			array_push($errors, "<script>alert('Contact is required')</script>");
 		}
 		if($upass != $cpass){
-			array_push($errors, "<script>swal('Error','Both Passwords do not match','error')</script>");
+			array_push($errors,"<script>Swal.fire({
+				icon: 'error',
+				title: 'Passwords do not match',
+				text: 'Ensure that both passwords are the same',
+			  })</script>");
 		}
 
 
 		if(count($errors) == 0){
 			$pass = md5($upass);
 
-
-			if(isset($_POST['ustatus'])){
-			$user_type = ($_POST['ustatus']);
-			$query = "INSERT INTO users(username,email,password,user_type) VALUES ('$uname','$uemail','$pass','$user_type')";
+			$query = "INSERT INTO users(firstname,lastname,username,contact,password,usertype) VALUES ('$ufname','$ulname','$uname','$ucontact','$pass','Admin')";
 
 			mysqli_query($conn, $query);
 			$_SESSION['success'] = "New user created successfully";
-			header('location: login.php');
-			}else{
-			$query = "INSERT INTO users(username,email,password,user_type) VALUES ('$uname','$uemail','$pass','user')";
-
-			mysqli_query($conn, $query);
-
-			$logged_in_user_id = mysqli_insert_id($conn);
-
-			$_SESSION['user'] = getUserById($logged_in_user_id);
-			$_SESSION['success'] = "You are now logged in";
-			header('location: login.php');
-
-		}
-
-
+			header('location: index.php');
+			//array_push($success, "<script>alert('Well done')</script>");
+			
 		}
 		
 	}
@@ -80,7 +80,7 @@ if(!$conn){
 	function getUserById($id){
 		global $conn;
 
-		$query = "SELECT * from users WHERE user_id=" . $id;
+		$query = "SELECT * from users WHERE ID =" . $id;
 		$result = mysqli_query($conn,$query);
 
 		$user = mysqli_fetch_assoc($result);
@@ -120,7 +120,7 @@ if(!$conn){
 	}
 
 	function isAdmin(){
-		if(isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'Admin'){
+		if(isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'Admin'){
 			return true;
 		}else{
 			return false;
@@ -167,7 +167,7 @@ if(!$conn){
 	if(isset($_GET['logout'])){
 		session_destroy();
 		unset($_SESSION['user']);
-		header('location: login.php');
+		header('location: index.php');
 	}
 
 
@@ -178,16 +178,8 @@ if(!$conn){
 	function login(){
 		global $conn , $username , $errors;
 
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-
-		if(empty($username)){
-			array_push($errors, "<script>swal('Username is required','Please enter your Username','error')</script>");
-		}
-
-		if(empty($password)){
-			array_push($errors, "<script>swal('Password is required','Please enter your Password','error')</script> ");
-		}
+		$username = $_POST['uname'];
+		$password = $_POST['pass'];
 
 		if(count($errors) == 0){
 			$password = md5($password);
@@ -198,51 +190,25 @@ if(!$conn){
 			if(mysqli_num_rows($results) == 1){
 
 				$logged_in_user = mysqli_fetch_assoc($results);
-				if($logged_in_user['user_type'] == 'Tutor'){
-
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success'] = "You are now logged in";
-					header('location: tutor/Tutor.php');
-
-				}else if($logged_in_user['user_type'] == 'Admin'){
+				if($logged_in_user['usertype'] == 'Admin'){
 	
 					$_SESSION['user'] = $logged_in_user;
 					$_SESSION['success'] = "You are now logged in";
-					header('location: admin/Admin.php');
-
-				}else if($logged_in_user['user_type'] == 'CSIS_HOD'){
-	
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success'] = "You are now logged in";
-					header('location: departments/CSIS_HOD.php');
-
-				}else if($logged_in_user['user_type'] == 'BA_HOD'){
-	
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success'] = "You are now logged in";
-					header('location: departments/BA_HOD.php');
-
-				}else if($logged_in_user['user_type'] == 'ENG_HOD'){
-	
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success'] = "You are now logged in";
-					header('location: departments/ENG_HOD.php');
-
-				}else if($logged_in_user['user_type'] == 'HSS_HOD'){
-	
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success'] = "You are now logged in";
-					header('location: departments/HSS_HOD.php');
+					header('location: users/dashboard.php');
 
 				}else{
 
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success'] = "You are now logged in";
-					header('location: student/Student.php');
+				//	$_SESSION['user'] = $logged_in_user;
+				//	$_SESSION['success'] = "You are now logged in";
+				//	header('location: student/Student.php');
 
 				}
 			}else{
-				array_push($errors,"<script>swal('Wrong Username or Password','Please try again','error')</script>");
+				array_push($errors,"<script>Swal.fire({
+					icon: 'error',
+					title: 'Oops..',
+					text: 'Incorrect Username or Password',
+				  })</script>");
 			}
 		}
 	}

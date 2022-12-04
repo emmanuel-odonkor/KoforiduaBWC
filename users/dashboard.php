@@ -1,3 +1,18 @@
+<?php 
+    include('../functions.php');
+    if(!isAdmin()){
+        $_SESSION['msg'] = "You must log in first";
+        header('location: ../index.php');
+    }
+
+    if(isset($_GET['logout'])){
+        session_destroy();
+        unset($_SESSION['user']);
+        header('location:../index.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,26 +22,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <!-- Favicon icon -->
-  <link rel="shortcut icon" type="image/png" href="images/bwcLogoHome.png" />
+  <link rel="shortcut icon" type="image/png" href="../images/bwcLogoHome.png" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 
   <!-- All CSS -->
   <!-- fontAwesome -->
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../css/all.min.css" />
+  <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css" />
 
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/owl.carousel.min.css" />
-  <link rel="stylesheet" href="css/jquery.fancybox.min.css" />
-  <link rel="stylesheet" href="css/nice-select.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="../css/jquery.fancybox.min.css" />
+  <link rel="stylesheet" href="../css/nice-select.css" />
+  <link rel="stylesheet" href="../css/style.css" />
 
 
   <!-- custom css if you need -->
  
-  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="../css/custom.css" />
 
   <title>Believers Worship Center -- Koforidua</title>
 
@@ -100,7 +115,7 @@
 	{
 
 		background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)), url("images/sign2.jpg");
+            rgba(0, 0, 0, 0.5)), url("../images/sign2.jpg");
         background-size: cover;
 		background-attachment: fixed;
 		background-size:cover;            
@@ -116,7 +131,7 @@
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
-			<img src="images/bwcLogo.png" style="width: 150px;" alt="" />
+			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
 		</a>
 		<span style="color:white;">Welcome to the Dashboard</span>
 		<nav class="primary-menu">
@@ -127,12 +142,24 @@
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
-						<img src="images/user.png" style="width: 37px; display: inline-block;" alt="" />
+						<img src="../images/user.png" style="width: 37px; display: inline-block;" alt="" />
 					</button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" style="color:black;padding: 12px;font-size:14px;">Your Name</a>
+						<div class="dropdown-item" style="color:black;padding: 12px;font-size:14px;">
+							Logged In as:
+							<div>
+								<?php if(isset($_SESSION['user'])) : ?>
+								<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+								<small>
+									<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+								</small>
+								<?php endif ?>
+							</div>
+						</div>
 						<hr class="dropdown-divider">
-						<a class="dropdown-item" href="#" style="color: red;padding: 12px;font-size:14px;">Log Out</a>
+						<?php if(isset($_SESSION['user'])) : ?>
+							<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: red;padding: 12px;font-size:14px;">Log Out</a>
+						<?php endif ?>
 					</div>
 				</div>
 			</li>
@@ -144,7 +171,7 @@
  
 		<div class="col-12 logo-heading" style="margin-top: 130px;">
 				<div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
-					<img src="images/bwcLogoHome.png" style="width:120px;">
+					<img src="../images/bwcLogoHome.png" style="width:120px;">
 					<h6 style="color:white;">Koforidua Philadelphia Movement -- Membership Dues and Funeral Contribution Database</h6>
 				</div>
 		</div>
@@ -152,7 +179,7 @@
 		<div class="container d-flex justify-content-center">
 			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
 				<div class="col-lg-3 g-4 col-sm-10 card1">
-					<a href="" style="color: inherit; text-decoration: none">
+					<a href="addMember.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
 								<i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
@@ -227,13 +254,13 @@
 		</div>
 </footer>
 <!-- Footer end -->		
-<script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.min.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 	</script>
