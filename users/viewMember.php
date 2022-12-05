@@ -11,9 +11,6 @@
         header('location:../index.php');
     }
 
-	//open the connection
-    $conn = mysqli_connect('localhost','root','','koforiduabwc');
-
 ?>
 
 <!DOCTYPE html>
@@ -163,7 +160,7 @@
 						<h3 id="profile" class="card-title text-center"></h3>
 					</div>
 
-					<form action="" class="mt-lg-2" method="POST" enctype="multipart/form-data">
+					<form action="/" id="searchform" class="mt-lg-2" method="POST" enctype="multipart/form-data">
 						<div class="form-row">
 							<!--User Header-->
 							<div class="col-12">
@@ -176,25 +173,33 @@
 									</h6>
 								</div>
 							</div>
-							<!--User Details-->
+							<!--Enter Member ID-->
 							<div class="col-12">
 								<div class="form-group mt-4">
-									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid firstname"
+									<input type="text" pattern="[0-9]+" title="Enter a valid ID"
 										class="form-control" placeholder="Enter ID of Member to display the details" required="required"
-										value="" id="mfname" name="mfname"
-										style="font-size: 16px; height: 50px;" style="width: 200px" />
+										value="" id="uterm" name="sterm"
+										style="font-size: 16px; height: 50px;" style="width: 200px" oninput="GotoServer()" />
 								</div>
 							</div>
 
-							<div class="form-group mt-4 col-12 mb-5">
-								<button type="submit" class="btn btn-primary btn-block" id="button3"
+							<div class="form-group mt-1 col-12 mb-5">
+								<!--<button type="submit" class="btn btn-primary btn-block" id="button3"
 									name="sadd" style="background-color: green; border-color: green">
 									Show Details
-								</button>
-								<div class="text-center mt-3">
+								</button>-->
+								<div class="text-center">
 									<label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
 								</div>	
 							</div>
+
+							<!-- Projection of users based on ID -->
+							<div class="col-12 projection">
+								<div class="form-group col-12">
+									<div class="row d-flex justify-content-center" id="demo"></div>
+								</div>
+							</div>
+							
 						</div>
 					</form>
 				</div>
@@ -236,6 +241,10 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/js/intlTelInput-jquery.min.js"></script>
 	<script src="../build/js/intlTelInput.js"></script>
 	<script src="../js/country_flag_code.js"></script>
+
+	<script type="text/javascript" src="JQUERY/jquery-3.4.1.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="JQUERY/jquerywork.js"></script>
 
 	<script>
 		//hide and show password
@@ -299,6 +308,44 @@
 			pass.type = "password";
 		}
 
+	</script>
+
+	<script>
+		//THIS FUNCTION PERFORMS THE AJAX POST REQUEST USING "JQUERY"
+		function GotoServer(){
+			$(document).ready(function(){
+			
+			//Implements the keyyp event which performs a predictive lookup based on the inserted
+			$("form").keyup(function(event){
+
+				// Stop form from submitting normally
+				event.preventDefault();
+				
+				//Serialize the submitted form  values which would to be sent to the web server with the request
+				var formValues = $(this).serialize();
+				
+				// Send the form data using post
+				$.post("processsearch.php", formValues, function(data){
+					
+					//Display the returned data as you type along in the search bar
+					$("#demo").html(data);
+				});
+
+				//Display members with ID if Id is entered or hiding it if ID is not entered
+				var mid = document.getElementById("uterm").value;
+
+				if(mid == "")
+				{
+					$(".projection").hide();
+				}
+				else{
+					$(".projection").show();
+				}
+			});
+
+		});
+			
+		}
 	</script>
 </body>
 </html>

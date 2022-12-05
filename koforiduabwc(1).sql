@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306:3306
--- Generation Time: Dec 05, 2022 at 01:39 AM
+-- Generation Time: Dec 05, 2022 at 07:37 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -34,8 +34,18 @@ CREATE TABLE `members` (
   `Lastname` varchar(100) NOT NULL,
   `Contact` varchar(100) NOT NULL,
   `Gender` varchar(100) NOT NULL,
-  `Grouptype` varchar(100) NOT NULL
+  `Grouptype` varchar(100) NOT NULL,
+  `AdminID` int(10) NOT NULL,
+  `AddedBy` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`MemberID`, `Firstname`, `Lastname`, `Contact`, `Gender`, `Grouptype`, `AdminID`, `AddedBy`) VALUES
+(23, 'Emmanuel', 'King', '+233242521565', 'Male', 'Adom', 9, 'Mary'),
+(24, 'Godfred', 'Asante', '+233242521565', 'Male', 'Adom', 10, 'Juls');
 
 -- --------------------------------------------------------
 
@@ -59,7 +69,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `Firstname`, `Lastname`, `Username`, `Contact`, `Password`, `usertype`) VALUES
 (8, 'Emma', 'Odonks', 'Emmanuel', '+233550805562', 'b5e3fc8136ce8649ccb29ae5031b8776', 'Admin'),
-(9, 'Mary', 'Vlad', 'Mary', '+233242521565', 'e8d87c0a22221778a7de706d1f05ad0f', 'Admin');
+(9, 'Mary', 'Vlad', 'Mary', '+233242521565', 'e8d87c0a22221778a7de706d1f05ad0f', 'Admin'),
+(10, 'Julius', 'Opoku', 'Juls', '+233550805562', 'df519937548171759693c14026c7b871', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -85,13 +96,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `MemberID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `MemberID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
