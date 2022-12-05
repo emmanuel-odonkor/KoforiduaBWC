@@ -193,7 +193,7 @@
 				</div>
 
 				<div class="col-lg-3 g-4 col-sm-10 card2">
-					<a href="" style="color: inherit; text-decoration: none">
+					<a href="viewMember.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
 								<i class="fa fa-user fa-2x" aria-hidden="true"></i>

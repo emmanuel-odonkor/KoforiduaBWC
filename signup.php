@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
   <!-- custom css if you need -->

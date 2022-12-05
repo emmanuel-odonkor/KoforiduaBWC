@@ -7,13 +7,13 @@ require('../settings/db_class.php');
  * 
  *@author Emmanuel Odonkor Teye-Kofi
  */
-class tutor_class extends db_connection
+class member_class extends db_connection
 {
 
 	//method for insert / adding  a tutor profile
-	public function addtutor_mthd($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l){
+	public function addmember_mthd($a, $b, $c, $d, $e, $f, $g){
 		//write the query
-		$sql = "INSERT INTO `tutors`(`usertutor_id`,`tutor_name`,`gender`,`student_id`, `email`,`contact`, `yeargroup`,`major`,`tutoring_course`, `course_year`,`available_days`,`department`) VALUES('$a', '$b', '$c','$d','$e','$f','$g','$h','$i','$j','$k','$l')";
+		$sql = "INSERT INTO `members`(`adminid`,`addedby`,`firstname`,`lastname`,`contact`,`gender`, `grouptype`) VALUES('$a', '$b', '$c','$d','$e','$f','$g')";
 
 		//run the query
 		return $this->db_query($sql);

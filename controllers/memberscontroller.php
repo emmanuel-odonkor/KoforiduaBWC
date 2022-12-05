@@ -1,15 +1,15 @@
 <?php
 
 
-require('../classes/tutorclass.php');
+require('../classes/membersclass.php');
 
 //controller function to add a tutor_profile
-function addtutorctrl($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l){
+function addmemberctrl($a, $b, $c, $d, $e, $f, $g){
 	//create a new instance of the class
-	$insertp = new tutor_class;
+	$insertp = new member_class;
 
 	//run the insert method
-	$checkinsert = $insertp->addtutor_mthd($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l);
+	$checkinsert = $insertp->addmember_mthd($a, $b, $c, $d, $e, $f, $g);
 
 	if ($checkinsert) {
 		return $checkinsert;

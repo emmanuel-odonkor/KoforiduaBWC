@@ -195,7 +195,7 @@
 	<script>
 		//hide and show password
 		 $("#show1").on("click", function () {
-			var passcode = document.getElementById("old_pass");
+			var passcode = document.getElementById("pass");
 			if (passcode.type === "password") {
 				passcode.type = "text";
 				document.getElementById("show1").innerHTML = "Hide";

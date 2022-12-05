@@ -49,7 +49,6 @@
 <style type="text/css">
     .form-header {
       padding: 10px;
-      background-color: #003bb3;
       color: white;
       background-size: 300px 100px;
     }
@@ -83,8 +82,8 @@
 
 	.bannerv7a{
 
-		background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)), url("../images/5.jpg");
+		background-image: linear-gradient(rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)), url("../images/2.jpg");
         background-size: cover;
 		background-attachment: fixed;
 		background-size:cover;            
@@ -158,7 +157,7 @@
 
   <section class="bannerv7a">
 		<div class="container d-flex justify-content-center">
-			<div class="card col-lg-7" style="border: none; opacity: 0.8; margin-bottom: 0;">
+			<div class="card col-lg-6" style="border: none; margin-bottom: 0;background-color: transparent;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
 						<h3 id="profile" class="card-title text-center"></h3>
@@ -171,67 +170,29 @@
 							<div class="row" style="display: flex; align-items: center;justify-content: center;">
 								<img src="../images/bwcLogoHome.png" style="width:100px;">
 							</div>
-								<div class="form-header mt-4" style="background-color: #003bb3; border-radius: 0.2rem">
+								<div class="form-header mt-4">
 									<h6 class="mt-2 text-center">
-										Add Member -- Personal and Church Information&nbsp; <i class="fa fa-user-plus" style="color:white;" aria-hidden="true"></i>
+                                    Koforidua Philadelphia Movement -- View Member Details
 									</h6>
 								</div>
 							</div>
 							<!--User Details-->
-							<div class="col-6">
+							<div class="col-12">
 								<div class="form-group mt-4">
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid firstname"
-										class="form-control" placeholder="First Name" required="required"
+										class="form-control" placeholder="Enter ID of Member to display the details" required="required"
 										value="" id="mfname" name="mfname"
 										style="font-size: 16px; height: 50px;" style="width: 200px" />
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group mt-4">
-									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid lastname"
-										class="form-control" placeholder="Last Name" value=""
-										required="required" id="mlname" name="mlname"
-										style="font-size: 16px; height: 50px;" style="width: 200px" />
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group mt-3 u_number">
-									<input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
-									title="Enter a valid Phone number" class="form-control"
-									placeholder="Mobile Number" required="required" value=""
-									id="u_mobile" name="mcontact" style="font-size: 16px; height: 50px" size="90" />
-								</div>
-							</div>
-
-							<div class="col-6">
-								<div class="form-group mt-3">
-										<select id="gender" name="mgender" placeholder="Gender" class="form-control"
-										style="height: 50px;" required>
-										<option name="" value="" style="display:none;">Select Your  Gender</option>
-										<option name="Male" value="Male">Male</option>
-										<option name="Female" value="Female">Female</option>
-										</select>
-								</div>
-							</div>
-
-							<div class="col-12">
-								<div class="form-group mt-3">
-										<select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
-										style="height: 50px;" required>
-										<option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
-										<option name="Adom" value="Adom">Adom Group</option>
-										<option name="Second Chance" value="Second Chance">Second Chance Group</option>
-										</select>
 								</div>
 							</div>
 
 							<div class="form-group mt-4 col-12 mb-5">
 								<button type="submit" class="btn btn-primary btn-block" id="button3"
-									name="madd" style="background-color: green; border-color: green">
-									Add Member
+									name="sadd" style="background-color: green; border-color: green">
+									Show Details
 								</button>
 								<div class="text-center mt-3">
-									<label style="font-size:14px;">Back to <a href="dashboard.php">Dashboard Page</a></label>
+									<label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
 								</div>	
 							</div>
 						</div>
