@@ -351,5 +351,43 @@
 		}
 
 	</script>
+
+	<script>
+		//switch from first form to second form
+		$("#button1").on("click", function () {
+			var password = document.getElementById("new_password").value;
+			var password_c = document.getElementById("cpass").value;
+
+			//regex for password
+			let password_regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+
+			if (password == "") {
+				Swal.fire({
+				icon: 'error',
+				title: 'Empty Password Field',
+				text: 'Fill the Password section',
+			  })
+				return false;
+			} else if (!password.match(password_regex)) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Incorrect Password',
+				text: 'Please follow the instruction to create a strong password',
+			  })
+				return false;
+			}
+			else if(password != password_c)
+			{
+				Swal.fire({
+				icon: 'error',
+				title: 'Passwords do not match',
+				text: 'Ensure that both passwords are the same',
+			  })
+			  return false;
+
+			}
+		});
+
+	</script>
 </body>
 </html>

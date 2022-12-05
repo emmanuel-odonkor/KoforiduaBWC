@@ -1,3 +1,18 @@
+<?php 
+    include('../functions.php');
+    if(!isAdmin()){
+        $_SESSION['msg'] = "You must log in first";
+        header('location: ../index.php');
+    }
+
+    if(isset($_GET['logout'])){
+        session_destroy();
+        unset($_SESSION['user']);
+        header('location:../index.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -88,31 +103,55 @@
         cursor: pointer;
     }
 
+	.dropdown-toggle{
+		color:white;
+	}
+
   </style>
 	</head>
 	<body class="home-one">
-	<!-- Header start -->
-	<header class="header" style="background-color: #003bb3">
+		<!-- Header start -->
+		<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
 			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Believers Worship Center</span>
-		<nav class="primary-menu" style="margin-right: 75px;">
+		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<nav class="primary-menu">
 			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li><a href="../signup.php" style="font-size: 16px;">Sign up</a></li>
-			<li class="login-button" style="position: absolute;top: 14px;">
-				<a href="../index.php" class="login btn btn-outline btn-round"
-				style="padding-top: 10px !important; padding-bottom: 10px !important;padding-left: 23px !important; padding-right: 23px !important;">
-				<span class="bh"></span><span style="font-size: 15px;">login</span></a>
+			<li>
+				<div class="dropdown" >
+					<button class="dropbtn dropdown-toggle"
+						data-toggle="dropdown" style="background-color:transparent;border:none;">
+						<img src="../images/user.png" style="width: 37px; display: inline-block;" alt="" />
+					</button>
+					<div class="dropdown-menu">
+						<div class="dropdown-item" style="color:black;padding: 12px;font-size:14px;">
+							Logged In as:
+							<div>
+								<?php if(isset($_SESSION['user'])) : ?>
+								<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+								<small>
+									<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+								</small>
+								<?php endif ?>
+							</div>
+						</div>
+						<hr class="dropdown-divider">
+						<?php if(isset($_SESSION['user'])) : ?>
+							<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: red;padding: 12px;font-size:14px;">Log Out</a>
+						<?php endif ?>
+					</div>
+				</div>
 			</li>
 			</ul>
 		</nav>
 		</div>
   </header>
   <!-- Header end -->
+
 
   <section class="bannerv7a">
 		<div class="container d-flex justify-content-center">
@@ -132,11 +171,9 @@
 								<div class="form-header mt-4" style="background-color: #003bb3; border-radius: 0.2rem">
 									<h6 class="mt-2 text-center">
 										Add Member -- Personal and Church Information&nbsp; <i class="fa fa-user-plus" style="color:white;" aria-hidden="true"></i>
-
 									</h6>
 								</div>
 							</div>
-
 							<!--User Details-->
 							<div class="col-6">
 								<div class="form-group mt-4">
@@ -155,36 +192,11 @@
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="form-group mt-3">
-									<input type="text" pattern="[A-Za-z\s-]+"
-											title="Enter a valid username" class="form-control" placeholder="Username"
-											required="required" id="uname" name=""
-											style="font-size: 16px; height: 50px;" style="width: 200px" />
-								</div>
-							</div>
-							<div class="col-6">
 								<div class="form-group mt-3 u_number">
 									<input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
 									title="Enter a valid Phone number" class="form-control"
 									placeholder="Mobile Number" required="required" value=""
 									id="u_mobile" style="font-size: 16px; height: 50px" size="90" />
-								</div>
-							</div>
-
-							<div class="col-6">
-								<div class="form-group mt-3">
-									<input type="date" title="Enter a valid date of birth" class="form-control"
-									placeholder="Date of Birth" required="required" id="dob" name=""
-									value="" style="font-size: 16px; height: 50px;"
-									style="width: 200px; font-size: medium" onmouseout="ageCalculator()"/>
-								</div>
-							</div>
-
-							<div class="col-6">
-								<div class="form-group mt-3">
-									<input type="number" pattern="[0-9]+" title="Entering your date of birth shows your Age" class="form-control"
-									placeholder="Age" required="required" id="age" name="" style="font-size: 16px; height: 50px;"
-									style="width: 200px;" readonly/>
 								</div>
 							</div>
 
@@ -199,13 +211,13 @@
 								</div>
 							</div>
 
-							<div class="col-6">
+							<div class="col-12">
 								<div class="form-group mt-3">
 										<select id="grouptype" placeholder="Gender" class="form-control"
 										style="height: 50px;" required>
-										<option name="" value="" style="display:none;">Choose Your Group Type</option>
-										<option name="Adom" value="Adom">Adom</option>
-										<option name="Second Chance" value="Second Chance">Second Chance</option>
+										<option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
+										<option name="Adom" value="Adom">Adom Group</option>
+										<option name="Second Chance" value="Second Chance">Second Chance Group</option>
 										</select>
 								</div>
 							</div>
@@ -325,28 +337,5 @@
 
 	</script>
 
-	<script>
-
-	function ageCalculator() {
-		var userinput = document.getElementById("dob").value;
-		var dob = new Date(userinput);
-		
-		//calculate month difference from current date in time
-		var month_diff = Date.now() - dob.getTime();
-		
-		//convert the calculated difference in date format
-		var age_dt = new Date(month_diff); 
-		
-		//extract year from date    
-		var year = age_dt.getUTCFullYear();
-		
-		//now calculate the age of the user
-		var age = Math.abs(year - 1970);
-		
-		//display the calculated age
-		document.getElementById("age").value =  age ;
-		
-	}
-	</script>
 </body>
 </html>

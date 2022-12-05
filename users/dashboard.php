@@ -133,7 +133,7 @@
 		<a class="" href="index.html">
 			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome to the Dashboard</span>
+		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
 			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
 			<ul>
@@ -196,12 +196,12 @@
 					<a href="" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
-								<i class="fa fa-users fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-user fa-2x" aria-hidden="true"></i>
 							</div>
 
-							<h5 class="mt-4 mb-2" style="font-size: 17px">View all Members</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">View Member Details</h5>
 							<p class="pb-5" style="font-size: 14px">
-								Bullseye view of all members.
+								Bullseye view of member records.
 							</p>
 						</div>
 					</a>

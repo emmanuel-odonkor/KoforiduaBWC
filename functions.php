@@ -39,7 +39,7 @@ if(!$conn){
 		$uname = ($_POST['uname']);
 		$ucontact = ($_POST['umobile']);
 		$upass = ($_POST['new_password']);
-		$cpass = ($_POST['cpass']);
+		//$cpass = ($_POST['cpass']);
 
 		if(empty($ufname)){
 			array_push($errors, "<script>alert('Firstname is required')</script>");
@@ -53,13 +53,13 @@ if(!$conn){
 		if(empty($ucontact)){
 			array_push($errors, "<script>alert('Contact is required')</script>");
 		}
-		if($upass != $cpass){
-			array_push($errors,"<script>Swal.fire({
-				icon: 'error',
-				title: 'Passwords do not match',
-				text: 'Ensure that both passwords are the same',
-			  })</script>");
-		}
+		//if($upass != $cpass){
+		//	array_push($errors,"<script>Swal.fire({
+		//		icon: 'error',
+		//		title: 'Passwords do not match',
+		//		text: 'Ensure that both passwords are the same',
+		//	  })</script>");
+		//}
 
 
 		if(count($errors) == 0){
