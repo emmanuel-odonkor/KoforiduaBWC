@@ -196,7 +196,7 @@
 					<a href="viewMember.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
-								<i class="fa fa-user fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-address-card fa-2x" aria-hidden="true"></i>
 							</div>
 
 							<h5 class="mt-4 mb-2" style="font-size: 17px">View Member Details</h5>
@@ -207,7 +207,7 @@
 					</a>
 				</div>
 				<div class="col-lg-3 g-4 col-sm-10 card3">
-					<a href="" style="color: inherit; text-decoration: none">
+					<a href="updateMemberDetails.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
 								<i class="fa fa-pencil-square fa-2x" aria-hidden="true"></i>

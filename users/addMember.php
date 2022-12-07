@@ -216,7 +216,7 @@
 
 							<div class="col-12">
 								<div class="form-group mt-3">
-										<select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
+										<select id="grouptype" name="mgroup" placeholder="Group Type" class="form-control"
 										style="height: 50px;" required>
 										<option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
 										<option name="Adom" value="Adom">Adom Group</option>
