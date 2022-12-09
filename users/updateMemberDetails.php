@@ -115,8 +115,8 @@
 	.home-one
 	{
 
-		background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)), url("../images/5.jpg");
+		background-image: linear-gradient(rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)), url("../images/5.jpg");
         background-size: cover;
 		background-attachment: fixed;
 		background-size:cover;            
@@ -128,6 +128,12 @@
     {
         width: 300px;
     }
+
+    .container2
+    {
+        margin-top: 270px;
+    }
+
 
 
   </style>
@@ -181,8 +187,10 @@
 					<h6 style="color:white;">Koforidua Philadelphia Movement -- Update of Member Dues and Funeral Contributions</h6>
 				</div>
 		</div>
+        <!-- Projection of output from AJAX -->
+       <div id="message"></div>
         <!-- Modal -->
-        <form id="duesform" action="" method="POST" enctype="multipart/form-data">
+        <form id="duesform" action="/" method="POST" enctype="multipart/form-data">
             <!--Dues Modal-->
             <div class="modal fade" id="duesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -190,7 +198,7 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Dues Payment Section</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                    <button type="button" id="close_b" class="close" data-bs-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="col-lg-12">
@@ -245,21 +253,23 @@
                                             <option name="November" value="11">November</option>
                                             <option name="December" value="12">December</option>
                                         </select>
-                                    </div>
-                                    <!-- Submit -->
-                                    <div class="form-group mt-4 col-12">
-                                        <button type="submit" class="btn btn-primary btn-block" id="submitDues"
-                                            name="uadd" style="background-color: green; border-color: green">
-                                            Pay Dues
-                                        </button>
-                                    </div>
+                                    </div>       
                             </div>
                         </div>
                         </div>
+                        <!--Reset-->
+                        <div class="col-6 mt-3">
+                            <button type="button" id="ureset" name="ureset" class="btn btn-outline"
+                                style="border-color: green;color:green;">Reset</button>
+                        </div>
+                        <!--Submit-->
+                        <div class="col-6 mt-3">
+                            <button type="submit" class="btn btn-primary btn-block" id="submitDues"
+                                name="uadd" style="background-color: green;border-color: green;">Pay Dues</button>
+                        </div>
                     </div>
-                    </div>
+                    </div>  
                 </div>
-               
             </div>
             </div>
             </div>
@@ -296,8 +306,14 @@
 						</div>
 					</a>
 				</div>
-			</div>
-</div>
+			</div>  
+        </div>
+        <div class="container2">
+            <div class="text-center">
+                <label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
+            </div>
+        </div>
+
 	
 <!-- Footer start -->
 <footer class="footer" style="position: absolute; background-color: #003bb3">
@@ -347,58 +363,53 @@
                 
     </script>
 
+    <script>
+        //ajax call for error and success check for entered data
+        $(document).ready(function(){
+
+            $("#duesform").on('submit',function(e) {
+
+               // console.log('emma')
+
+                $.ajax({
+                    type: "POST",
+                    url: "process.php",
+                    data: $('#duesform').serialize(),
+                    success: function(result){
+
+                        $("#message").html(result)
+                    }
+                })
+
+                e.preventDefault();
+
+            });
+
+        })
+        
+
+    </script>
+
+<script>
+        //reset of form elements 
+        $("#ureset").on("click", function () {
+            $("#mid").val("")
+            $("#grouptype").val("")
+            $("#amount").val("")
+            $("#month").val("")
+         });
+
+         $("#close_b").on("click", function () {
+            $("#mid").val("")
+            $("#grouptype").val("")
+            $("#amount").val("")
+            $("#month").val("")
+         });
+
+    </script>
+
+
 </body>
 </html>
 
-<?php 
 
-//include the controller
-require('../controllers/memberscontroller.php');
-
-$errors = array();
-
-//check if submit button was clicked 
-if (isset($_POST['uadd'])) {
-    //grab form data and stores them in variables
-    $mid = $_POST['mid'];
-    $mgroup = $_POST['mgroup'];
-	$amount = $_POST['amount'];
-    $month = $_POST['month'];
-
-    $adminuser_id =  $_SESSION['user']['ID'];
-	$adminuser_name =  $_SESSION['user']['Username'];
-
-		//open the connection and gets the ID of the added member and shows it to them
-		$conn = mysqli_connect('localhost','root','','koforiduabwc');
-
-		$sql="SELECT memberid  FROM `members` WHERE `memberid` = '$mid'";
-
-		//global $memberid;
-
-        $result = $conn->query($sql);
-
-		if($result->num_rows == 0)
-             {
-
-				echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid Member ID',
-                        text: 'Please Member ID $mid does not exist. Enter a valid ID',
-                    });
-                  </script>";
-					
-            }
-            else{
-                echo "<script>
-                        alert('Success');
-                  </script>";
-
-                 return false;
-
-            }
-
-
-    }
-
-?>
