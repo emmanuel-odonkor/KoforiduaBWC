@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306:3306
--- Generation Time: Dec 05, 2022 at 07:37 PM
+-- Generation Time: Dec 09, 2022 at 07:32 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `koforiduabwc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dues`
+--
+
+CREATE TABLE `dues` (
+  `dues_id` int(10) NOT NULL,
+  `grouptype` varchar(100) NOT NULL,
+  `amount` int(100) NOT NULL,
+  `month` varchar(100) NOT NULL,
+  `memberid` int(10) NOT NULL,
+  `AdminID` int(10) NOT NULL,
+  `ApprovedBy` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dues`
+--
+
+INSERT INTO `dues` (`dues_id`, `grouptype`, `amount`, `month`, `memberid`, `AdminID`, `ApprovedBy`) VALUES
+(2, 'Adom', 10, 'January', 23, 8, 'Emmanuel'),
+(6, 'Second Chance', 20, 'January', 25, 9, 'Mary');
 
 -- --------------------------------------------------------
 
@@ -45,7 +69,7 @@ CREATE TABLE `members` (
 
 INSERT INTO `members` (`MemberID`, `Firstname`, `Lastname`, `Contact`, `Gender`, `Grouptype`, `AdminID`, `AddedBy`) VALUES
 (23, 'Emmanuel', 'King', '+233242521565', 'Male', 'Adom', 9, 'Mary'),
-(24, 'Godfred', 'Asante', '+233242521565', 'Male', 'Adom', 10, 'Juls');
+(25, 'Godfred', 'Asante', '+233242521565', 'Male', 'Second Chance', 9, 'Mary');
 
 -- --------------------------------------------------------
 
@@ -77,6 +101,12 @@ INSERT INTO `users` (`ID`, `Firstname`, `Lastname`, `Username`, `Contact`, `Pass
 --
 
 --
+-- Indexes for table `dues`
+--
+ALTER TABLE `dues`
+  ADD PRIMARY KEY (`dues_id`);
+
+--
 -- Indexes for table `members`
 --
 ALTER TABLE `members`
@@ -93,10 +123,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `dues`
+--
+ALTER TABLE `dues`
+  MODIFY `dues_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `MemberID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `MemberID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `users`

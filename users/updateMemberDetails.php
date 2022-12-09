@@ -240,18 +240,18 @@
                                     <div class="form-group mt-1">
                                         <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
                                             <option name="" value="" style="display:none;">Month to be Paid Into (MM)</option>
-                                            <option name="January" value="01">January</option>
-                                            <option name="February" value="02">February</option>
-                                            <option name="March" value="03">March</option>
-                                            <option name="April" value="04">April</option>
-                                            <option name="May" value="05">May</option>
-                                            <option name="June" value="06">June</option>
-                                            <option name="July" value="07">July</option>
-                                            <option name="August" value="08">August</option>
-                                            <option name="September" value="09">September</option>
-                                            <option name="October" value="10">October</option>
-                                            <option name="November" value="11">November</option>
-                                            <option name="December" value="12">December</option>
+                                            <option name="January" value="January">January</option>
+                                            <option name="February" value="February">February</option>
+                                            <option name="March" value="March">March</option>
+                                            <option name="April" value="April">April</option>
+                                            <option name="May" value="May">May</option>
+                                            <option name="June" value="June">June</option>
+                                            <option name="July" value="July">July</option>
+                                            <option name="August" value="August">August</option>
+                                            <option name="September" value="September">September</option>
+                                            <option name="October" value="October">October</option>
+                                            <option name="November" value="November">November</option>
+                                            <option name="December" value="December">December</option>
                                         </select>
                                     </div>       
                             </div>
