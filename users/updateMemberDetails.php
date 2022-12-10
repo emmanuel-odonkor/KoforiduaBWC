@@ -191,7 +191,7 @@
        <div id="message"></div>
         <!-- Modal -->
         <form id="duesform" action="/" method="POST" enctype="multipart/form-data">
-            <!--Dues Modal-->
+            <!--Dues Payment Modal-->
             <div class="modal fade" id="duesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
@@ -221,7 +221,7 @@
                                             <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
                                             class="form-control" placeholder="Enter the Member ID" required="required" id="mid"
                                             name="mid" style="font-size: 16px;height: 50px;" style="width: 200px;">
-                                            <label class="instruction" style="font-size: 13px;">Ensure that Member ID entered is valid</label>
+                                            <span class="instruction" style="font-size: 11px;color:#003bb3;padding-bottom: 0px;">Member ID must be valid</span>
                                     </div>
                                     <div class="form-group member">
                                             <select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
@@ -236,10 +236,21 @@
                                         <input type="text" pattern="[0-9]+" title="Enter a valid amount" class="form-control"
                                         placeholder="Amount to be Paid" id="amount" name="amount" style="font-size: 16px;height: 50px;text-indent: 37px;" 
                                         style="width: 200px;" readonly>
-                                    </div>
+                                    </div>      
+                                </div>
+                            <div class="col-6">
+                                <div class="form-group mt-1">
+                                    <input type="text" title="Enter a valid date of payment" class="form-control"
+                                    placeholder="Date of Payment" required="required" id="dop" name="dop"
+                                    style="font-size: 16px; height: 50px;"
+                                    style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
+                                </div>  
+							</div>
+
+							<div class="col-6">
                                     <div class="form-group mt-1">
                                         <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
-                                            <option name="" value="" style="display:none;">Month to be Paid Into (MM)</option>
+                                            <option name="" value="" style="display:none;">Month of Payment</option>
                                             <option name="January" value="January">January</option>
                                             <option name="February" value="February">February</option>
                                             <option name="March" value="March">March</option>
@@ -253,8 +264,9 @@
                                             <option name="November" value="November">November</option>
                                             <option name="December" value="December">December</option>
                                         </select>
-                                    </div>       
-                            </div>
+                                    </div> 
+							</div>
+
                         </div>
                         </div>
                         <!--Reset-->
@@ -273,7 +285,7 @@
             </div>
             </div>
             </div>
-            <!--End of Payment Modal-->
+            <!--End of Due Payment Modal-->
         </form>
 
 		<div class="container d-flex justify-content-center">
@@ -294,7 +306,7 @@
 				</div>
 
 				<div class="col-lg-6 g-4 col-sm-10 card2">
-					<a href="" style="color: inherit; text-decoration: none">
+					<a data-bs-toggle="modal" href="#funeralModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
 								<i class="fa fa-users fa-2x" aria-hidden="true"></i>
@@ -308,6 +320,120 @@
 				</div>
 			</div>  
         </div>
+
+         <!-- Funeral Contribution Modal -->
+         <form id="funeralform" action="/" method="POST" enctype="multipart/form-data">
+            <!--Funeral Modal-->
+            <div class="modal fade" id="funeralModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Funeral Contribution Section</h5>
+                    <button type="button" id="close_b" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                    <div class="form-row">
+                        <!--Form Details-->
+                        <div class="col-12">
+                            <!--Start of dues section form-->
+                            <div class="form-row mt-3">
+                                <!--Form Details(User)-->
+                                <div class="col-12">
+                                    <!-- Heading-->
+                                    <div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
+                                            <h6 class="mt-2 text-center">
+                                               Funeral Contribution Details&nbsp; <i class="fa fa-users" style="color:white;" aria-hidden="true"></i>
+                                            </h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group mt-4">
+                                                <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
+                                                class="form-control" placeholder="Enter the Member ID" required="required" id="fid"
+                                                name="fid" style="font-size: 16px;height: 50px;" style="width: 200px;">
+                                                <span class="instruction" style="font-size: 11px;color:#003bb3;">Member ID must be valid</span>
+                                            </div> 
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group mt-4">
+                                                <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">GHC</span>
+                                                <input type="text" pattern="[0-9]+" title="Enter a valid amount" class="form-control"
+                                                placeholder="Amount to be Paid" id="famount" name="famount" style="font-size: 16px;height: 50px;text-indent: 37px;" 
+                                                style="width: 200px;" readonly>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group mt-1" id="dropdown"></div>-->
+                                    
+                                    <div class="form-group member mt-0">
+                                            <select id="fgrouptype" name="fgroup" placeholder="Gender" class="form-control"
+                                            style="height: 50px;" required>
+                                                <option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
+                                                <option name="Adom" value="Adom">Adom Group</option>
+                                                <option name="Second Chance" value="Second Chance">Second Chance Group</option>
+                                            </select>
+                                    </div>  
+                                    <div class="form-group">
+                                        <input type="text" pattern="[A-Za-z0-9\s-]+" title="Enter a valid funeral name"
+                                            class="form-control" placeholder="Funeral Name eg. The Late Mr. XYZ Funeral" required="required"
+                                            value="" id="funeralname" name="funeralname"
+                                            style="font-size: 16px; height: 50px;" style="width: 200px" />
+                                    </div>   
+                                </div>
+                            <div class="col-6">
+                                <div class="form-group mt-1">
+                                    <input type="text" title="Enter a valid date of payment" class="form-control"
+                                    placeholder="Date of Payment" required="required" id="fdoc" name="fdoc"
+                                    style="font-size: 16px; height: 50px;"
+                                    style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
+                                </div>  
+							</div>
+
+							<div class="col-6">
+                                    <div class="form-group mt-1">
+                                        <select id="fmonth" name="fmonth" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
+                                            <option name="" value="" style="display:none;">Month of Payment</option>
+                                            <option name="January" value="January">January</option>
+                                            <option name="February" value="February">February</option>
+                                            <option name="March" value="March">March</option>
+                                            <option name="April" value="April">April</option>
+                                            <option name="May" value="May">May</option>
+                                            <option name="June" value="June">June</option>
+                                            <option name="July" value="July">July</option>
+                                            <option name="August" value="August">August</option>
+                                            <option name="September" value="September">September</option>
+                                            <option name="October" value="October">October</option>
+                                            <option name="November" value="November">November</option>
+                                            <option name="December" value="December">December</option>
+                                        </select>
+                                    </div> 
+							</div>
+                        </div>
+                        </div>
+                        <!--Reset-->
+                        <div class="col-6 mt-3">
+                            <button type="button" id="freset" name="freset" class="btn btn-outline"
+                                style="border-color: green;color:green;">Reset</button>
+                        </div>
+                        <!--Submit-->
+                        <div class="col-6 mt-3">
+                            <button type="submit" class="btn btn-primary btn-block" id="submitContribution"
+                                name="fadd" style="background-color: green;border-color: green;">Pay Contribution</button>
+                        </div>
+                    </div>
+                    </div>  
+                </div>
+            </div>
+            </div>
+            </div>
+            
+            
+            <!--End of Funeral Modal-->
+        </form>
+
+
         <div class="container2">
             <div class="text-center">
                 <label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
@@ -345,11 +471,11 @@
 	</script>
 
     <script>
-        //Insertion of Amount per Group chosen
+        //Insertion of Amount per Group chosen in Dues payment
         $("#grouptype").on("change", function () {
             var e = document.getElementById("grouptype");
             var value = e.options[e.selectedIndex].value;
-            
+
             if(value == "Adom")
             {
                 document.getElementById("amount").value = "10.00"
@@ -362,6 +488,27 @@
          });
                 
     </script>
+
+<script>
+        //Insertion of Amount per Group chosen in Funeral Contribution
+        $("#fgrouptype").on("change", function () {
+            
+            var f = document.getElementById("fgrouptype");
+            var fvalue = f.options[f.selectedIndex].value;
+            
+            if( fvalue == "Adom")
+            {
+                document.getElementById("famount").value = "10.00"
+            }
+            else if(fvalue == "Second Chance")
+            {
+                document.getElementById("famount").value = "20.00"
+            }
+            //console.log(value)
+         });
+                
+    </script>
+
 
     <script>
         //ajax call for error and success check for entered data
@@ -391,11 +538,12 @@
     </script>
 
 <script>
-        //reset of form elements 
+        //reset of form elements in Dues Pay
         $("#ureset").on("click", function () {
             $("#mid").val("")
             $("#grouptype").val("")
             $("#amount").val("")
+            $("#dop").val("")
             $("#month").val("")
          });
 
@@ -403,10 +551,46 @@
             $("#mid").val("")
             $("#grouptype").val("")
             $("#amount").val("")
+            $("#dop").val("")
             $("#month").val("")
          });
 
+         //reset of form elements in Funeral Contribution
+        $("#freset").on("click", function () {
+            $("#fid").val("")
+            $("#fgrouptype").val("")
+            $("#funeralname").val("")
+            $("#famount").val("")
+            $("#fdoc").val("")
+            $("#fmonth").val("")
+         });
+
+         $("#fclose_b").on("click", function () {
+            $("#fid").val("")
+            $("#fgrouptype").val("")
+            $("#funeralname").val("")
+            $("#famount").val("")
+            $("#fdoc").val("")
+            $("#fmonth").val("")
+         });
+
     </script>
+
+<script>
+    //sets the date to today and the future but not the past
+		var today = new Date();
+		var year = today.getFullYear(); // YYYY
+		var month = ("0" + (today.getMonth() + 1)).slice(-2); // MM
+		var day = ("0" + today.getDate()).slice(-2);
+
+		var minDate = year + "-" + month + "-" + day; // Results in "YYYY-MM-DD" for today's date
+        var maxDate = year + "-" + month + "-" + day;
+
+		//setting the max and min date value for the calendar to be today's date
+		$("#dop").attr("min", minDate);
+        $("#dop").attr("max", maxDate);
+        $("#fdoc").attr("min", minDate);
+	</script>
 
 
 </body>

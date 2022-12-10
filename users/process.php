@@ -15,6 +15,7 @@
     //grab form data and stores them in variables
     $mid = $_POST['mid'];
     $mgroup = $_POST['mgroup'];
+    $mdate = $_POST['dop'];
 	$amount = $_POST['amount'];
     $month = $_POST['month'];
 
@@ -55,7 +56,7 @@
             }
             else if($result_2->num_rows == 0){
 
-                $sql_insert = "INSERT INTO dues (grouptype,amount,month,memberid,adminid,approvedby) VALUES ('".$mgroup."', '".$amount."',
+                $sql_insert = "INSERT INTO dues (grouptype,dateofpayment,amount,month,memberid,adminid,approvedby) VALUES ('".$mgroup."','".$mdate."', '".$amount."',
                 '".$month."', '".$mid."','".$adminuser_id."','".$adminuser_name."') ";   
 
                 if (mysqli_query($conn, $sql_insert) === TRUE) {
