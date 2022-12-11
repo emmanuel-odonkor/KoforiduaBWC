@@ -221,14 +221,14 @@
 				</div>
 
 				<div class="col-lg-3 g-4 col-sm-10 card3">
-					<a href="" style="color: inherit; text-decoration: none">
+					<a href="funerals.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
-								<i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
 							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Delete Member Record</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Funeral Events</h5>
 							<p style="font-size: 14px">
-								Delete member records from database.
+								Keep record of all Funeral events.
 							</p>
 						</div>
 					</a>

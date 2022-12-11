@@ -116,7 +116,7 @@
 	{
 
 		background-image: linear-gradient(rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.8)), url("../images/5.jpg");
+            rgba(0, 0, 0, 0.8)), url("../images/1.jpg");
         background-size: cover;
 		background-attachment: fixed;
 		background-size:cover;            
@@ -184,20 +184,20 @@
 		<div class="col-12 logo-heading" style="margin-top: 130px;">
 				<div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
 					<img src="../images/bwcLogoHome.png" style="width:120px;">
-					<h6 style="color:white;">Koforidua Philadelphia Movement -- Update of Member Dues,Funeral Contributions and Member Registry Information</h6>
+					<h6 style="color:white;">Koforidua Philadelphia Movement -- Funeral Record Informations</h6>
 				</div>
 		</div>
         <!-- Projection of output from AJAX -->
        <div id="message"></div>
         <!-- Modal -->
-        <form id="duesform" action="/" method="POST" enctype="multipart/form-data">
+        <form id="funeraladdform" action="/" method="POST" enctype="multipart/form-data">
             <!--Dues Payment Modal-->
-            <div class="modal fade" id="duesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="funeraladdModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Dues Payment Section</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Funeral Event Section</h5>
                     <button type="button" id="close_b" class="close" data-bs-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -212,72 +212,87 @@
                                     <!-- Heading-->
                                     <div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
                                             <h6 class="mt-2 text-center">
-                                                Payment Details&nbsp; <i class="fa fa-money" style="color:white;" aria-hidden="true"></i>
+                                               Add Funeral Event Details&nbsp; <i class="fa fa-calendar-plus-o" style="color:white;" aria-hidden="true"></i>
                                             </h6>
                                     </div>
             
                                     <!--<div class="form-group mt-1" id="dropdown"></div>-->
                                     <div class="form-group mt-4">
-                                            <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
-                                            class="form-control" placeholder="Enter the Member ID" required="required" id="mid"
-                                            name="mid" style="font-size: 16px;height: 50px;" style="width: 200px;">
-                                            <span class="instruction" style="font-size: 11px;color:#003bb3;padding-bottom: 0px;">Member ID must be valid</span>
+                                        <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral name"
+                                                class="form-control" placeholder="Funeral Name eg. The Late Mr. XYZ Funeral" required="required"
+                                                value="" id="funeralname" name="funeralname"
+                                                style="font-size: 16px; height: 50px;" style="width: 200px" />
+                                                <span class="instruction" style="font-size: 11px;color:#003bb3;">Be sure to check Funeral Events if funeral is added to avoid data conflict</span>
                                     </div>
-                                    <div class="form-group member">
-                                            <select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
-                                            style="height: 50px;" required>
-                                                <option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
-                                                <option name="Adom" value="Adom">Adom Group</option>
-                                                <option name="Second Chance" value="Second Chance">Second Chance Group</option>
-                                            </select>
+                                    <div class="form-group">
+                                        <input type="text" title="Enter a valid date of funeral" class="form-control"
+                                        placeholder="Date of Funeral Event" required="required" id="dof" name="dof"
+                                        style="font-size: 16px; height: 50px;"
+                                        style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
                                     </div>
+                                     
                                     <div class="form-group mt-3">
-                                        <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">GHC</span>
-                                        <input type="text" pattern="[0-9]+" title="Enter a valid amount" class="form-control"
-                                        placeholder="Amount to be Paid" id="amount" name="amount" style="font-size: 16px;height: 50px;text-indent: 37px;" 
-                                        style="width: 200px;" readonly>
+                                        <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral location"
+                                                class="form-control" placeholder="Funeral Location eg. Srodae Junction 4" required="required"
+                                                value="" id="funeralloc" name="funeralloc"
+                                                style="font-size: 16px; height: 50px;" style="width: 200px" />
                                     </div>      
                                 </div>
-                            <div class="col-6">
-                                <div class="form-group mt-1">
-                                    <input type="text" title="Enter a valid date of payment" class="form-control"
-                                    placeholder="Date of Payment" required="required" id="dop" name="dop"
-                                    style="font-size: 16px; height: 50px;"
-                                    style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
-                                </div>  
-							</div>
+                                <div class="col-6">
+                                    <div class="form-group mt-3">
+                                            <select id="region" name="region" placeholder="Region" class="form-control" style="height: 50px;" required >
+                                                <option name="" value="" style="display:none;">Region of Funeral</option>
+                                                <option name="AHAFO" value="AHAFO">AHAFO</option>
+                                                <option name="ASHANTI" value="ASHANTI">ASHANTI</option>
+                                                <option name="BONO EAST" value="BONO EAST">BONO EAST</option>
+                                                <option name="BRONG AHAFO" value="BRONG AHAFO">BRONG AHAFO</option>
+                                                <option name="CENTRAL" value="CENTRAL">CENTRAL</option>
+                                                <option name="EASTERN" value="EASTERN">EASTERN</option>
+                                                <option name="GREATER ACCRA" value="GREATER ACCRA">GREATER ACCRA</option>
+                                                <option name="NORTH EAST" value="NORTH EAST">NORTH EAST</option>
+                                                <option name="NORTHERN" value="NORTHERN">NORTHERN</option>
+                                                <option name="OTI" value="OTI">OTI</option>
+                                                <option name="SAVANNAH" value="SAVANNAH">SAVANNAH</option>
+                                                <option name="UPPER EAST" value="UPPER EAST">UPPER EAST</option>
+                                                <option name="UPPER WEST" value="UPPER WEST">UPPER WEST</option>
+                                                <option name="WESTERN" value="WESTERN">WESTERN</option>
+                                                <option name="WESTERN NORTH" value="WESTERN NORTH">WESTERN NORTH</option>
+                                                <option name="VOLTA" value="VOLTA">VOLTA</option>
+                                            </select>
+                                    </div>
+							    </div>
 
-							<div class="col-6">
-                                    <div class="form-group mt-1">
-                                        <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
-                                            <option name="" value="" style="display:none;">Month of Payment</option>
-                                            <option name="January" value="January">January</option>
-                                            <option name="February" value="February">February</option>
-                                            <option name="March" value="March">March</option>
-                                            <option name="April" value="April">April</option>
-                                            <option name="May" value="May">May</option>
-                                            <option name="June" value="June">June</option>
-                                            <option name="July" value="July">July</option>
-                                            <option name="August" value="August">August</option>
-                                            <option name="September" value="September">September</option>
-                                            <option name="October" value="October">October</option>
-                                            <option name="November" value="November">November</option>
-                                            <option name="December" value="December">December</option>
-                                        </select>
-                                    </div> 
-							</div>
+							    <div class="col-6">
+                                        <div class="form-group mt-3">
+                                            <select id="famonth" name="famonth" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
+                                                    <option name="" value="" style="display:none;">Month of Funeral</option>
+                                                    <option name="January" value="January">January</option>
+                                                    <option name="February" value="February">February</option>
+                                                    <option name="March" value="March">March</option>
+                                                    <option name="April" value="April">April</option>
+                                                    <option name="May" value="May">May</option>
+                                                    <option name="June" value="June">June</option>
+                                                    <option name="July" value="July">July</option>
+                                                    <option name="August" value="August">August</option>
+                                                    <option name="September" value="September">September</option>
+                                                    <option name="October" value="October">October</option>
+                                                    <option name="November" value="November">November</option>
+                                                    <option name="December" value="December">December</option>
+                                            </select>
+                                        </div>
+							    </div>
 
                         </div>
                         </div>
                         <!--Reset-->
                         <div class="col-6 mt-3">
-                            <button type="button" id="ureset" name="ureset" class="btn btn-outline"
-                                style="border-color: green;color:green;">Reset</button>
+                            <button type="button" id="frreset" name="frreset" class="btn btn-outline"
+                                style="border-color: green;color:green;">Reset Form</button>
                         </div>
                         <!--Submit-->
                         <div class="col-6 mt-3">
                             <button type="submit" class="btn btn-primary btn-block" id="submitDues"
-                                name="uadd" style="background-color: green;border-color: green;">Pay Dues</button>
+                                name="fradd" style="background-color: green;border-color: green;">Add Funeral Event</button>
                         </div>
                     </div>
                     </div>  
@@ -290,53 +305,38 @@
 
 		<div class="container d-flex justify-content-center">
 			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-4 g-4 col-sm-10 card1">
-					<a data-bs-toggle="modal" href="#duesModal" style="color: inherit; text-decoration: none">
+				<div class="col-lg-6 g-4 col-sm-10 card1">
+					<a data-bs-toggle="modal" href="#funeraladdModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
-								<i class="fa fa-money fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-calendar-plus-o fa-2x" aria-hidden="true"></i>
 							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Dues Payments Form</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Add Funeral Events</h5>
 							<p style="font-size: 14px">
-								Montly payment of Dues
+								Click to add a funeral event
 							</p>
 						</div>
 					</a>
                     
 				</div>
 
-				<div class="col-lg-4 g-4 col-sm-10 card2">
-					<a data-bs-toggle="modal" href="#funeralModal" style="color: inherit; text-decoration: none">
+				<div class="col-lg-6 g-4 col-sm-10 card2">
+					<a data-bs-toggle="modal" href="#funeralrecordModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
-								<i class="fa fa-users fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
 							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Funeral Contributions Form</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">All Funeral Events</h5>
 							<p class="pb-5" style="font-size: 14px">
-								Member Contributions
+								All added funerals
 							</p>
 						</div>
 					</a>
 				</div>
-
-                <div class="col-lg-4 g-4 col-sm-10 card2">
-					<a data-bs-toggle="modal" href="#funeralModal" style="color: inherit; text-decoration: none">
-						<div class="card-effect" style="padding: 25px">
-							<div class="iconbox">
-								<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Update Member Data </h5>
-							<p class="pb-5" style="font-size: 14px">
-								Update member registry information 
-							</p>
-						</div>
-					</a>
-				</div>
-
 			</div>  
         </div>
 
-         <!-- Funeral Contribution Modal -->
+         <!-- Funerals Modal -->
          <form id="funeralform" action="/" method="POST" enctype="multipart/form-data">
             <!--Funeral Modal-->
             <div class="modal fade" id="funeralModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -389,46 +389,13 @@
                                                 <option name="Adom" value="Adom">Adom Group</option>
                                                 <option name="Second Chance" value="Second Chance">Second Chance Group</option>
                                             </select>
-                                    </div> 
-
-                                    <?php
-                                        //open the connection
-                                        $conn = mysqli_connect('localhost','root','','koforiduabwc');
-
-                                        $sql="SELECT funeral_name,funeral_date FROM `funerals`";
-
-                                        $result = $conn->query($sql);
-
-                                        echo '<div class="form-group">
-                                            <select id="funeralname" name="funeralname" placeholder="Funeral Name" class="form-control"
-                                            style="height: 50px;" required>
-                                            <option name="" value="" style="display:none;">Choose Funeral Description</option>';
-                                            foreach ($conn->query($sql) as $row){
-                                            echo "
-                                            <option value='$row[funeral_name]'>$row[funeral_name] ($row[funeral_date])</option>";
-                                            }
-                                            if(($result->num_rows == 0))
-                                                {
-                                                    echo "
-
-                                                    <option name='' value=''>No Funeral Event has been entered</option>';
-                                                    
-                                                    ";        
-                                                        
-                                                }
-                                            
-
-                                        echo '</select>
-                                        </div>
-                                        ';
-                                        ?>
-                                    
-                                    <!--<div class="form-group">
+                                    </div>  
+                                    <div class="form-group">
                                         <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral name"
                                             class="form-control" placeholder="Funeral Name eg. The Late Mr. XYZ Funeral" required="required"
                                             value="" id="funeralname" name="funeralname"
                                             style="font-size: 16px; height: 50px;" style="width: 200px" />
-                                    </div>-->  
+                                    </div>   
                                 </div>
                             <div class="col-6">
                                 <div class="form-group mt-1">
@@ -518,58 +485,19 @@
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 	</script>
 
-    <script>
-        //Insertion of Amount per Group chosen in Dues payment
-        $("#grouptype").on("change", function () {
-            var e = document.getElementById("grouptype");
-            var value = e.options[e.selectedIndex].value;
-
-            if(value == "Adom")
-            {
-                document.getElementById("amount").value = "10.00"
-            }
-            else if(value == "Second Chance")
-            {
-                document.getElementById("amount").value = "20.00"
-            }
-            //console.log(value)
-         });
-                
-    </script>
-
-<script>
-        //Insertion of Amount per Group chosen in Funeral Contribution
-        $("#fgrouptype").on("change", function () {
-            
-            var f = document.getElementById("fgrouptype");
-            var fvalue = f.options[f.selectedIndex].value;
-            
-            if( fvalue == "Adom")
-            {
-                document.getElementById("famount").value = "10.00"
-            }
-            else if(fvalue == "Second Chance")
-            {
-                document.getElementById("famount").value = "20.00"
-            }
-            //console.log(value)
-         });
-                
-    </script>
-
 
     <script>
         //ajax call for Dues Payment
         $(document).ready(function(){
 
-            $("#duesform").on('submit',function(e) {
+            $("#funeraladdform").on('submit',function(e) {
 
                // console.log('emma')
 
                 $.ajax({
                     type: "POST",
-                    url: "process.php",
-                    data: $('#duesform').serialize(),
+                    url: "faddprocess.php",
+                    data: $('#funeraladdform').serialize(),
                     success: function(result){
 
                         $("#message").html(result)
@@ -613,24 +541,24 @@
     </script>
 
 <script>
-        //reset of form elements in Dues Pay
-        $("#ureset").on("click", function () {
-            $("#mid").val("")
-            $("#grouptype").val("")
-            $("#amount").val("")
-            $("#dop").val("")
-            $("#month").val("")
+        //reset of form elements 
+        $("#frreset").on("click", function () {
+            $("#funeralname").val("")
+            $("#funeralloc").val("")
+            $("#dof").val("")
+            $("#region").val("")
+            $("#famonth").val("")
          });
 
          $("#close_b").on("click", function () {
-            $("#mid").val("")
-            $("#grouptype").val("")
-            $("#amount").val("")
-            $("#dop").val("")
-            $("#month").val("")
+            $("#funeralname").val("")
+            $("#funeralloc").val("")
+            $("#dof").val("")
+            $("#region").val("")
+            $("#famonth").val("")
          });
 
-         //reset of form elements in Funeral Contribution
+         //reset of form elements
         $("#freset").on("click", function () {
             $("#fid").val("")
             $("#fgrouptype").val("")
@@ -662,9 +590,7 @@
         var maxDate = year + "-" + month + "-" + day;
 
 		//setting the max and min date value for the calendar to be today's date
-		$("#dop").attr("min", minDate);
-        $("#dop").attr("max", maxDate);
-        $("#fdoc").attr("min", minDate);
+        $("#dof").attr("min", minDate);
 	</script>
 
 

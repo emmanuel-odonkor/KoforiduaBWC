@@ -54,10 +54,14 @@ function ajaxsearch($shterm)
                                 <h3 class="card-title">'.$memberid.'</h3>
                                 <p class="card-text">'.$fname.' '.$lname.'</p>
 								<p class="card-text">'.$grouptype.' Group</p>
-								<button type="submit" class="btn btn-primary btn-block" id="button3"
-									name="sadd" style="background-color: green; border-color: green">
-									Dues / Funeral Contribution
-								</button>
+									<a href="viewMember.php"><button type="button" class="btn btn-primary btn-block" id="button3"
+										name="" style="background-color: white; border-color: white;color:#003bb3;">
+										Dues and Funeral Contributions
+									</button></a>
+									<a href="updateMemberDetails.php"><button type="button" class="btn btn-outline btn-block mt-3" id=""
+										name="" style="color: white; border-color: white">
+										Update Member Registry Info
+									</button></a>
                               </div>
                         </div>
                     </div>
