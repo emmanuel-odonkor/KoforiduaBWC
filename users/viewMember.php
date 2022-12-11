@@ -114,8 +114,8 @@
 	.home-one
 	{
 
-		background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)), url("../images/6.jpg");
+		background-image: linear-gradient(rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)), url("../images/6.jpg");
         background-size: cover;
 		background-attachment: fixed;
 		background-size:cover;            

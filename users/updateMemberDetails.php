@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="../css/nice-select.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
 
   <!-- custom css if you need -->
@@ -215,57 +216,84 @@
                                                 Payment Details&nbsp; <i class="fa fa-money" style="color:white;" aria-hidden="true"></i>
                                             </h6>
                                     </div>
-            
-                                    <!--<div class="form-group mt-1" id="dropdown"></div>-->
+                                </div>
+
+                                <div class="col-6">
                                     <div class="form-group mt-4">
-                                            <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
-                                            class="form-control" placeholder="Enter the Member ID" required="required" id="mid"
-                                            name="mid" style="font-size: 16px;height: 50px;" style="width: 200px;">
-                                            <span class="instruction" style="font-size: 11px;color:#003bb3;padding-bottom: 0px;">Member ID must be valid</span>
+                                        <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
+                                        class="form-control" placeholder="Enter the Member ID" required="required" id="mid"
+                                        name="mid" style="font-size: 16px;height: 50px;" style="width: 200px;">
+                                        <span class="instruction" style="font-size: 11px;color:#003bb3;padding-bottom: 0px;">Member ID must be valid</span>
                                     </div>
-                                    <div class="form-group member">
-                                            <select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
-                                            style="height: 50px;" required>
-                                                <option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
-                                                <option name="Adom" value="Adom">Adom Group</option>
-                                                <option name="Second Chance" value="Second Chance">Second Chance Group</option>
-                                            </select>
-                                    </div>
-                                    <div class="form-group mt-3">
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group mt-4">
                                         <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">GHC</span>
                                         <input type="text" pattern="[0-9]+" title="Enter a valid amount" class="form-control"
                                         placeholder="Amount to be Paid" id="amount" name="amount" style="font-size: 16px;height: 50px;text-indent: 37px;" 
                                         style="width: 200px;" readonly>
-                                    </div>      
+                                    </div>    
                                 </div>
-                            <div class="col-6">
-                                <div class="form-group mt-1">
-                                    <input type="text" title="Enter a valid date of payment" class="form-control"
-                                    placeholder="Date of Payment" required="required" id="dop" name="dop"
-                                    style="font-size: 16px; height: 50px;"
-                                    style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
-                                </div>  
-							</div>
-
-							<div class="col-6">
-                                    <div class="form-group mt-1">
-                                        <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
-                                            <option name="" value="" style="display:none;">Month of Payment</option>
-                                            <option name="January" value="January">January</option>
-                                            <option name="February" value="February">February</option>
-                                            <option name="March" value="March">March</option>
-                                            <option name="April" value="April">April</option>
-                                            <option name="May" value="May">May</option>
-                                            <option name="June" value="June">June</option>
-                                            <option name="July" value="July">July</option>
-                                            <option name="August" value="August">August</option>
-                                            <option name="September" value="September">September</option>
-                                            <option name="October" value="October">October</option>
-                                            <option name="November" value="November">November</option>
-                                            <option name="December" value="December">December</option>
+                                <div class="col-12">
+                                    <div class="form-group member">
+                                        <select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
+                                        style="height: 50px;" required>
+                                        <option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
+                                        <option name="Adom" value="Adom">Adom Group</option>
+                                        <option name="Second Chance" value="Second Chance">Second Chance Group</option>
                                         </select>
-                                    </div> 
-							</div>
+                                    </div>
+                                    <div class="form-group mt-4" style="position: relative">
+                                        <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">Year of Dues Payment:</span>
+                                            <input type="text" class="form-control" id="year" placeholder="(YYYY)"
+                                             style="font-size: 16px; height: 50px;text-indent: 180px;" readonly/>
+                                                <label style="position: absolute;top: 23%;right: 4%;"><i class="fa fa-calendar"></i></label>
+                                            
+                                    </div>
+
+                                    <!--<div class="form-group mt-4">
+                                    <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">Year of Dues Payment:</span>
+                                        <div class="input-group date" id="picker" data-date-container='#duesModal'>
+                                            <input type="text" class="form-control" id="year" placeholder="Year of Dues Payment"
+                                             style="font-size: 16px; height: 50px;text-indent: 50px;" readonly/>
+                                            <span class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                    <!--<div class="form-group mt-1" id="dropdown"></div>--> 
+                                <div class="col-6">
+                                    <div class="form-group mt-1">
+                                        <input type="text" title="Enter a valid date of payment" class="form-control"
+                                        placeholder="Date of Payment" required="required" id="dop" name="dop"
+                                        style="font-size: 16px; height: 50px;"
+                                        style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
+                                    </div>  
+                                </div>
+
+                                <div class="col-6">
+                                        <div class="form-group mt-1">
+                                            <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
+                                                <option name="" value="" style="display:none;">Month of Payment</option>
+                                                <option name="January" value="January">January</option>
+                                                <option name="February" value="February">February</option>
+                                                <option name="March" value="March">March</option>
+                                                <option name="April" value="April">April</option>
+                                                <option name="May" value="May">May</option>
+                                                <option name="June" value="June">June</option>
+                                                <option name="July" value="July">July</option>
+                                                <option name="August" value="August">August</option>
+                                                <option name="September" value="September">September</option>
+                                                <option name="October" value="October">October</option>
+                                                <option name="November" value="November">November</option>
+                                                <option name="December" value="December">December</option>
+                                            </select>
+                                        </div> 
+                                </div>
 
                         </div>
                         </div>
@@ -518,6 +546,10 @@
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 	</script>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+
     <script>
         //Insertion of Amount per Group chosen in Dues payment
         $("#grouptype").on("change", function () {
@@ -617,6 +649,7 @@
         $("#ureset").on("click", function () {
             $("#mid").val("")
             $("#grouptype").val("")
+            $("#year").val("")
             $("#amount").val("")
             $("#dop").val("")
             $("#month").val("")
@@ -625,6 +658,7 @@
          $("#close_b").on("click", function () {
             $("#mid").val("")
             $("#grouptype").val("")
+            $("#year").val("")
             $("#amount").val("")
             $("#dop").val("")
             $("#month").val("")
@@ -666,6 +700,39 @@
         $("#dop").attr("max", maxDate);
         $("#fdoc").attr("min", minDate);
 	</script>
+
+
+<script>
+   /* $(function(){
+
+        var today = new Date();
+		var year = today.getFullYear();
+        document.getElementById("famount").value = year
+
+        $('#picker').datepicker({ 
+            format: "yyyy", 
+            viewMode: "years",
+            minViewMode: "years",
+            changeMonth: true,
+            changeYear: true,
+            defaultViewDate: {
+                year: '2022'
+            },
+            startDate: 'year',
+            endDate: 'year' 
+        
+        })
+    });*/
+
+    $("#grouptype").on("change", function () {
+
+        var today = new Date();
+		var year = today.getFullYear();
+        document.getElementById("year").value = year
+
+         });
+
+</script>
 
 
 </body>

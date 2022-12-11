@@ -33,6 +33,8 @@ function ajaxsearch($shterm)
 	//check if any result was returned
 	if ($result->num_rows > 0) 
 	{
+		
+
     	//looping - output data of each row
     	while($row = $result->fetch_assoc()) 
     	{
@@ -72,7 +74,7 @@ function ajaxsearch($shterm)
 	else 
 	{
     	echo "<div class='alert alert-danger text-center mx-4' style='font-size:16px;margin:auto;'>
-					<strong>Sorry!</strong> There are no member with this ID
+					<strong>Sorry!</strong> There is no member with this ID.
 			  </div>";
 	}
 	$conn->close();
