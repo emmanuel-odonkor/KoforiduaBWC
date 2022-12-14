@@ -43,8 +43,8 @@
             echo "<script type='text/javascript'>
                     Swal.fire({
                         icon: 'error',
-                        title: 'Funeral Added Failed',
-                        text: 'Please check entry again Eg. If the deceased is a member, Not Applicable is not valid',
+                        title: 'Failed to Add Funeral Event',
+                        text: 'If the deceased is a member, $dgroup is not a valid option, Please check your entry again',
                     });
                   </script>";
 
@@ -55,7 +55,7 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Funeral Added Failed',
-                text: 'Please check entry again Eg. If the deceased is not a member, Not Applicable is valid',
+                text: 'If the deceased is not a member, $dgroup is not a valid option. Please check your entry again',
             });
           </script>";
 

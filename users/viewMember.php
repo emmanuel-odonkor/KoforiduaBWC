@@ -128,6 +128,8 @@
         margin-top: 270px;
     }
 
+	
+
 
   </style>
 	</head>
@@ -206,7 +208,7 @@
 
 							<h5 class="mt-4 mb-2" style="font-size: 17px">Member Dues Payments</h5>
 							<p class="pb-5" style="font-size: 14px">
-								View Member Dues Payments in database records.
+								View Member Dues Payments in database records
 							</p>
 						</div>
 					</a>
@@ -219,7 +221,7 @@
 							</div>
 							<h5 class="mt-4 mb-2" style="font-size: 17px">Member Contributions</h5>
 							<p style="font-size: 14px">
-								View Member Funeral Contributions.
+								View Member Funeral Contributions
 							</p>
 						</div>
 					</a>

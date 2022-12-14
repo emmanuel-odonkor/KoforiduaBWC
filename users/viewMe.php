@@ -106,6 +106,39 @@
 		color:white;
 	}
 
+	/* Table View */
+
+	tr.hide-table-padding td {
+			padding: 0;
+			
+		}
+
+		.expand-button {
+			position: relative;
+			text-align: center;
+		}
+
+		.accordion-toggle .expand-button:after
+		{
+			position: absolute;
+			left:0.8vw;
+			top: 50%;
+			transform: translate(0, -50%);
+			content: '-';
+		}
+
+		.accordion-toggle.collapsed .expand-button:after
+		{
+			content: '+';
+			
+		}
+
+		@media screen and (max-width: 378px) {
+			.drops {
+				font-size: 13px;
+			}
+		}
+
   </style>
 	</head>
 	<body class="home-one">

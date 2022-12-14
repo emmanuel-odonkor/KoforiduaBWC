@@ -434,17 +434,17 @@
                                         //open the connection
                                         $conn = mysqli_connect('localhost','root','','koforiduabwc');
 
-                                        $sql="SELECT funeral_name,funeral_date FROM `funerals`";
+                                        $sql="SELECT funeral_name,deceased_status,funeral_date FROM `funerals`";
 
                                         $result = $conn->query($sql);
 
                                         echo '<div class="form-group">
                                             <select id="funeralname" name="funeralname" placeholder="Funeral Name" class="form-control"
-                                            style="height: 50px;" required>
+                                            style="height: 50px;" required onclick="getAmount()">
                                             <option name="" value="" style="display:none;">Choose Funeral Description</option>';
                                             foreach ($conn->query($sql) as $row){
                                             echo "
-                                            <option value='$row[funeral_name]'>$row[funeral_name] ($row[funeral_date])</option>";
+                                            <option value='$row[funeral_name]'>$row[funeral_name] ($row[funeral_date],$row[deceased_status])</option>";
                                             }
                                             if(($result->num_rows == 0))
                                                 {
@@ -579,41 +579,6 @@
          });
                 
     </script>
-
-<script>
-        //Insertion of Amount per Group chosen in Funeral Contribution
-        $("#fmonth").on("change", function () {
-            
-            var f = document.getElementById("fgrouptype");
-            var fvalue = f.options[f.selectedIndex].value;
-
-            var d = document.getElementById("dmember");
-            var dvalue = d.options[d.selectedIndex].value;
-
-            console.log(fvalue)
-            console.log(dvalue)
-            
-            if( fvalue == "Adom" AND dvalue == "Member")
-            {
-                document.getElementById("famount").value = "10.00"
-            }
-            else if(fvalue == "Adom" AND dvalue == "Not a Member")
-            {
-                document.getElementById("famount").value = "5.00"
-            }
-            else if(fvalue == "Second Chance" AND dvalue == "Member")
-            {
-                document.getElementById("famount").value = "20.00"
-            }
-            else if(fvalue == "Second Chance" AND dvalue == "Not a Member")
-            {
-                document.getElementById("famount").value = "10.00"
-            }
-            //console.log(value)
-         });
-                
-    </script>
-
 
     <script>
         //ajax call for Dues Payment
@@ -760,6 +725,72 @@
 
     });
 </script>
+
+<script>
+    function getAmount()
+    {
+            var f = document.getElementById("fgrouptype");
+            var fvalue = f.options[f.selectedIndex].value;
+
+            var d = document.getElementById("dmember");
+            var dvalue = d.options[d.selectedIndex].value;
+
+            //console.log(fvalue)
+            //console.log(dvalue)
+
+            if( fvalue == "Adom" && dvalue == "Member")
+            {
+                document.getElementById("famount").value = "10.00"
+            }
+            else if(fvalue == "Adom" && dvalue == "Not a Member")
+            {
+                document.getElementById("famount").value = "5.00"
+            }
+            else if(fvalue == "Second Chance" && dvalue == "Member")
+            {
+                document.getElementById("famount").value = "20.00"
+            }
+            else if(fvalue == "Second Chance" && dvalue == "Not a Member")
+            {
+                document.getElementById("famount").value = "10.00"
+            }
+        
+    }
+</script>
+
+<script>
+        //Insertion of Amount per Group chosen in Funeral Contribution
+   /*      $("#fmonth").on("change", function () {
+            
+            var f = document.getElementById("fgrouptype");
+            var fvalue = f.options[f.selectedIndex].value;
+
+            var d = document.getElementById("dmember");
+          var dvalue = d.options[d.selectedIndex].value;
+
+            console.log(fvalue)
+            console.log(dvalue)
+            
+          if( fvalue == "Adom" AND dvalue == "Member")
+            {
+                document.getElementById("famount").value = "10.00"
+            }
+            else if(fvalue == "Adom" AND dvalue == "Not a Member")
+            {
+                document.getElementById("famount").value = "5.00"
+            }
+            else if(fvalue == "Second Chance" AND dvalue == "Member")
+            {
+                document.getElementById("famount").value = "20.00"
+            }
+            else if(fvalue == "Second Chance" AND dvalue == "Not a Member")
+            {
+                document.getElementById("famount").value = "10.00"
+            }
+            //console.log(value)
+         });*/
+                
+    </script>
 
 
 </body>
