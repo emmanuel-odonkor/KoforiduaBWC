@@ -15,6 +15,7 @@
     //grab form data and stores them in variables
     $mid = $_POST['mid'];
     $mgroup = $_POST['mgroup'];
+    $year = $_POST['year'];
     $mdate = $_POST['dop'];
 	$amount = $_POST['amount'];
     $month = $_POST['month'];
@@ -30,7 +31,7 @@
 
 		$sql="SELECT memberid,grouptype  FROM `members` WHERE `memberid` = '$mid' AND `grouptype` = '$mgroup'";
 
-        $sql_2="SELECT memberid,month FROM `dues` WHERE `memberid` = '$mid' AND `month` = '$month'";
+        $sql_2="SELECT memberid,month FROM `dues` WHERE `memberid` = '$mid' AND `month` = '$month' AND `year` = '$year'";
 
 
 		//global $memberid;
@@ -56,14 +57,14 @@
             }
             else if($result_2->num_rows == 0){
 
-                $sql_insert = "INSERT INTO dues (grouptype,dateofpayment,amount,month,memberid,adminid,approvedby) VALUES ('".$mgroup."','".$mdate."', '".$amount."',
-                '".$month."', '".$mid."','".$adminuser_id."','".$adminuser_name."') ";   
+                $sql_insert = "INSERT INTO dues (grouptype,dateofpayment,amount,month,year,memberid,adminid,approvedby) VALUES ('".$mgroup."','".$mdate."', '".$amount."',
+                '".$month."','".$year."', '".$mid."','".$adminuser_id."','".$adminuser_name."') ";   
 
                 if (mysqli_query($conn, $sql_insert) === TRUE) {
                     echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'Member $mid has now paid for the Month, $month',
+                        text: 'Member $mid has now paid for the Month, $month in the year $year',
                     });</script>";
                 } else {
                     echo "<script>Swal.fire({
@@ -80,7 +81,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Dues Already Paid',
-                        text: 'Member has already paid for the Month, $month',
+                        text: 'Member has already paid for the Month, $month in the year $year',
                     });
                   </script>";  
 

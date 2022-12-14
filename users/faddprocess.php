@@ -14,6 +14,8 @@
 
     //grab form data and stores them in variables
     $funeralname = $_POST['funeralname'];
+    $fmember = $_POST['fmember'];
+    $dgroup = $_POST['dgroup'];
     $dof = $_POST['dof'];
     $funeralloc= $_POST['funeralloc'];
 	$region = $_POST['region'];
@@ -36,8 +38,29 @@
         //first sql
         $result = $conn->query($sql);
 
+        if($fmember == "Member" AND $dgroup == "Not Applicable")
+        {
+            echo "<script type='text/javascript'>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Funeral Added Failed',
+                        text: 'Please check entry again Eg. If the deceased is a member, Not Applicable is not valid',
+                    });
+                  </script>";
 
-		if(($result->num_rows != 0))
+        }
+        else if($fmember == "Not a Member" AND ($dgroup == "Adom" OR $dgroup == "Second Chance"  ))
+        {
+            echo "<script type='text/javascript'>
+            Swal.fire({
+                icon: 'error',
+                title: 'Funeral Added Failed',
+                text: 'Please check entry again Eg. If the deceased is not a member, Not Applicable is valid',
+            });
+          </script>";
+
+        }
+		else if(($result->num_rows != 0))
              {
 
 				echo "<script type='text/javascript'>
@@ -51,7 +74,7 @@
             }
             else if($result->num_rows == 0){
 
-                $sql_insert = "INSERT INTO funerals (funeral_name,funeral_date,funeral_region,funeral_month,funeral_location,adminid,addedby) VALUES ('".$funeralname."','".$dof."','".$region."', '".$famonth."',
+                $sql_insert = "INSERT INTO funerals (funeral_name,funeral_date,deceased_status,deceased_group,funeral_region,funeral_month,funeral_location,adminid,addedby) VALUES ('".$funeralname."','".$dof."','".$fmember."','".$dgroup."','".$region."', '".$famonth."',
                 '".$funeralloc."','".$adminuser_id."','".$adminuser_name."') ";   
 
                 if (mysqli_query($conn, $sql_insert) === TRUE) {

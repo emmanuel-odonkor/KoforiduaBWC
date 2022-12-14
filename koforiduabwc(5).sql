@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306:3306
--- Generation Time: Dec 11, 2022 at 01:13 AM
+-- Generation Time: Dec 14, 2022 at 03:27 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -33,6 +33,7 @@ CREATE TABLE `dues` (
   `grouptype` varchar(100) NOT NULL,
   `amount` int(100) NOT NULL,
   `month` varchar(100) NOT NULL,
+  `Year` int(100) NOT NULL,
   `memberid` int(10) NOT NULL,
   `dateofpayment` date NOT NULL,
   `AdminID` int(10) NOT NULL,
@@ -43,9 +44,8 @@ CREATE TABLE `dues` (
 -- Dumping data for table `dues`
 --
 
-INSERT INTO `dues` (`dues_id`, `grouptype`, `amount`, `month`, `memberid`, `dateofpayment`, `AdminID`, `ApprovedBy`) VALUES
-(8, 'Adom', 10, 'January', 23, '2022-12-09', 8, 'Emmanuel'),
-(9, 'Adom', 10, 'February', 23, '2022-12-10', 9, 'Mary');
+INSERT INTO `dues` (`dues_id`, `grouptype`, `amount`, `month`, `Year`, `memberid`, `dateofpayment`, `AdminID`, `ApprovedBy`) VALUES
+(12, 'Adom', 10, 'January', 2022, 23, '2022-12-13', 10, 'Juls');
 
 -- --------------------------------------------------------
 
@@ -57,6 +57,8 @@ CREATE TABLE `funerals` (
   `funeral_id` int(10) NOT NULL,
   `funeral_name` varchar(100) NOT NULL,
   `funeral_date` date NOT NULL,
+  `deceased_status` varchar(100) NOT NULL,
+  `deceased_group` varchar(100) NOT NULL,
   `funeral_region` varchar(100) NOT NULL,
   `funeral_month` varchar(100) NOT NULL,
   `funeral_location` varchar(100) NOT NULL,
@@ -68,9 +70,9 @@ CREATE TABLE `funerals` (
 -- Dumping data for table `funerals`
 --
 
-INSERT INTO `funerals` (`funeral_id`, `funeral_name`, `funeral_date`, `funeral_region`, `funeral_month`, `funeral_location`, `AdminID`, `AddedBy`) VALUES
-(2, 'Mr. XYZ Funeral', '2022-12-17', 'ASHANTI', 'January', 'Location lostic', 8, 'Emmanuel'),
-(3, 'Mrs. XYZ Funeral', '2022-12-24', 'EASTERN', 'February', 'Location kosovo', 8, 'Emmanuel');
+INSERT INTO `funerals` (`funeral_id`, `funeral_name`, `funeral_date`, `deceased_status`, `deceased_group`, `funeral_region`, `funeral_month`, `funeral_location`, `AdminID`, `AddedBy`) VALUES
+(7, 'Mr. XYZ Funeral', '2022-12-17', 'Not a Member', 'Not Applicable', 'BONO EAST', 'January', 'Location lostic', 8, 'Emmanuel'),
+(8, 'Mr. Mansssss', '2022-12-17', 'Member', 'Second Chance', 'SAVANNAH', 'January', 'Location lostic', 8, 'Emmanuel');
 
 -- --------------------------------------------------------
 
@@ -82,6 +84,7 @@ CREATE TABLE `funeral_contributions` (
   `contribution_id` int(10) NOT NULL,
   `funeral_name` varchar(100) NOT NULL,
   `grouptype` varchar(100) NOT NULL,
+  `deceased_status` varchar(100) NOT NULL,
   `amount` int(100) NOT NULL,
   `memberid` int(11) NOT NULL,
   `contribution_date` date NOT NULL,
@@ -89,13 +92,6 @@ CREATE TABLE `funeral_contributions` (
   `AdminID` int(11) NOT NULL,
   `ApprovedBy` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `funeral_contributions`
---
-
-INSERT INTO `funeral_contributions` (`contribution_id`, `funeral_name`, `grouptype`, `amount`, `memberid`, `contribution_date`, `month`, `AdminID`, `ApprovedBy`) VALUES
-(9, 'Mr. XYZ Funeral', 'Adom', 10, 23, '2022-12-17', 'January', 8, 'Emmanuel');
 
 -- --------------------------------------------------------
 
@@ -189,13 +185,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dues`
 --
 ALTER TABLE `dues`
-  MODIFY `dues_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `dues_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `funerals`
 --
 ALTER TABLE `funerals`
-  MODIFY `funeral_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `funeral_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `funeral_contributions`

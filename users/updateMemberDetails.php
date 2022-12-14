@@ -239,14 +239,14 @@
                                     <div class="form-group member">
                                         <select id="grouptype" name="mgroup" placeholder="Gender" class="form-control"
                                         style="height: 50px;" required>
-                                        <option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
+                                        <option name="" value="" style="display:none;">Choose Group Type (Adom or Second Chance)</option>
                                         <option name="Adom" value="Adom">Adom Group</option>
                                         <option name="Second Chance" value="Second Chance">Second Chance Group</option>
                                         </select>
                                     </div>
                                     <div class="form-group mt-4" style="position: relative">
                                         <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">Year of Dues Payment:</span>
-                                            <input type="text" class="form-control" id="year" placeholder="(YYYY)"
+                                            <input type="text" class="form-control" name="year" id="year" placeholder="(YYYY)"
                                              style="font-size: 16px; height: 50px;text-indent: 180px;" readonly/>
                                                 <label style="position: absolute;top: 23%;right: 4%;"><i class="fa fa-calendar"></i></label>
                                             
@@ -407,18 +407,29 @@
                                     style="width: 200px;" readonly>
                                 </div>    
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <select id="fgrouptype" name="fgroup" placeholder="Group Type" class="form-control"
+                                        style="height: 50px;" required>
+                                        <option name="" value="" style="display:none;">Choose Group Type</option>
+                                        <option name="Adom" value="Adom">Adom Group</option>
+                                        <option name="Second Chance" value="Second Chance">Second Chance Group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <select id="dmember" name="dmember" placeholder="Deceased Group" class="form-control"
+                                        style="height: 50px;" required>
+                                        <option name="" value="" style="display:none;">Deceased Status</option>
+                                        <option name="Member" value="Member">Member</option>
+                                        <option name="Not a Member" value="Not a Member">Not a Member</option>
+                                    </select>
+                                </div>    
+                            </div>
                                 <!--Form Details(User)-->
                                 <div class="col-12">
                                     <!--<div class="form-group mt-1" id="dropdown"></div>-->
-                                    <div class="form-group member mt-0">
-                                            <select id="fgrouptype" name="fgroup" placeholder="Gender" class="form-control"
-                                            style="height: 50px;" required>
-                                                <option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
-                                                <option name="Adom" value="Adom">Adom Group</option>
-                                                <option name="Second Chance" value="Second Chance">Second Chance Group</option>
-                                            </select>
-                                    </div> 
-
                                     <?php
                                         //open the connection
                                         $conn = mysqli_connect('localhost','root','','koforiduabwc');
@@ -571,18 +582,32 @@
 
 <script>
         //Insertion of Amount per Group chosen in Funeral Contribution
-        $("#fgrouptype").on("change", function () {
+        $("#fmonth").on("change", function () {
             
             var f = document.getElementById("fgrouptype");
             var fvalue = f.options[f.selectedIndex].value;
+
+            var d = document.getElementById("dmember");
+            var dvalue = d.options[d.selectedIndex].value;
+
+            console.log(fvalue)
+            console.log(dvalue)
             
-            if( fvalue == "Adom")
+            if( fvalue == "Adom" AND dvalue == "Member")
             {
                 document.getElementById("famount").value = "10.00"
             }
-            else if(fvalue == "Second Chance")
+            else if(fvalue == "Adom" AND dvalue == "Not a Member")
+            {
+                document.getElementById("famount").value = "5.00"
+            }
+            else if(fvalue == "Second Chance" AND dvalue == "Member")
             {
                 document.getElementById("famount").value = "20.00"
+            }
+            else if(fvalue == "Second Chance" AND dvalue == "Not a Member")
+            {
+                document.getElementById("famount").value = "10.00"
             }
             //console.log(value)
          });
@@ -668,6 +693,7 @@
         $("#freset").on("click", function () {
             $("#fid").val("")
             $("#fgrouptype").val("")
+            $("#dmember").val("")
             $("#funeralname").val("")
             $("#famount").val("")
             $("#fdoc").val("")
@@ -677,6 +703,7 @@
          $("#fclose_b").on("click", function () {
             $("#fid").val("")
             $("#fgrouptype").val("")
+            $("#dmember").val("")
             $("#funeralname").val("")
             $("#famount").val("")
             $("#fdoc").val("")
@@ -699,6 +726,7 @@
 		$("#dop").attr("min", minDate);
         $("#dop").attr("max", maxDate);
         $("#fdoc").attr("min", minDate);
+        $("#fdoc").attr("max",maxDate);
 	</script>
 
 
@@ -730,8 +758,7 @@
 		var year = today.getFullYear();
         document.getElementById("year").value = year
 
-         });
-
+    });
 </script>
 
 

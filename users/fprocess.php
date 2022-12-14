@@ -15,6 +15,7 @@
     //grab form data and stores them in variables
     $fid = $_POST['fid'];
     $fgroup = $_POST['fgroup'];
+    $dmember = $_POST['dmember'];
     $funeralname = $_POST['funeralname'];
     $fdoc = $_POST['fdoc'];
 	$famount = $_POST['famount'];
@@ -57,7 +58,7 @@
             }
             else if($result_2->num_rows == 0){
 
-                $sql_insert = "INSERT INTO funeral_contributions (funeral_name,grouptype,amount,memberid,contribution_date,month,adminid,approvedby) VALUES ('".$funeralname."','".$fgroup."','".$famount."', '".$fid."',
+                $sql_insert = "INSERT INTO funeral_contributions (funeral_name,grouptype,deceased_status,amount,memberid,contribution_date,month,adminid,approvedby) VALUES ('".$funeralname."','".$fgroup."','".$dmember."','".$famount."', '".$fid."',
                 '".$fdoc."', '".$fmonth."','".$adminuser_id."','".$adminuser_name."') ";   
 
                 if (mysqli_query($conn, $sql_insert) === TRUE) {
