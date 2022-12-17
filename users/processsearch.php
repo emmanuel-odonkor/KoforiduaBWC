@@ -83,11 +83,6 @@ function ajaxsearch($shterm)
 			//execute sql
 			$result_3 = $conn->query($sql_3);
 
-			$sql_4 = "SELECT memberid,dues_id,month,grouptype,amount,year,dateofpayment,adminid,approvedby FROM dues WHERE memberid = '$memberid' AND year = '$sql_3'";
-
-			//execute sql
-			$result_4 = $conn->query($sql_4);
-
 			echo "
 						<div class='modal fade' id='dues' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
 						aria-labelledby='staticBackdropLabel' aria-hidden='true'>
@@ -97,7 +92,7 @@ function ajaxsearch($shterm)
 								<h5 class='modal-title' id='staticBackdropLabel'> $fname $lname ($grouptype) </h5>
 								<button type='button' id='fclose_b' class='close' data-bs-dismiss='modal'>&times;</button>
 							</div>
-							<div class='modal-body'>
+							<div class='modal-body' id='modalbody'>
 								<div class='col-lg-12 p-0'>
 								<div class='form-row'>
 									<!--Form Details-->
@@ -113,9 +108,17 @@ function ajaxsearch($shterm)
 											</div>
 
 											<!--Choose Year -->
-											<div class='col-8 mt-3 p-0 chooseyear'>
+											<form id='yearsform' action='/' method='POST' enctype='multipart/form-data'>
+												<div class='col-6'>
 													<div class='form-group'>
-													<select id='funeralname' name='funeralname' placeholder='Choose Dues Payment Year' class='form-control'
+														<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
+															class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
+															name='mid' value='$memberid' style='font-size: 16px;height: 50px;' style='width: 200px;' hidden>
+													</div> 
+												</div>
+												<div class='col-8 mt-3 p-0 chooseyear'>
+													<div class='form-group'>
+													<select id='duesyears' name='duesyears' placeholder='Choose Dues Payment Year' class='form-control'
 													required>
 													<option name='' value= style='display:none;'>Choose Dues Payment Year</option>";
 													foreach ($conn->query($sql_3) as $row){
@@ -129,14 +132,48 @@ function ajaxsearch($shterm)
 															";        		
 														}
 													echo "</select>
+													
 												</div>
+												<div class='col-6'>
+													<div class='form-group'>
+														<button type='submit' class='btn block' id='submitYear'
+													name='yadd' style='color: green;border:none'>Submit</button>
+													</div>
+												</div>
+												
 											</div>
-											<!--End of Choose Year -->
-										
-										
+											
+											</form>
 
-										<!--table 2 Mobile View-->
-										<div class='table-responsive'>
+											<script>
+														
+											$(document).ready(function(){
+
+												$('#yearsform').on('submit',function(e) {
+									
+												   // console.log('emma')
+									
+													$.ajax({
+														type: 'POST',
+														url: 'yprocess.php',
+														data: $('#yearsform').serialize(),
+														success: function(result){
+															
+															$('#tableData').html(result)
+														}
+													})
+									
+													e.preventDefault();
+									
+												});
+									
+											})
+											
+											</script>
+											<!--End of Choose Year -->
+
+										<!--table 2 Mobile View For all Payment Dues -->
+										<div class='table-responsive' id='tableData'>
 											<table class='table table-striped table-hover table-bordered'>
 												<thead class='table-heads'>
 													<tr>
@@ -225,11 +262,57 @@ function ajaxsearch($shterm)
 							<div class='modal-footer'>
 
 								<div class='col-12' style='display:flex;justify-content:center;align-items:center'>
-								
-									<button id='stepone' type='button' class='btn btn-outline'
-										style='background-color:white;color:green;border-color: green; visibility:hidden;'>Payed</button>
+
+								<!--When All Years is Chosen -->
+								<form id='allYears' action='/' method='POST' enctype='multipart/form-data'>
+									<div class='col-6'>
+										<div class='form-group'>
+											<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
+												class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
+												name='mid' value='$memberid' style='font-size: 16px;height: 50px;' style='width: 200px;' hidden>
+										</div> 
+									</div>
+									<div class='col-8 mt-3 p-0 chooseyear'>
+										<div class='form-group'>
+										<select id='allYears' name='allYears' placeholder='Choose Dues Payment Year' class='form-control'
+										required hidden>
+										<option name='' value= style='display:none;'>Choose Dues Payment Year</option>
+										<option value='All'>All Years</option>
+										</select>
+									</div>
+								</div>
+								<div class='row'>
+									<div class='col-6'>
+										<button type='submit' class='btn btn-outline' id='submitYear'
+										name='aadd' style='background-color: white;color:green;border-color: green;'>All Years</button>
+									</div>
+									<div class='col-6'>
 									<button id='stepone' type='button' class='btn btn-primary pay_2'
-										style='background-color:green;border-color: green;'>Total Dues Paid </button>
+									style='background-color:green;border-color: green;'>Total Dues Paid </button>
+									</div>
+								</div>
+								</form>
+
+								<script>				
+									$(document).ready(function(){
+
+										$('#allYears').on('submit',function(e) {
+									
+											$.ajax({
+												type: 'POST',
+												url: 'allYearsprocess.php',
+												data: $('#allYears').serialize(),
+												success: function(result){
+													$('#tableData').html(result)
+												}
+											})
+											e.preventDefault();
+										});
+									
+									})
+											
+								</script>
+
 								</div>
 							
 							</div>
