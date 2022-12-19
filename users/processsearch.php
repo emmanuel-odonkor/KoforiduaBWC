@@ -106,21 +106,17 @@ function ajaxsearch($shterm)
 														Total Dues Payment&nbsp; <i class='fa fa-calendar' style='color:white;' aria-hidden='true'></i>
 												</h6>		
 											</div>
+											<div class='alert alert-danger text-center mt-1' id='error' style='display:none;'>
+												Please enter a payment year
+											</div>
 
 											<!--Choose Year -->
 											<form id='yearsform' action='/' method='POST' enctype='multipart/form-data'>
-												<div class='col-6'>
-													<div class='form-group'>
-														<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
-															class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
-															name='mid' value='$memberid' style='font-size: 16px;height: 50px;' style='width: 200px;' hidden>
-													</div> 
-												</div>
-												<div class='col-8 mt-3 p-0 chooseyear'>
-													<div class='form-group'>
+											<div class='row'>
+												<div class='col-8 mt-3'>
 													<select id='duesyears' name='duesyears' placeholder='Choose Dues Payment Year' class='form-control'
 													required>
-													<option name='' value= style='display:none;'>Choose Dues Payment Year</option>";
+													<option name='' value='nothing' style='display:none;'>Choose Dues Payment Year</option>";
 													foreach ($conn->query($sql_3) as $row){
 													echo "
 														<option value='$row[year]'>$row[year]</option>";
@@ -132,36 +128,53 @@ function ajaxsearch($shterm)
 															";        		
 														}
 													echo "</select>
-													
 												</div>
+												<div class='col-1 mt-2 mx-0'>
+													<button type='submit' class='btn btn-primary' id='submitYear'
+														name='yadd' style='color:white;background-color: blue;
+														border:none;min-width:0;min-height:0;'>Search</button>
+												</div>
+
+											</div>
 												<div class='col-6'>
 													<div class='form-group'>
-														<button type='submit' class='btn block' id='submitYear'
-													name='yadd' style='color: green;border:none'>Submit</button>
-													</div>
-												</div>
-												
-											</div>
-											
+														<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
+															class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
+															name='mid' value='$memberid' style='font-size: 16px;height: 50px;' style='width: 200px;' hidden>
+													</div> 
+												</div>			
 											</form>
 
-											<script>
+											<script type='text/javascript'>
 														
 											$(document).ready(function(){
 
 												$('#yearsform').on('submit',function(e) {
 									
-												   // console.log('emma')
-									
-													$.ajax({
-														type: 'POST',
-														url: 'yprocess.php',
-														data: $('#yearsform').serialize(),
-														success: function(result){
-															
-															$('#tableData').html(result)
-														}
-													})
+													var text = document.getElementById('duesyears');
+													var value = text.options[text.selectedIndex].value;
+
+													if(value == 'nothing')
+													{
+														
+														$('#error').show();
+														setTimeout(function () {
+															$('#error').hide();
+														}, 5000);
+													}
+													else{
+
+														$.ajax({
+															type: 'POST',
+															url: 'yprocess.php',
+															data: $('#yearsform').serialize(),
+															success: function(result){
+																
+																$('#tableData').html(result)
+															}
+														})
+
+													}
 									
 													e.preventDefault();
 									
