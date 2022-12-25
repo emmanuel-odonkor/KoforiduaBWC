@@ -74,14 +74,21 @@ function ajaxsearch($shterm)
 			$conn = mysqli_connect('localhost', 'root', '', 'koforiduabwc');
 
 			$sql_2 = "SELECT memberid,dues_id,month,grouptype,amount,year,dateofpayment,adminid,approvedby FROM dues WHERE memberid = '$memberid'";
-
 			//execute sql
 			$result_2 = $conn->query($sql_2);
 
 			$sql_3 = "SELECT distinct year FROM dues WHERE memberid = '$memberid'";
-
 			//execute sql
 			$result_3 = $conn->query($sql_3);
+
+			$sql_5 = "SELECT distinct deceased_status FROM funeral_contributions WHERE memberid = '$memberid'";
+			//execute sql
+			$result_5 = $conn->query($sql_5);
+
+			$sql_6 = "SELECT memberid,contribution_id,funeral_name,grouptype,deceased_status,amount,contribution_date,month,adminid,approvedby FROM funeral_contributions WHERE memberid = '$memberid'";
+			//execute sql
+			$result_6 = $conn->query($sql_6);
+			
 
 			//Modal Code to show Dues Payments
 			echo "
@@ -531,30 +538,30 @@ function ajaxsearch($shterm)
 										<div class='form-row mt-3'>
 			
 										<div class='col-12'>
-											<div class='form-header modalhead' style='background-color: #003bb3; border-radius: 0.2rem'>
-												<h6 class='mt-2 text-center modaltext'>
+											<div class='form-header funeral_modalhead' style='background-color: #003bb3; border-radius: 0.2rem'>
+												<h6 class='mt-2 text-center funeral_modaltext'>
 														Funeral Contributions Payments&nbsp; <i class='fa fa-calendar' style='color:white;' aria-hidden='true'></i>
 												</h6>		
 											</div>
-											<div class='alert alert-danger text-center mt-1' id='error' style='display:none;'>
-												Please enter a payment year
+											<div class='alert alert-danger text-center mt-1' id='ferror' style='display:none;'>
+												Please choose a category
 											</div>
 
 											<!--Choose Year -->
-											<form id='yearsform' action='/' method='POST' enctype='multipart/form-data'>
+											<form id='funeral_form' action='/' method='POST' enctype='multipart/form-data'>
 											<div class='row'>
 												<div class='col-8 mt-3'>
-													<select id='duesyears' name='duesyears' placeholder='Choose Year of Payment' class='form-control'
+													<select id='d_status' name='d_status' placeholder='Choose deceased status' class='form-control'
 													required>
-													<option name='' value='nothing' style='display:none;'>Choose Payment Year</option>";
-													foreach ($conn->query($sql_3) as $row){
+													<option name='' value='nothing' style='display:none;'>Choose Category</option>";
+													foreach ($conn->query($sql_5) as $row5){
 													echo "
-														<option value='$row[year]'>$row[year]</option>";
+														<option value='$row5[deceased_status]'>$row5[deceased_status]</option>";
 													}
-													if(($result_3->num_rows == 0))
+													if(($result_5->num_rows == 0))
 														{
 															echo "
-															<option name='' value=''>No Payment Year Found</option>';
+															<option name='' value=''>No Funeral Contribution Made</option>';
 															";        		
 														}
 													echo "</select>
@@ -579,32 +586,20 @@ function ajaxsearch($shterm)
 														
 											$(document).ready(function(){
 
-												$('#yearsform').on('submit',function(e) {
-									
-													var text = document.getElementById('duesyears');
-													var value = text.options[text.selectedIndex].value;
-
-													if(value == 'nothing')
-													{
-														
-														$('#error').show();
-														setTimeout(function () {
-															$('#error').hide();
-														}, 5000);
-													}
-													else{
-
+												$('#funeral_form').on('submit',function(e) {
+								
+													
 														$.ajax({
 															type: 'POST',
-															url: 'yprocess.php',
-															data: $('#yearsform').serialize(),
+															url: 'funeralAllprocess.php',
+															data: $('#funeral_form').serialize(),
 															success: function(result){
 																
-																$('#tableData').html(result)
+																$('#tableData_2').html(result)
 															}
 														})
 
-													}
+													
 									
 													e.preventDefault();
 									
@@ -616,25 +611,25 @@ function ajaxsearch($shterm)
 											<!--End of Choose Year -->
 
 										<!--table 2 Mobile View For all Funeral Contributions -->
-										<div class='table-responsive' id='tableData'>
+										<div class='table-responsive' id='tableData_2'>
 											<table class='table table-striped table-hover table-bordered'>
-												<thead class='table-heads'>
+												<thead class='funeral_table-heads'>
 													<tr>
 														<th scope='col' class='text-center'></th>
-														<th scope='col' class='text-center'>Month</th>
-														<th scope='col' class='text-center'>Amount</th>
-														<th scope='col' class='text-center' >Year</th>
+														<th scope='col' class='text-center'>Funeral Name</th>
+														<th scope='col' class='text-center'>Deceased Status</th>
+														<th scope='col' class='text-center' >Amount</th>
 													</tr>
 												</thead>
 												<tbody>";
 
-											foreach ($conn->query($sql_2) as $row_2) {
+											foreach ($conn->query($sql_6) as $row6) {
 												echo "
-												<tr class='accordion-toggle collapsed text-center' id='accordion1' data-bs-toggle='collapse' data-bs-target='#collapseOne-$row_2[dues_id]' aria-expanded='true' aria-controls='collapseOne'>
+												<tr class='accordion-toggle collapsed text-center' id='accordion1' data-bs-toggle='collapse' data-bs-target='#collapseOne-$row6[contribution_id]' aria-expanded='true' aria-controls='collapseOne'>
 													<td class='expand-button text-center'></td>
-													<td>$row_2[month]</td>
-													<td style='color:green;'>$row_2[amount].00</td>
-													<td>$row_2[year]</td>
+													<td>$row6[funeral_name]</td>
+													<td>$row6[deceased_status]</td>
+													<td style='color:green;'>$row6[amount].00</td>
 												</tr>";
 											
 
@@ -643,23 +638,27 @@ function ajaxsearch($shterm)
 												<tr class='hide-table-padding m-auto'>
 													<!--<td></td>-->
 													<td colspan='4'>
-														<div id='collapseOne-$row_2[dues_id]' class='collapse in p-3'>
+														<div id='collapseOne-$row6[contribution_id]' class='collapse in p-3'>
 															<div class='col-12'>
 																<div class='row' id='drop1' style='display:flex;justify-content: center;align-items: center;flex-direction: row;'>
-																	<label class='col-4' style='font-weight:bold;text-align: right;padding-left: 0;'>Dues ID:</label>
-																	<label class='col-5' style='text-align: left;' >$row_2[dues_id]</label>
+																	<label class='col-4' style='font-weight:bold;text-align: right;padding-left: 0;'>Member ID:</label>
+																	<label class='col-5' style='text-align: left;' >$row6[memberid]</label>
 																</div>
 																<div class='row' id='drop1' style='display:flex;justify-content: center;align-items: center;flex-direction: row;'>
-																	<label class='col-4' style='font-weight:bold;text-align: right;padding-left: 0;'>Date:</label>
-																	<label class='col-5' style='text-align: left;' >$row_2[dateofpayment]</label>
+																	<label class='col-4' style='font-weight:bold;text-align: right;padding-left: 0;'>Contri. Date:</label>
+																	<label class='col-5' style='text-align: left;' >$row6[contribution_date]</label>
+																</div>
+																<div class='row' id='drop2' style='display:flex;justify-content: center;align-items: center;flex-direction: row;'>
+																	<label  class='col-4' style='font-weight:bold;text-align: right;color:#003bb3;'>Month:</label>
+																	<label  class='col-5' style='text-align: left;color:#003bb3;'>$row6[month]</label>
 																</div>
 																<div class='row' id='drop2' style='display:flex;justify-content: center;align-items: center;flex-direction: row;'>
 																	<label  class='col-4' style='font-weight:bold;text-align: right;color:#003bb3;'>Admin ID:</label>
-																	<label  class='col-5' style='text-align: left;color:#003bb3;'>$row_2[adminid]</label>
+																	<label  class='col-5' style='text-align: left;color:#003bb3;'>$row6[adminid]</label>
 																</div>
 																<div class='row' id='drop2' style='display:flex;justify-content: center;align-items: center;flex-direction: row;'>
 																	<label class='col-4' style='font-weight:bold;text-align: right;color:#003bb3;'>Admin:</label>
-																	<label class='col-5' style='text-align: left;color:#003bb3;'>$row_2[approvedby]</label>
+																	<label class='col-5' style='text-align: left;color:#003bb3;'>$row6[approvedby]</label>
 																</div>
 																
 															</div>
@@ -670,16 +669,16 @@ function ajaxsearch($shterm)
 
 											
 														//If Member does not have any Due payments made
-													if (($result_2->num_rows == 0)) {
+													if (($result_6->num_rows == 0)) {
 														echo '
 														
 														<script>
 
-															$(".table-heads").hide();
-															$(".modal-footer").hide();
+															$(".funeral_table-heads").hide();
+															$("#funeral_modal").hide();
 															$(".chooseyear").hide();
-															$(".modalhead").css("background-color","red");
-															$(".modaltext").show().html("No Dues Payments Made");
+															$(".funeral_modalhead").css("background-color","red");
+															$(".funeral_modaltext").show().html("No Funeral Contribution Payments Made");
 	
 														</script>
 														
@@ -702,7 +701,7 @@ function ajaxsearch($shterm)
 								</div>  
 							</div>
 							<!--Modal Footer -->
-							<div class='modal-footer'>
+							<div class='modal-footer' id='funeral_modal'>
 
 								<div class='col-12' style='display:flex;justify-content:center;align-items:center'>
 
@@ -727,11 +726,11 @@ function ajaxsearch($shterm)
 								<div class='row'>
 									<div class='col-6'>
 										<button type='submit' class='btn btn-outline' id='submitYear'
-										name='aadd' style='background-color: white;color:green;border-color: green;'>All Years</button>
+										name='aadd' style='background-color: white;color:green;border-color: green;'>All Contributions</button>
 									</div>
 									<div class='col-6'>
 									<button data-bs-toggle='modal' data-bs-target='#total' type='button' class='btn btn-primary pay_2'
-									style='background-color:green;border-color: green;'>Total Dues Paid </button>
+									style='background-color:green;border-color: green;'>Total Contri. Paid</button>
 									</div>
 								</div>
 								</form>
@@ -771,7 +770,7 @@ function ajaxsearch($shterm)
 
 						//Modal form for Total Funeral Contributions Paid
 						echo "
-						<div class='modal fade' id='total' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
+						<div class='modal fade' id='' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
 						aria-labelledby='staticBackdropLabel' aria-hidden='true'>
 						<div class='modal-dialog modal-dialog-scrollable'>
 							<div class='modal-content'>
