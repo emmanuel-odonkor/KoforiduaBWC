@@ -318,7 +318,7 @@
 
 		<div class="container d-flex justify-content-center">
 			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-4 g-4 col-sm-10 card1">
+				<div class="col-lg-6 g-4 col-sm-10 card1">
 					<a data-bs-toggle="modal" href="#duesModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -333,29 +333,15 @@
                     
 				</div>
 
-				<div class="col-lg-4 g-4 col-sm-10 card2">
+				<div class="col-lg-6 g-4 col-sm-10 card2">
 					<a data-bs-toggle="modal" href="#funeralModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
 								<i class="fa fa-users fa-2x" aria-hidden="true"></i>
 							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Funeral Contributions Form</h5>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Funeral Contributions</h5>
 							<p class="pb-5" style="font-size: 14px">
 								Member Contributions
-							</p>
-						</div>
-					</a>
-				</div>
-
-                <div class="col-lg-4 g-4 col-sm-10 card2">
-					<a data-bs-toggle="modal" href="#funeralModal" style="color: inherit; text-decoration: none">
-						<div class="card-effect" style="padding: 25px">
-							<div class="iconbox">
-								<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Update Member Data </h5>
-							<p class="pb-5" style="font-size: 14px">
-								Update member registry information 
 							</p>
 						</div>
 					</a>
@@ -723,6 +709,62 @@
 		var year = today.getFullYear();
         document.getElementById("year").value = year
 
+    });
+
+    //Automatic set for month when date is chosen
+    $("#fdoc").on("change", function () {
+
+      var today = new Date();
+	  var month = ("0" + (today.getMonth() + 1)).slice(-2); // MM
+      if(month == 01)
+      {
+        document.getElementById("fmonth").value = "January"
+      }
+      else if(month == 02)
+      {
+        document.getElementById("fmonth").value = "Febuary"
+      }
+      else if(month == 03)
+      {
+        document.getElementById("fmonth").value = "March"
+      }
+      else if(month == 04)
+      {
+        document.getElementById("fmonth").value = "April"
+      }
+      else if(month == 05)
+      {
+        document.getElementById("fmonth").value = "May"
+      }
+      else if(month == 06)
+      {
+        document.getElementById("fmonth").value = "June"
+      }
+      else if(month == 07)
+      {
+        document.getElementById("fmonth").value = "July"
+      }
+      else if(month == 08)
+      {
+        document.getElementById("fmonth").value = "August"
+      }
+      else if(month == 09)
+      {
+        document.getElementById("fmonth").value = "September"
+      }
+      else if(month == 10)
+      {
+        document.getElementById("fmonth").value = "October"
+      }
+      else if(month == 11)
+      {
+        document.getElementById("fmonth").value = "November"
+      }
+      else if(month == 12)
+      {
+        document.getElementById("fmonth").value = "December"
+      }
+        
     });
 </script>
 

@@ -13,13 +13,12 @@ include('../functions.php');
     }
 
     $mid = $_POST['mid'];
-    $d_status = $_POST['d_status'];
 
     global $conn;
 
     $conn = mysqli_connect('localhost','root','','koforiduabwc');
 
-    $sql_4 = "SELECT memberid,contribution_id,funeral_name,grouptype,deceased_status,amount,contribution_date,month,adminid,approvedby FROM funeral_contributions WHERE memberid = '$mid' AND deceased_status = '$d_status'";
+    $sql_4 = "SELECT memberid,contribution_id,funeral_name,grouptype,deceased_status,amount,contribution_date,month,adminid,approvedby FROM funeral_contributions WHERE memberid = '$mid'";
 
     //execute sql
     $result_4 = $conn->query($sql_4);
@@ -33,7 +32,7 @@ include('../functions.php');
                     <th scope='col' class='text-center'></th>
                     <th scope='col' class='text-center'>Funeral Name</th>
 					<th scope='col' class='text-center'>Deceased Status</th>
-					<th scope='col' class='text-center'>Amount</th>
+					<th scope='col' class='text-center' >Amount</th>
                 </tr>
             </thead>
             <tbody>";

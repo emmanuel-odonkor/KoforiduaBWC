@@ -222,7 +222,7 @@
 									Show Details
 								</button>-->
 								<div class="text-center">
-									<label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="viewMember.php">Previous Page</a></label>
+									<label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
 								</div>	
 							</div>
 

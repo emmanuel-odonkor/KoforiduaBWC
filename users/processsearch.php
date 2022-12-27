@@ -25,7 +25,7 @@ function ajaxsearch($shterm)
 	} 
 
 	//write sql
-	$sql = "SELECT memberid,firstname,lastname,grouptype FROM members WHERE memberid LIKE '%$shterm%'";
+	$sql = "SELECT memberid,firstname,lastname,contact,grouptype FROM members WHERE memberid LIKE '%$shterm%'";
 
 
 	//execute sql
@@ -41,6 +41,7 @@ function ajaxsearch($shterm)
 			$memberid = $row["memberid"];
 			$fname = $row["firstname"];
 			$lname = $row["lastname"];
+			$contact = $row["contact"];
 			$grouptype = $row["grouptype"];
 
 			echo '<center><div class="card-rows">
@@ -52,6 +53,7 @@ function ajaxsearch($shterm)
 			echo '<div class="card-body text-center">
 								<h3 class="card-title">' . $memberid . '</h3>
 								<p class="card-text">' . $fname . ' ' . $lname . '</p>
+								<p class="card-text">' . $contact .'</p>
 								<p class="card-text">' . $grouptype . ' Group</p>
 								<a data-bs-toggle="modal" href="#dues"><button type="button" class="btn btn-primary btn-block" id="button3"
 									name="" style="background-color: white; border-color: white;color:#003bb3;">
@@ -61,7 +63,7 @@ function ajaxsearch($shterm)
 									name="" style="background-color: white; border-color: white;color:#003bb3;">
 										Funeral Contributions
 								</button></a>
-								<a href="updateMemberDetails.php"><button type="button" class="btn btn-outline btn-block mt-3" id=""
+								<a data-bs-toggle="modal" href="#updateMember"><button type="button" class="btn btn-outline btn-block mt-3" id=""
 									name="" style="color: white; border-color: white">
 										Update Member Registry Info
 								</button></a>
@@ -111,7 +113,7 @@ function ajaxsearch($shterm)
 										<div class='col-12'>
 											<div class='form-header modalhead' style='background-color: #003bb3; border-radius: 0.2rem'>
 												<h6 class='mt-2 text-center modaltext'>
-														Dues Payments&nbsp; <i class='fa fa-calendar' style='color:white;' aria-hidden='true'></i>
+														Dues Payments&nbsp; <i class='fa fa-money' style='color:white;' aria-hidden='true'></i>
 												</h6>		
 											</div>
 											<div class='alert alert-danger text-center mt-1' id='error' style='display:none;'>
@@ -368,7 +370,7 @@ function ajaxsearch($shterm)
 										<div class='col-12'>
 											<div class='form-header modalhead' style='background-color: #003bb3; border-radius: 0.2rem'>
 												<h6 class='mt-2 text-center modaltext'>
-														Total Dues Paid&nbsp; <i class='fa fa-calendar' style='color:white;' aria-hidden='true'></i>
+														Total Dues Paid&nbsp; <i class='fa fa-money' style='color:white;' aria-hidden='true'></i>
 												</h6>		
 											</div>
 											<div class='alert alert-danger text-center mt-1' id='error' style='display:none;'>
@@ -540,7 +542,7 @@ function ajaxsearch($shterm)
 										<div class='col-12'>
 											<div class='form-header funeral_modalhead' style='background-color: #003bb3; border-radius: 0.2rem'>
 												<h6 class='mt-2 text-center funeral_modaltext'>
-														Funeral Contributions Payments&nbsp; <i class='fa fa-calendar' style='color:white;' aria-hidden='true'></i>
+														Funeral Contributions Payments&nbsp; <i class='fa fa-users' style='color:white;' aria-hidden='true'></i>
 												</h6>		
 											</div>
 											<div class='alert alert-danger text-center mt-1' id='ferror' style='display:none;'>
@@ -706,7 +708,7 @@ function ajaxsearch($shterm)
 								<div class='col-12' style='display:flex;justify-content:center;align-items:center'>
 
 								<!--When All Years is Chosen -->
-								<form id='allYears' action='/' method='POST' enctype='multipart/form-data'>
+								<form id='allFunerals' action='/' method='POST' enctype='multipart/form-data'>
 									<div class='col-6'>
 										<div class='form-group'>
 											<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
@@ -729,7 +731,7 @@ function ajaxsearch($shterm)
 										name='aadd' style='background-color: white;color:green;border-color: green;'>All Contributions</button>
 									</div>
 									<div class='col-6'>
-									<button data-bs-toggle='modal' data-bs-target='#total' type='button' class='btn btn-primary pay_2'
+									<button data-bs-toggle='modal' data-bs-target='#totalContributions' type='button' class='btn btn-primary pay_2'
 									style='background-color:green;border-color: green;'>Total Contri. Paid</button>
 									</div>
 								</div>
@@ -738,14 +740,14 @@ function ajaxsearch($shterm)
 								<script>				
 									$(document).ready(function(){
 
-										$('#allYears').on('submit',function(e) {
+										$('#allFunerals').on('submit',function(e) {
 									
 											$.ajax({
 												type: 'POST',
-												url: 'allYearsprocess.php',
-												data: $('#allYears').serialize(),
+												url: 'allContributions.php',
+												data: $('#allFunerals').serialize(),
 												success: function(result){
-													$('#tableData').html(result)
+													$('#tableData_2').html(result)
 												}
 											})
 											e.preventDefault();
@@ -766,11 +768,11 @@ function ajaxsearch($shterm)
 						
 						";
 
-						//End of Dues Payments
+						//End Funeral Contribution
 
 						//Modal form for Total Funeral Contributions Paid
 						echo "
-						<div class='modal fade' id='' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
+						<div class='modal fade' id='totalContributions' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
 						aria-labelledby='staticBackdropLabel' aria-hidden='true'>
 						<div class='modal-dialog modal-dialog-scrollable'>
 							<div class='modal-content'>
@@ -789,28 +791,26 @@ function ajaxsearch($shterm)
 										<div class='col-12'>
 											<div class='form-header modalhead' style='background-color: #003bb3; border-radius: 0.2rem'>
 												<h6 class='mt-2 text-center modaltext'>
-														Total Dues Paid&nbsp; <i class='fa fa-calendar' style='color:white;' aria-hidden='true'></i>
+														Total Contributions Paid&nbsp; <i class='fa fa-users' style='color:white;' aria-hidden='true'></i>
 												</h6>		
 											</div>
-											<div class='alert alert-danger text-center mt-1' id='error' style='display:none;'>
-												Please enter a year to check Total
-											</div>
+											
 
 											<!--Choose Year -->
-											<form id='totalform' action='/' method='POST' enctype='multipart/form-data'>
+											<form id='totalContributionsform' action='/' method='POST' enctype='multipart/form-data'>
 												<div class='row col-12 mt-4' style='justify-centent: center;align-items:center;'>
 													<div class='col-8 mt-2'>
-														<select id='total' name='total' placeholder='Choose Dues Payment Year' class='form-control'
-														required title='Please enter a year to check Total'>
-														<option name='' value='' style='display:none;'>Choose Year</option>";
-														foreach ($conn->query($sql_3) as $row){
+														<select id='totalContrib' name='totalContrib' placeholder='Choose category' class='form-control'
+														required title='Please enter a category to check Total'>
+														<option name='' value='' style='display:none;'>Choose Category</option>";
+														foreach ($conn->query($sql_5) as $row5){
 														echo "
-															<option value='$row[year]'>$row[year]</option>";
+															<option value='$row5[deceased_status]'>$row5[deceased_status]</option>";
 														}
-														if(($result_3->num_rows == 0))
+														if(($result_5->num_rows == 0))
 															{
 																echo "
-																<option name='' value=''>No Payment Year Found</option>';
+																<option name='' value=''>No Contribution Found</option>';
 																";        		
 															}
 														echo "</select>
@@ -835,16 +835,16 @@ function ajaxsearch($shterm)
 														
 											$(document).ready(function(){
 
-												$('#totalform').on('submit',function(e) {
+												$('#totalContributionsform').on('submit',function(e) {
 
 
 														$.ajax({
 															type: 'POST',
-															url: 'tprocess.php',
-															data: $('#totalform').serialize(),
+															url: 'totalContrib.php',
+															data: $('#totalContributionsform').serialize(),
 															success: function(result){
 																
-																$('.totaltext').html(result)
+																$('.totaltext_2').html(result)
 															}
 														})
 
@@ -857,7 +857,7 @@ function ajaxsearch($shterm)
 											</script>
 											<!--End of Choose Year -->
 											<div class='form-header totalhead' style='background-color: green; border-radius: 0.2rem'>
-												<h4 class='mt-2 text-center totaltext'>
+												<h4 class='mt-2 text-center totaltext_2'>
 														Results is shown here
 												</h4>		
 											</div>
@@ -878,7 +878,7 @@ function ajaxsearch($shterm)
 								<div class='col-12' style='display:flex;justify-content:center;align-items:center'>
 
 								<!--When All Years is Chosen -->
-								<form id='allYearsDues' action='/' method='POST' enctype='multipart/form-data'>
+								<form id='allContribTotal' action='/' method='POST' enctype='multipart/form-data'>
 									<div class='col-6'>
 										<div class='form-group'>
 											<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
@@ -897,11 +897,11 @@ function ajaxsearch($shterm)
 								</div>
 								<div class='row'>
 									<div class='col-6'>
-										<button type='submit' class='btn btn-outline' id='DuesYear'
-										name='aadd' style='background-color: white;color:green;border-color: green;'>All Years Total</button>
+										<button type='submit' class='btn btn-outline' id='ContributionsYear'
+										name='aadd' style='background-color: white;color:green;border-color: green;'>All Contrib. Total</button>
 									</div>
 									<div class='col-6'>
-									<button id='stepone' data-bs-dismiss='modal' data-bs-toggle='modal' data-bs-target='#dues' type='button' class='btn btn-outline pay_2'
+									<button id='stepone' data-bs-dismiss='modal' data-bs-toggle='modal' data-bs-target='#funeral' type='button' class='btn btn-outline pay_2'
 									style='background-color:green;border-color: green;color:white;'>Previous</button>
 									</div>
 								</div>
@@ -910,14 +910,14 @@ function ajaxsearch($shterm)
 								<script>				
 									$(document).ready(function(){
 
-										$('#allYearsDues').on('submit',function(e) {
+										$('#allContribTotal').on('submit',function(e) {
 									
 											$.ajax({
 												type: 'POST',
-												url: 'allYearsDuesprocess.php',
-												data: $('#allYearsDues').serialize(),
+												url: 'totalContribTotal.php',
+												data: $('#allContribTotal').serialize(),
 												success: function(result){
-													$('.totaltext').html(result)
+													$('.totaltext_2').html(result)
 												}
 											})
 											e.preventDefault();
@@ -937,6 +937,108 @@ function ajaxsearch($shterm)
 						</div>	
 						
 						";
+						//End of Total Funeral Contributions Paid
+
+						//Modal for Update Member Info
+						echo "
+
+						<form id='updateMemberform' action='/' method='POST' enctype='multipart/form-data'>
+						<!--Dues Payment Modal-->
+						<div class='modal fade' id='updateMember' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
+						aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+						<div class='modal-dialog modal-dialog-scrollable'>
+							<div class='modal-content'>
+							<div class='modal-header'>
+								<h5 class='modal-title' id='staticBackdropLabel'>Update Member Info</h5>
+								<button type='button' id='close_b' class='close' data-bs-dismiss='modal'>&times;</button>
+							</div>
+							<div class='modal-body'>
+								<div class='col-lg-12'>
+								<div class='form-row'>
+									<!--Form Details-->
+									<div class='col-12'>
+										<!--Start of dues section form-->
+										<div class='form-row mt-3'>
+											<!--Form Details(User)-->
+											<div class='col-12'>
+												<!-- Heading-->
+												<div class='form-header' style='background-color: #003bb3; border-radius: 0.2rem'>
+														<h6 class='mt-2 text-center'>
+															Update Member Information&nbsp; <i class='fa fa-pencil-square-o' style='color:white;' aria-hidden='true'></i>
+														</h6>
+												</div>
+											</div>
+			
+											<div class='col-6'>
+												<div class='form-group mt-4'>
+													<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
+													class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
+													name='mid' style='font-size: 16px;height: 50px;' style='width: 200px;'>
+													<span class='instruction' style='font-size: 11px;color:#003bb3;padding-bottom: 0px;'>Member ID must be valid</span>
+												</div>
+											</div>
+			
+											<div class='col-6'>
+												<div class='form-group mt-4'>
+												<input type='text' pattern='[A-Za-z\s-]+' title='Enter a valid firstname'
+													class='form-control' placeholder='First Name' required='required'
+													value='' id='mfname' name='mfname'
+													style='font-size: 16px; height: 50px;' style='width: 200px' />
+												</div>   
+											</div>
+
+											<div class='col-6'>
+												<div class='form-group'>
+												<input type='text' pattern='[A-Za-z\s-]+' title='Enter a valid lastname'
+													class='form-control' placeholder='Last Name' value=''
+													required='required' id='mlname' name='mlname'
+													style='font-size: 16px; height: 50px;' style='width: 200px' />
+												</div>  
+											</div>
+
+											<div class='col-6'>
+												<div class='form-group u_number'>
+												<input type='tel' pattern='^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
+												title='Enter a valid Phone number' class='form-control'
+												placeholder='Mobile Number' required='required' value=''
+												id='u_mobile' name='mcontact' style='font-size: 16px; height: 50px' size='90' />
+												</div> 
+											</div>
+
+											<div class='col-12'>
+												<div class='form-group member mt-4'>
+													<select id='grouptype' name='mgroup' placeholder='Gender' class='form-control'
+													style='height: 50px;' required>
+													<option name='' value='' style='display:none;'>Group Type (Adom or Second Chance)</option>
+													<option name='Adom' value='Adom'>Adom Group</option>
+													<option name='Second Chance' value='Second Chance'>Second Chance Group</option>
+													</select>
+												</div>
+												
+											</div>
+									</div>
+									</div>
+									<!--Reset-->
+									<div class='col-6 mt-3'>
+										<button type='button' id='ureset' name='ureset' class='btn btn-outline'
+											style='border-color: green;color:green;'>Reset</button>
+									</div>
+									<!--Submit-->
+									<div class='col-6 mt-3'>
+										<button type='submit' class='btn btn-primary btn-block' id='submitDues'
+											name='uadd' style='background-color: green;border-color: green;'>Update Member</button>
+									</div>
+								</div>
+								</div>  
+							</div>
+						</div>
+						</div>
+						</div>
+						<!--End of Due Payment Modal-->
+					</form>	
+						";
+
+						//End of Update Member Info
 
 						
 

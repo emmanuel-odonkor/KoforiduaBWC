@@ -198,34 +198,6 @@
 						</div>
 					</a>
 				</div>
-
-				<div class="col-lg-4 g-4 col-sm-10 card2">
-					<a href="viewMember.php" style="color: inherit; text-decoration: none">
-						<div class="card-effect" style="padding: 25px">
-							<div class="iconbox">
-								<i class="fa fa-money fa-2x" aria-hidden="true"></i>
-							</div>
-
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Member Dues Payments</h5>
-							<p class="pb-5" style="font-size: 14px">
-								View Member Dues Payments in database records
-							</p>
-						</div>
-					</a>
-				</div>
-				<div class="col-lg-4 g-4 col-sm-10 card3">
-					<a href="updateMemberDetails.php" style="color: inherit; text-decoration: none">
-						<div class="card-effect">
-							<div class="iconbox">
-								<i class="fa fa-users fa-2x" aria-hidden="true"></i>
-							</div>
-							<h5 class="mt-4 mb-2" style="font-size: 17px">Member Contributions</h5>
-							<p style="font-size: 14px">
-								View Member Funeral Contributions
-							</p>
-						</div>
-					</a>
-				</div>
 			</div>
 </div>
 
