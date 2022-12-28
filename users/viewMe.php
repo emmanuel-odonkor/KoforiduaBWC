@@ -208,6 +208,8 @@
 							</div>
 							<!--Enter Member ID-->
 							<div class="col-12">
+								<!-- Projection of output from AJAX -->
+								<div id='response'></div>
 								<div class="form-group mt-4">
 									<input type="text" pattern="[0-9]+" title="Enter a valid ID"
 										class="form-control" placeholder="Enter ID of Member to display the details" required="required"
@@ -379,6 +381,16 @@
 		});
 			
 		}
+	</script>
+
+	<script>
+		//sets the date to today and the future but not the past
+		const dateInput = document.getElementById('mdate');
+
+		// ✅ Using UTC (universal coordinated time)
+		dateInput.value = new Date().toISOString().split('T')[0];
+
+		console.log(new Date().toISOString().split('T')[0]);
 	</script>
 </body>
 </html>

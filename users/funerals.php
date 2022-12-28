@@ -481,7 +481,7 @@
 
 		//setting the max and min date value for the calendar to be today's date
         $("#dof").attr("min", minDate);
-	</script>
+</script>
 
 </body>
 </html>

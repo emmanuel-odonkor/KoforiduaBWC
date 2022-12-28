@@ -973,7 +973,7 @@ function ajaxsearch($shterm)
 												<div class='form-group mt-4'>
 													<input type='text' pattern='[0-9]+' title='Enter a valid member ID'
 													class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
-													name='mid' style='font-size: 16px;height: 50px;' style='width: 200px;'>
+													name='mid' style='font-size: 16px;height: 50px;' value='$memberid' style='width: 200px;' readonly>
 													<span class='instruction' style='font-size: 11px;color:#003bb3;padding-bottom: 0px;'>Member ID must be valid</span>
 												</div>
 											</div>
@@ -982,7 +982,7 @@ function ajaxsearch($shterm)
 												<div class='form-group mt-4'>
 												<input type='text' pattern='[A-Za-z\s-]+' title='Enter a valid firstname'
 													class='form-control' placeholder='First Name' required='required'
-													value='' id='mfname' name='mfname'
+													value='$fname' id='mfname' name='mfname'
 													style='font-size: 16px; height: 50px;' style='width: 200px' />
 												</div>   
 											</div>
@@ -990,7 +990,7 @@ function ajaxsearch($shterm)
 											<div class='col-6'>
 												<div class='form-group'>
 												<input type='text' pattern='[A-Za-z\s-]+' title='Enter a valid lastname'
-													class='form-control' placeholder='Last Name' value=''
+													class='form-control' placeholder='Last Name' value='$lname'
 													required='required' id='mlname' name='mlname'
 													style='font-size: 16px; height: 50px;' style='width: 200px' />
 												</div>  
@@ -1000,34 +1000,39 @@ function ajaxsearch($shterm)
 												<div class='form-group u_number'>
 												<input type='tel' pattern='^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
 												title='Enter a valid Phone number' class='form-control'
-												placeholder='Mobile Number' required='required' value=''
+												placeholder='Mobile Number' required='required' value='$contact'
 												id='u_mobile' name='mcontact' style='font-size: 16px; height: 50px' size='90' />
 												</div> 
 											</div>
+											<div class='col-6'>
+												<div class='form-group mt-3'>
+													<input type='date' title='Enter a valid date' class='form-control'
+													placeholder='Date' required='required' id='mdate' name='mdate'
+													style='font-size: 16px; height: 50px;'
+													style='width: 200px; font-size: medium' readonly/>
+													<span class='instruction' style='font-size: 11px;color:#003bb3;padding-bottom: 0px;'>Date of Update</span>	
+												</div>
+											</div>
 
-											<div class='col-12'>
-												<div class='form-group member mt-4'>
+											<div class='col-6'>
+												<div class='form-group mt-3 member'>
 													<select id='grouptype' name='mgroup' placeholder='Gender' class='form-control'
 													style='height: 50px;' required>
-													<option name='' value='' style='display:none;'>Group Type (Adom or Second Chance)</option>
-													<option name='Adom' value='Adom'>Adom Group</option>
-													<option name='Second Chance' value='Second Chance'>Second Chance Group</option>
+														<option name='' value='' style='display:none;'>Group Type (Adom or Second Chance)</option>
+														<option value='Adom' "; if($grouptype=='Adom') echo 'selected="selected"'; echo ">Adom Group</option>
+														<option value='Second Chance'"; if($grouptype=='Second Chance') echo 'selected="selected"'; echo " >Second Chance Group</option>
 													</select>
 												</div>
-												
 											</div>
 									</div>
 									</div>
-									<!--Reset-->
-									<div class='col-6 mt-3'>
-										<button type='button' id='ureset' name='ureset' class='btn btn-outline'
-											style='border-color: green;color:green;'>Reset</button>
-									</div>
 									<!--Submit-->
-									<div class='col-6 mt-3'>
-										<button type='submit' class='btn btn-primary btn-block' id='submitDues'
-											name='uadd' style='background-color: green;border-color: green;'>Update Member</button>
-									</div>
+									<div class='col-12'>
+										<div class='col-6 mt-1' style='float:right;'>
+											<button type='submit' class='btn btn-primary btn-block' id='submitUpdate'
+												name='uadd' style='background-color: green;border-color: green;'>Update Member</button>
+										</div>
+									</div>	
 								</div>
 								</div>  
 							</div>
@@ -1036,6 +1041,38 @@ function ajaxsearch($shterm)
 						</div>
 						<!--End of Due Payment Modal-->
 					</form>	
+
+								<script>
+									//sets the date to today and the future but not the past
+									const dateInput = document.getElementById('mdate');
+
+									// ✅ Using UTC (universal coordinated time)
+									dateInput.value = new Date().toISOString().split('T')[0];
+									
+									console.log(new Date().toISOString().split('T')[0]);
+								</script>
+
+								<script>	
+											
+									$(document).ready(function(){
+
+										$('#updateMemberform').on('submit',function(e) {
+									
+											$.ajax({
+												type: 'POST',
+												url: 'updateMember.php',
+												data: $('#updateMemberform').serialize(),
+												success: function(result){
+													$('#response').html(result)
+												}
+											})
+											e.preventDefault();
+										});
+									
+									})
+											
+								</script>
+
 						";
 
 						//End of Update Member Info
