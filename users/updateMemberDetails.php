@@ -190,6 +190,9 @@
 		</div>
         <!-- Projection of output from AJAX -->
        <div id="message"></div>
+
+       <!-- Projection of Update output from AJAX -->
+       <div id="response"></div>
         <!-- Modal -->
         <form id="duesform" action="/" method="POST" enctype="multipart/form-data">
             <!--Dues Payment Modal-->
@@ -318,7 +321,7 @@
 
 		<div class="container d-flex justify-content-center">
 			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-6 g-4 col-sm-10 card1">
+				<div class="col-lg-4 g-4 col-sm-10 card1">
 					<a data-bs-toggle="modal" href="#duesModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -333,7 +336,7 @@
                     
 				</div>
 
-				<div class="col-lg-6 g-4 col-sm-10 card2">
+				<div class="col-lg-4 g-4 col-sm-10 card2">
 					<a data-bs-toggle="modal" href="#funeralModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
@@ -342,6 +345,20 @@
 							<h5 class="mt-4 mb-2" style="font-size: 17px">Funeral Contributions</h5>
 							<p class="pb-5" style="font-size: 14px">
 								Member Contributions
+							</p>
+						</div>
+					</a>
+				</div>
+
+                <div class="col-lg-4 g-4 col-sm-10 card2">
+					<a data-bs-toggle="modal" href="#idModal" style="color: inherit; text-decoration: none">
+						<div class="card-effect" style="padding: 25px">
+							<div class="iconbox">
+								<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+							</div>
+							<h5 class="mt-4 mb-2" style="font-size: 17px">Update Member Info</h5>
+							<p class="pb-5" style="font-size: 14px">
+								Modify member personal data
 							</p>
 						</div>
 					</a>
@@ -506,6 +523,63 @@
             <!--End of Funeral Modal-->
         </form>
 
+        <!-- Short modal to receive member id-->
+        <form id="idForm" action="/" method="POST" enctype="multipart/form-data">
+            <!--Funeral Modal-->
+            <div class="modal fade" id="idModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Retrieve Member ID Section</h5>
+                    <button type="button" id="fclose_b" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                    <div class="form-row">
+                        <!--Form Details-->
+                        <div class="col-12">
+                            <!--Start of dues section form-->
+                            <div class="form-row mt-3">
+
+                            <div class="col-12">
+                                <div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
+                                    <h6 class="mt-2 text-center">
+                                    Member ID&nbsp; <i class="fa fa-user" style="color:white;" aria-hidden="true"></i>
+                                    </h6>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group mt-4">
+                                    <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
+                                        class="form-control" placeholder="Enter the Member ID" required="required" id="mid"
+                                        name="mid" style="font-size: 16px;height: 50px;" style="width: 200px;">
+                                        <span class="instruction" style="font-size: 11px;color:#003bb3;">Member ID must be valid</span>
+                                </div> 
+                            </div>
+                        </div>
+                        </div>
+                      
+                        <div class="col-12">
+                             <!--Submit-->
+                            <div class="col-6 mt-3" style="float:right;">
+                                <button type="submit" class="btn btn-primary btn-block" id="submit"
+                                    name="sadd" style="background-color: green;border-color: green;">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>  
+                </div>
+            </div>
+            </div>
+            </div>
+            
+        </form>
+
+        <!-- End of Short modal to receive member id -->
+        
+       	
 
         <div class="container2">
             <div class="text-center">
@@ -833,6 +907,39 @@
          });*/
                 
     </script>
+
+
+
+<!-- ID Form send -->
+<script>
+        //ajax call for Dues Payment
+        $(document).ready(function(){
+
+            $("#idForm").on('submit',function(e) {
+
+               // console.log('emma')
+
+                $.ajax({
+                    type: "POST",
+                    url: "idProcess.php",
+                    data: $('#idForm').serialize(),
+                    success: function(result){
+
+                        $("#message").html(result)
+                    }
+                })
+
+                e.preventDefault();
+
+            });
+
+        })
+        
+
+    </script>
+
+
+
 
 
 </body>
