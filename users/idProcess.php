@@ -66,7 +66,7 @@
                
                                <div class='modal fade' id='updateMember' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
                                aria-labelledby='staticBackdropLabel' aria-hidden='true'>
-                               <div class='modal-dialog modal-dialog-scrollable'>
+                               <div class='modal-dialog'>
                                    <div class='modal-content'>
                                    <div class='modal-header'>
                                        <h5 class='modal-title' id='staticBackdropLabel'>Update Member Info</h5>
@@ -190,6 +190,13 @@
 
       }
        			
+     } else if(($result->num_rows == 0)){
+        echo "<script>
+            $('#merror').show();
+            setTimeout(function () {
+                $('#merror').hide();
+            }, 5000);
+        </script>";
      }
          
 ?>

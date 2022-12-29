@@ -548,6 +548,9 @@
                                     Member ID&nbsp; <i class="fa fa-user" style="color:white;" aria-hidden="true"></i>
                                     </h6>
                                 </div>
+                                <div class='alert alert-danger text-center mt-1' id='merror' style='display:none;'>
+									Enter a Valid Member ID
+								</div>
                             </div>
 
                             <div class="col-12">

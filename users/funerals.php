@@ -346,7 +346,7 @@
 				</div>
 
 				<div class="col-lg-6 g-4 col-sm-10 card2">
-					<a data-bs-toggle="modal" href="#funeralrecordModal" style="color: inherit; text-decoration: none">
+					<a href="funeralevents.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
 								<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
