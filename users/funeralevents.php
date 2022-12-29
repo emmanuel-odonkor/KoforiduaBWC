@@ -158,7 +158,7 @@
 
   <section class="bannerv7a">
 		<div class="container d-flex justify-content-center">
-			<div class="card col-lg-8 mt-5" style="border: none; opacity: 0.8; margin-bottom: 0;">
+			<div class="card col-lg-12 mt-5" style="border: none; opacity: 0.8; margin-bottom: 0;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
 						<h3 id="profile" class="card-title text-center"></h3>
@@ -168,9 +168,9 @@
 						<div class="form-row">
 							<!--User Header-->
 							<div class="col-12">
-							<div class="row" style="display: flex; align-items: center;justify-content: center;">
-								<img src="../images/bwcLogoHome.png" style="width:100px;">
-							</div>
+								<div class="row" style="display: flex; align-items: center;justify-content: center;">
+									<img src="../images/bwcLogoHome.png" style="width:100px;">
+								</div>
 								<div class="form-header mt-4" style="background-color: #003bb3; border-radius: 0.2rem">
 									<h6 class="mt-2 text-center">
 										All Funeral Events &nbsp; <i class="fa fa-calendar" style="color:white;" aria-hidden="true"></i>
@@ -178,61 +178,39 @@
 								</div>
 							</div>
 							<!--User Details-->
-							<div class="col-6">
-								<div class="form-group mt-4">
-									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid firstname"
-										class="form-control" placeholder="First Name" required="required"
-										value="" id="mfname" name="mfname"
-										style="font-size: 16px; height: 50px;" style="width: 200px" />
+							<div class="col-12 mt-5">
+								<!--table 1 start-->
+								<div id="trans-table" class="table-responsive desk-table">
+									<table class="table table-striped table-hover table-bordered text-center">
+										<thead>
+											<tr>
+												<th scope="col">Funeral Event </th>
+												<th scope="col">Date</th>
+												<th scope="col">Deceased Status</th>
+												<th scope="col">Deceased Group</th>
+												<th scope="col">Region</th>
+												<th scope="col">Month</th>
+												<th scope="col">Location</th>
+												<th scope="col">Added By</th>
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody id="trans-list"></tbody>
+									</table>
 								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group mt-4">
-									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid lastname"
-										class="form-control" placeholder="Last Name" value=""
-										required="required" id="mlname" name="mlname"
-										style="font-size: 16px; height: 50px;" style="width: 200px" />
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group mt-3 u_number">
-									<input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
-									title="Enter a valid Phone number" class="form-control"
-									placeholder="Mobile Number" required="required" value=""
-									id="u_mobile" name="mcontact" style="font-size: 16px; height: 50px" size="90" />
-								</div>
+								<!--end of table 1 -->
 							</div>
 
-							<div class="col-6">
-								<div class="form-group mt-3">
-										<select id="gender" name="mgender" placeholder="Gender" class="form-control"
-										style="height: 50px;" required>
-										<option name="" value="" style="display:none;">Select Your  Gender</option>
-										<option name="Male" value="Male">Male</option>
-										<option name="Female" value="Female">Female</option>
-										</select>
+							<div class="form-group mt-4 col-6 mb-5 text-center">
+								<div class="col-3">
+									<button type="button" class="btn btn-primary btn-block" id="button3"
+										name="madd" onclick=" window.location.href='funerals.php'" style="background-color: green; border-color: green;float:left;">
+										Back
+									</button>
 								</div>
-							</div>
-
-							<div class="col-12">
-								<div class="form-group mt-3">
-										<select id="grouptype" name="mgroup" placeholder="Group Type" class="form-control"
-										style="height: 50px;" required>
-										<option name="" value="" style="display:none;">Choose Your Group Type (Adom or Second Chance)</option>
-										<option name="Adom" value="Adom">Adom Group</option>
-										<option name="Second Chance" value="Second Chance">Second Chance Group</option>
-										</select>
-								</div>
-							</div>
-
-							<div class="form-group mt-4 col-12 mb-5">
-								<button type="submit" class="btn btn-primary btn-block" id="button3"
-									name="madd" style="background-color: green; border-color: green">
-									Add Member
-								</button>
-								<div class="text-center mt-3">
+								<!--<div class="text-center mt-3">
 									<label style="font-size:14px;">Back to <a href="dashboard.php">Dashboard Page</a></label>
-								</div>	
+								</div>-->
 							</div>
 						</div>
 				
