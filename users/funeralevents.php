@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css" />
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 
   <!-- custom css if you need -->
  
@@ -57,6 +58,7 @@
 	footer{
       background-color:#003bb3 !important;
       border-color: #003bb3 !important;
+	  z-index: -2 !important;
     }
 
     
@@ -110,6 +112,10 @@
 		color:white;
 	}
 
+	.modal-backdrop{z-index: 1050;}
+	.modal{z-index: 1060;}
+
+
   </style>
 	</head>
 	<body class="home-one">
@@ -158,7 +164,7 @@
 
   <section class="bannerv7a">
 		<div class="container d-flex justify-content-center">
-			<div class="card col-lg-12 mt-5" style="border: none; opacity: 0.8; margin-bottom: 0;">
+			<div class="card col-lg-12 mt-5" style="border: none;margin-bottom: 0;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
 						<h3 id="profile" class="card-title text-center"></h3>
@@ -178,29 +184,231 @@
 								</div>
 							</div>
 							<!--User Details-->
-							<div class="col-12 mt-5">
-								<!--table 1 start-->
-								<div id="trans-table" class="table-responsive desk-table">
-									<table class="table table-striped table-hover table-bordered text-center">
-										<thead>
-											<tr>
-												<th scope="col">Funeral Event </th>
-												<th scope="col">Date</th>
-												<th scope="col">Deceased Status</th>
-												<th scope="col">Deceased Group</th>
-												<th scope="col">Region</th>
-												<th scope="col">Month</th>
-												<th scope="col">Location</th>
-												<th scope="col">Added By</th>
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody id="trans-list"></tbody>
-									</table>
-								</div>
-								<!--end of table 1 -->
-							</div>
+							<div class="col-12 mt-3">
+								<!--table start-->
+								<div id="trans-table" class="table-responsive">
 
+								<?php
+
+									$conn = mysqli_connect('localhost','root','','koforiduabwc');
+
+
+
+									$sql="SELECT * FROM `funerals`";
+
+									$adminuser_id =  $_SESSION['user']['ID'];
+									$adminuser_name =  $_SESSION['user']['Username'];
+													
+
+									if($result=$conn->query($sql))
+										{
+
+											$output = '<table class="table table-hover table-bordered text-center">
+												<thead>
+													<tr>
+													<th scope="col">Funeral Event </th>
+													<th scope="col">Date</th>
+													<th scope="col">Dec. Status</th>
+													<th scope="col">Dec. Group</th>
+													<th scope="col">Region</th>
+													<th scope="col">Month</th>
+													<th scope="col">Location</th>
+													<th scope="col" style="width:15%">Action</th>
+													</tr>
+												</thead>
+													';
+
+											while($row=$result->fetch_assoc()){
+												
+												$fid = $row["funeral_id"];
+												$fname = $row["funeral_name"];
+												$fdate = $row["funeral_date"];
+												$dstatus = $row["deceased_status"];
+												$dgroup= $row["deceased_group"];
+												$fregion = $row["funeral_region"];
+												$fmonth = $row["funeral_month"];
+												$flocation = $row["funeral_location"];
+												
+
+												$_SESSION['fid'] = $fid;
+
+												$output .= '
+													<tr>
+													<td>'.$fname.'</td>
+													<td>'.$fdate.'</td>
+													<td>'.$dstatus.'</td>
+													<td>'.$dgroup.'</td>
+													<td>'.$fregion.'</td>
+													<td>'.$fmonth.'</td>
+													<td>'.$flocation.'</td>
+													
+
+													<td><a data-toggle="modal" href="#updateFuneralModal-'.$fid.'" style="color:green;">Update</a> ||
+													<a data-toggle="modal" href="#deleteFuneralModal-'.$fid.'" style="color:red;">Delete</a></td>
+													</tr>
+
+													<!--Update Funeral Modal -->
+							 						<!-- Modal -->
+													<div>
+													<form id="updateFuneralform" action="/" method="POST" enctype="multipart/form-data">
+														<div class="modal fade" id="updateFuneralModal-'.$fid.'" data-backdrop="static" data-keyboard="false" tabindex="-1"
+														aria-labelledby="staticBackdropLabel" aria-hidden="true">
+														<div class="modal-dialog modal-dialog-scrollable">
+															<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="staticBackdropLabel">Update Funeral</h5>
+																<button type="button" id="close_b" class="close" data-dismiss="modal">&times;</button>
+															</div>
+															<div class="modal-body">
+																<div class="col-lg-12">
+																<div class="form-row">
+																	<!--Form Details-->
+																	<div class="col-12">
+																		<!--Start of dues section form-->
+																		<div class="form-row">
+																			<!--Form Details(User)-->
+																			<div class="col-12">
+																				<!-- Heading-->
+																				<div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
+																						<h6 class="mt-2 text-center">
+																							Funeral Event Update&nbsp; <i class="fa fa-building" style="color:white;" aria-hidden="true"></i>
+																						</h6>
+																				</div>
+																			</div>
+
+																			<div class="col-12">
+																				<div class="form-group mt-4">
+																				<input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral name"
+																				class="form-control" placeholder="Funeral Name eg. The Late Mr. XYZ Funeral" required="required"
+																				value="" id="funeralname" name="funeralname"
+																				style="font-size: 16px; height: 50px;" style="width: 200px" />
+																				</div>
+																			</div>
+
+																			<div class="col-6">
+																				<div class="form-group">
+																					<input type="date" class="form-control"
+																					placeholder="Date of Funeral Event" required="required" id="dof" name="dof"
+																					style="font-size: 16px; height: 50px;"
+																					style="width: 200px; font-size: medium"/>
+																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Date of Funeral</span>
+																				</div>    
+																			</div>
+																			<div class="col-6">
+																				<div class="form-group">
+																				<select id="dgroup" name="dgroup" placeholder="" class="form-control"
+																					style="height: 50px;" required>
+																					<option name="" value="" style="display:none;">Choose Group Type</option>
+																					<option name="Adom" value="Adom">Adom Group</option>
+																					<option name="Second Chance" value="Second Chance">Second Chance Group</option>
+																					<option name="Not Applicable" value="Not Applicable">Not Applicable</option>
+																				</select>
+																				<span class="instruction" style="font-size: 11px;color:#003bb3;">Deceased Group Type</span>
+																				</div>    
+																			</div>
+																			<div class="col-6">
+																				<div class="form-group">
+																					<select id="fmember" name="fmember" placeholder="Deceased Status" class="form-control"
+																						style="height: 50px;" required>
+																						<option name="" value="" style="display:none;">Deceased Status</option>
+																						<option name="Member" value="Member">Member</option>
+																						<option name="Not a Member" value="Not a Member">Not a Member</option>
+																					</select>
+																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Deceased Group Type</span>
+																				</div>    
+																			</div>
+																			<div class="col-6">
+																				<div class="form-group">
+																					<select id="region" name="region" placeholder="Region" class="form-control" style="height: 50px;" required >
+																						<option name="" value="" style="display:none;">Region of Funeral</option>
+																						<option name="AHAFO" value="AHAFO">AHAFO</option>
+																						<option name="ASHANTI" value="ASHANTI">ASHANTI</option>
+																						<option name="BONO EAST" value="BONO EAST">BONO EAST</option>
+																						<option name="BRONG AHAFO" value="BRONG AHAFO">BRONG AHAFO</option>
+																						<option name="CENTRAL" value="CENTRAL">CENTRAL</option>
+																						<option name="EASTERN" value="EASTERN">EASTERN</option>
+																						<option name="GREATER ACCRA" value="GREATER ACCRA">GREATER ACCRA</option>
+																						<option name="NORTH EAST" value="NORTH EAST">NORTH EAST</option>
+																						<option name="NORTHERN" value="NORTHERN">NORTHERN</option>
+																						<option name="OTI" value="OTI">OTI</option>
+																						<option name="SAVANNAH" value="SAVANNAH">SAVANNAH</option>
+																						<option name="UPPER EAST" value="UPPER EAST">UPPER EAST</option>
+																						<option name="UPPER WEST" value="UPPER WEST">UPPER WEST</option>
+																						<option name="WESTERN" value="WESTERN">WESTERN</option>
+																						<option name="WESTERN NORTH" value="WESTERN NORTH">WESTERN NORTH</option>
+																						<option name="VOLTA" value="VOLTA">VOLTA</option>
+																					</select>
+																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Region of Funeral</span>
+																				</div>    
+																			</div>
+											
+																			<div class="col-6">
+																					<div class="form-group">
+																						<select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
+																							<option name="" value="" style="display:none;">Month of Funeral</option>
+																							<option name="January" value="January">January</option>
+																							<option name="February" value="February">February</option>
+																							<option name="March" value="March">March</option>
+																							<option name="April" value="April">April</option>
+																							<option name="May" value="May">May</option>
+																							<option name="June" value="June">June</option>
+																							<option name="July" value="July">July</option>
+																							<option name="August" value="August">August</option>
+																							<option name="September" value="September">September</option>
+																							<option name="October" value="October">October</option>
+																							<option name="November" value="November">November</option>
+																							<option name="December" value="December">December</option>
+																						</select>
+																						<span class="instruction" style="font-size: 11px;color:#003bb3;">Month of Funeral</span>
+																					</div> 
+																			</div>
+
+																			<div class="col-6">
+																				<div class="form-group">
+																					<input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral location"
+																					class="form-control" placeholder="Funeral Location" required="required"
+																					value="" id="funeralloc" name="funeralloc"
+																					style="font-size: 16px; height: 50px;" style="width: 200px" />
+																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Funeral Location</span>
+																				</div> 
+																			</div>
+
+																		</div>
+																	</div>
+																	<div class="col-12">
+																		<!--Submit-->
+																		<div class="col-6" style="float:right;">
+																			<button type="submit" class="btn btn-primary btn-block" id="submitDues"
+																				name="ufadd" style="background-color: green;border-color: green;">Update Event</button>
+																		</div>
+																	</div>
+							
+																</div>
+																</div>  
+															</div>
+														</div>
+														</div>
+														</div>
+													</form>
+													</div>
+													<!--End of Update Funeral Modal -->
+													
+													';
+
+											}
+
+											$output .= '</table>';
+
+											echo $output;
+
+										}
+
+
+									?>
+							</div>
+							<!-- Table end -->
+
+							
 							<div class="form-group mt-4 col-6 mb-5 text-center">
 								<div class="col-3">
 									<button type="button" class="btn btn-primary btn-block" id="button3"
@@ -244,147 +452,15 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-  </script>
   <!--Country Code and Flag JS Plugin-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/css/intlTelInput.css" />
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/js/intlTelInput-jquery.min.js"></script>
 	<script src="../build/js/intlTelInput.js"></script>
 	<script src="../js/country_flag_code.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+  </script>
 
-	<script>
-		//hide and show password
-		$("#show").on("click", function () {
-			var passcode = document.getElementById("new_password");
-			if (passcode.type === "password") {
-				passcode.type = "text";
-				document.getElementById("show").innerHTML = "Hide";
-			} else {
-				passcode.type = "password";
-				document.getElementById("show").innerHTML = "Show";
-			}
-		});
-
-		 $("#show1").on("click", function () {
-			var passcode = document.getElementById("old_pass");
-			if (passcode.type === "password") {
-				passcode.type = "text";
-				document.getElementById("show1").innerHTML = "Hide";
-			} else {
-				passcode.type = "password";
-				document.getElementById("show1").innerHTML = "Show";
-			}
-		});
-	</script>
-
-	<script>
-		//Mobile Number section (country codes with flags)
-		const u_mobile = document.querySelector("#u_mobile");
-		const u_mobile_input = window.intlTelInput(u_mobile, {
-			preferredCountries: ["gh", "gb"],
-		});
-
-		$(document).ready(function () {
-			$(".u_number").click(function () {
-				var countryCode = $(".u_number .iti__selected-flag").attr("title");
-				var countryCode = countryCode.replace(/[^0-9]/g, "");
-				$("#u_mobile").val("");
-				$("#u_mobile").val("+" + countryCode + $("#u_mobile").val());
-			});
-		});
-	</script>
-
-	<script>
-		//Sliding of password pop message up and down
-		$("#password_input").click(function () {
-			$("#popup_message").slideDown();
-			var show_word = document.getElementById("show");
-			return false;
-		});
-
-		$(window).click(function () {
-			if ($("#popup_message").is(":visible")) {
-				$("#popup_message").slideUp();
-			}
-		});
-
-		//Removal of saved login in Password section
-		function typePass() {
-			var pass = document.getElementById("password");
-			pass.type = "password";
-		}
-
-	</script>
 </body>
 </html>
-
-
-<?php 
-
-//include the controller
-require('../controllers/memberscontroller.php');
-
-//check if submit button was clicked to add member profile
-if (isset($_POST['madd'])) {
-    //grab form data and stores them in variables
-    $mfname = $_POST['mfname'];
-	$mlname = $_POST['mlname'];
-    $mcontact = $_POST['mcontact'];
-    $mgender = $_POST['mgender'];
-    $mgroup = $_POST['mgroup'];
-
-    $adminuser_id =  $_SESSION['user']['ID'];
-	$adminuser_name =  $_SESSION['user']['Username'];
-
-	 //calls function from memberscontroller.php to add a member
-    $ret =  addmemberctrl($adminuser_id,$adminuser_name, $mfname, $mlname, $mcontact, $mgender,$mgroup);
-    //echo result
-                if ($ret) {
-                    //echo success, if the tutor_profile was successfully created
-                            echo "<script>Swal.fire({
-								icon: 'success',
-								title: 'Suuccessful',
-								text: 'Member Profile Created',
-							  })</script>";
-                }else{
-                    //echo danger, if the tutor_profile was not successfully created
-                    echo "<script>Swal.fire({
-						icon: 'error',
-						title: 'Oops..',
-						text: 'Error creating member account',
-					  })</script>";
-                }
-
-		//open the connection and gets the ID of the added member and shows it to them
-		$conn = mysqli_connect('localhost','root','','koforiduabwc');
-
-		$sql="SELECT memberid,firstname,lastname  FROM `members` WHERE `firstname` = '$mfname' AND `lastname` = '$mlname' AND `adminid` = '$adminuser_id'";
-
-		global $memberid;
-
-		if($result=$conn->query($sql))
-             {
-                while($row=$result->fetch_assoc()){
-
-                    $memberid = $row["memberid"];
-					$fname = $row["firstname"];
-					$lname = $row["lastname"];
-                
-                }
-
-				echo "<script>Swal.fire({
-					icon: 'success',
-					title: 'Member Profile Created',
-					text: 'ID for user, $fname $lname is $memberid',
-				  })</script>";
-					
-
-				
-            }
-
-
-    }
-
-?>
