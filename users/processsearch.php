@@ -395,7 +395,7 @@ function ajaxsearch($shterm)
 													<div class='col-1 mt-2 mx-0'>
 														<button type='submit' class='btn btn-primary' id='totalYear'
 															name='tadd' style='color:white;background-color: blue;
-															border:none;min-width:0;min-height:0;'>Search</button>
+															border:none;min-width:0;min-height:0;'>Total</button>
 													</div>
 
 												</div>
@@ -814,7 +814,7 @@ function ajaxsearch($shterm)
 													<div class='col-1 mt-2 mx-0'>
 														<button type='submit' class='btn btn-primary' id='totalYear'
 															name='tadd' style='color:white;background-color: blue;
-															border:none;min-width:0;min-height:0;'>Search</button>
+															border:none;min-width:0;min-height:0;'>Total</button>
 													</div>
 
 												</div>
