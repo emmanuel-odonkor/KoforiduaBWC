@@ -172,6 +172,8 @@
 
 				
 						<div class="form-row">
+							<!-- AJAX POST Response-->
+							<div id="message"></div>
 							<!--User Header-->
 							<div class="col-12">
 								<div class="row" style="display: flex; align-items: center;justify-content: center;">
@@ -245,63 +247,74 @@
 
 													<td><a data-toggle="modal" href="#updateFuneralModal-'.$fid.'" style="color:green;">Update</a> ||
 													<a data-toggle="modal" href="#deleteFuneralModal-'.$fid.'" style="color:red;">Delete</a></td>
-													</tr>
+													</tr>	
+													';
 
-													<!--Update Funeral Modal -->
-							 						<!-- Modal -->
-													<div>
-													<form id="updateFuneralform" action="/" method="POST" enctype="multipart/form-data">
-														<div class="modal fade" id="updateFuneralModal-'.$fid.'" data-backdrop="static" data-keyboard="false" tabindex="-1"
-														aria-labelledby="staticBackdropLabel" aria-hidden="true">
-														<div class="modal-dialog modal-dialog-scrollable">
-															<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="staticBackdropLabel">Update Funeral</h5>
-																<button type="button" id="close_b" class="close" data-dismiss="modal">&times;</button>
-															</div>
-															<div class="modal-body">
-																<div class="col-lg-12">
-																<div class="form-row">
-																	<!--Form Details-->
-																	<div class="col-12">
-																		<!--Start of dues section form-->
-																		<div class="form-row">
-																			<!--Form Details(User)-->
-																			<div class="col-12">
-																				<!-- Heading-->
-																				<div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
-																						<h6 class="mt-2 text-center">
-																							Funeral Event Update&nbsp; <i class="fa fa-building" style="color:white;" aria-hidden="true"></i>
-																						</h6>
-																				</div>
-																			</div>
+													echo '<!--Update Funeral Modal -->
+													<!-- Modal -->
+												   
+												   <form id="updateFuneralform" action="/" method="POST" enctype="multipart/form-data">
+													   <div class="modal fade" id="updateFuneralModal-'.$fid.'" data-backdrop="static" data-keyboard="false" tabindex="-1"
+													   aria-labelledby="staticBackdropLabel" aria-hidden="true">
+													   <div class="modal-dialog modal-dialog-scrollable">
+														   <div class="modal-content">
+														   <div class="modal-header">
+															   <h5 class="modal-title" id="staticBackdropLabel">Update Funeral</h5>
+															   <button type="button" id="close_b" class="close" data-dismiss="modal">&times;</button>
+														   </div>
+														   <div class="modal-body">
+															   <div class="col-lg-12">
+															   <div class="form-row">
+																   <!--Form Details-->
+																   <div class="col-12">
+																	   <!--Start of dues section form-->
+																	   <div class="form-row">
+																		   <!--Form Details(User)-->
+																		   <div class="col-12">
+																			   <!-- Heading-->
+																			   <div class="form-header" style="background-color: #003bb3; border-radius: 0.2rem">
+																					   <h6 class="mt-2 text-center">
+																						   Funeral Event Update&nbsp; <i class="fa fa-building" style="color:white;" aria-hidden="true"></i>
+																					   </h6>
+																			   </div>
+																		   </div>
 
-																			<div class="col-12">
-																				<div class="form-group mt-4">
-																				<input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral name"
-																				class="form-control" placeholder="Funeral Name eg. The Late Mr. XYZ Funeral" required="required"
-																				value="" id="funeralname" name="funeralname"
-																				style="font-size: 16px; height: 50px;" style="width: 200px" />
-																				</div>
-																			</div>
-
-																			<div class="col-6">
+																		   <div class="col-6">
 																				<div class="form-group">
-																					<input type="date" class="form-control"
-																					placeholder="Date of Funeral Event" required="required" id="dof" name="dof"
-																					style="font-size: 16px; height: 50px;"
-																					style="width: 200px; font-size: medium"/>
-																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Date of Funeral</span>
-																				</div>    
+																					<input type="text" pattern="[0-9]+" title="Enter a valid member ID"
+																						class="form-control" placeholder="Enter the Funeral ID" required="required" id="fid"
+																						name="fid" value="'.$fid.'" style="font-size: 16px;height: 50px;" style="width: 200px;" hidden>
+																				</div> 
 																			</div>
-																			<div class="col-6">
+																		
+																		   <div class="col-12">
+																			   <div class="form-group">
+																			   <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral name"
+																			   class="form-control" placeholder="Funeral Name eg. The Late Mr. XYZ Funeral" required="required"
+																			   value="'.$fname.'" id="funeralname" name="funeralname"
+																			   style="font-size: 16px; height: 50px;" style="width: 200px" />
+																			   </div>
+																		   </div>
+
+																		   <div class="col-6">
+																			   <div class="form-group">
+																				   <input type="date" class="form-control"
+																				   placeholder="Date of Funeral Event" required="required" id="dof" name="dof"
+																				   style="font-size: 16px; height: 50px;"
+																				   value="'.$fdate.'"
+																				   style="width: 200px; font-size: medium"/>
+																				   <span class="instruction" style="font-size: 11px;color:#003bb3;">Date of Funeral</span>
+																			   </div>    
+																		   </div>
+
+																		   <div class="col-6">
 																				<div class="form-group">
 																				<select id="dgroup" name="dgroup" placeholder="" class="form-control"
 																					style="height: 50px;" required>
 																					<option name="" value="" style="display:none;">Choose Group Type</option>
-																					<option name="Adom" value="Adom">Adom Group</option>
-																					<option name="Second Chance" value="Second Chance">Second Chance Group</option>
-																					<option name="Not Applicable" value="Not Applicable">Not Applicable</option>
+																					<option value="Adom" '; if($dgroup=="Adom") echo 'selected="selected"'; echo '>Adom Group</option>
+                                                                					<option value="Second Chance" '; if($dgroup=="Second Chance") echo 'selected="selected"'; echo '>Second Chance Group</option>
+																					<option value="Not Applicable" '; if($dgroup=="Not Applicable") echo 'selected="selected"'; echo '>Not Applicable</option>
 																				</select>
 																				<span class="instruction" style="font-size: 11px;color:#003bb3;">Deceased Group Type</span>
 																				</div>    
@@ -311,89 +324,113 @@
 																					<select id="fmember" name="fmember" placeholder="Deceased Status" class="form-control"
 																						style="height: 50px;" required>
 																						<option name="" value="" style="display:none;">Deceased Status</option>
-																						<option name="Member" value="Member">Member</option>
-																						<option name="Not a Member" value="Not a Member">Not a Member</option>
+																						<option value="Member" '; if($dstatus=='Member')  echo'selected="selected"'; echo '>Member</option>
+																						<option value="Not a Member" '; if($dstatus=='Not a Member') echo 'selected="selected"'; echo '>Not a Member</option>
 																					</select>
-																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Deceased Group Type</span>
+																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Deceased Status</span>
 																				</div>    
 																			</div>
-																			<div class="col-6">
-																				<div class="form-group">
-																					<select id="region" name="region" placeholder="Region" class="form-control" style="height: 50px;" required >
-																						<option name="" value="" style="display:none;">Region of Funeral</option>
-																						<option name="AHAFO" value="AHAFO">AHAFO</option>
-																						<option name="ASHANTI" value="ASHANTI">ASHANTI</option>
-																						<option name="BONO EAST" value="BONO EAST">BONO EAST</option>
-																						<option name="BRONG AHAFO" value="BRONG AHAFO">BRONG AHAFO</option>
-																						<option name="CENTRAL" value="CENTRAL">CENTRAL</option>
-																						<option name="EASTERN" value="EASTERN">EASTERN</option>
-																						<option name="GREATER ACCRA" value="GREATER ACCRA">GREATER ACCRA</option>
-																						<option name="NORTH EAST" value="NORTH EAST">NORTH EAST</option>
-																						<option name="NORTHERN" value="NORTHERN">NORTHERN</option>
-																						<option name="OTI" value="OTI">OTI</option>
-																						<option name="SAVANNAH" value="SAVANNAH">SAVANNAH</option>
-																						<option name="UPPER EAST" value="UPPER EAST">UPPER EAST</option>
-																						<option name="UPPER WEST" value="UPPER WEST">UPPER WEST</option>
-																						<option name="WESTERN" value="WESTERN">WESTERN</option>
-																						<option name="WESTERN NORTH" value="WESTERN NORTH">WESTERN NORTH</option>
-																						<option name="VOLTA" value="VOLTA">VOLTA</option>
-																					</select>
-																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Region of Funeral</span>
-																				</div>    
-																			</div>
-											
-																			<div class="col-6">
-																					<div class="form-group">
-																						<select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
-																							<option name="" value="" style="display:none;">Month of Funeral</option>
-																							<option name="January" value="January">January</option>
-																							<option name="February" value="February">February</option>
-																							<option name="March" value="March">March</option>
-																							<option name="April" value="April">April</option>
-																							<option name="May" value="May">May</option>
-																							<option name="June" value="June">June</option>
-																							<option name="July" value="July">July</option>
-																							<option name="August" value="August">August</option>
-																							<option name="September" value="September">September</option>
-																							<option name="October" value="October">October</option>
-																							<option name="November" value="November">November</option>
-																							<option name="December" value="December">December</option>
-																						</select>
-																						<span class="instruction" style="font-size: 11px;color:#003bb3;">Month of Funeral</span>
-																					</div> 
-																			</div>
+																		   
+																		   <div class="col-6">
+																			   <div class="form-group">
+																				   <select id="region" name="region" placeholder="Region" class="form-control" style="height: 50px;" required >
+																					   <option name="" value="" style="display:none;">Region of Funeral</option>
+																					   <option value="AHAFO" '; if($fregion=='AHAFO') echo 'selected="selected"'; echo '>AHAFO</option>
+																					   <option value="ASHANTI" '; if($fregion=='ASHANTI') echo 'selected="selected"'; echo '>ASHANTI</option>
+																					   <option value="BONO EAST" '; if($fregion=='BONO EAST') echo 'selected="selected"'; echo '>BONO EAST</option>
+																					   <option value="BRONG AHAFO" '; if($fregion=='BRONG AHAFO') echo 'selected="selected"'; echo '>BRONG AHAFO</option>
+																					   <option value="CENTRAL" '; if($fregion=='CENTRAL') echo 'selected="selected"'; echo '>CENTRAL</option>
+																					   <option value="EASTERN" '; if($fregion=='EASTERN') echo 'selected="selected"'; echo '>EASTERN</option>
+																					   <option value="GREATER ACCRA" '; if($fregion=='GREATER ACCRA') echo 'selected="selected"'; echo '>GREATER ACCRA</option>
+																					   <option value="NORTH EAST" '; if($fregion=='NORTH EAST') echo 'selected="selected"'; echo '>NORTH EAST</option>
+																					   <option value="NORTHERN" '; if($fregion=='NORTHERN') echo 'selected="selected"'; echo '>NORTHERN</option>
+																					   <option value="OTI" '; if($fregion=='OTI') echo 'selected="selected"'; echo '>OTI</option>
+																					   <option value="SAVANNAH" '; if($fregion=='SAVANNAH') echo 'selected="selected"'; echo '>SAVANNAH</option>
+																					   <option value="UPPER EAST" '; if($fregion=='UPPER EAST') echo 'selected="selected"'; echo '>UPPER EAST</option>
+																					   <option value="UPPER WEST" '; if($fregion=='UPPER WEST') echo 'selected="selected"'; echo '>UPPER WEST</option>
+																					   <option value="WESTERN" '; if($fregion=='WESTERN') echo 'selected="selected"'; echo '>WESTERN</option>
+																					   <option value="WESTERN NORTH" '; if($fregion=='WESTERN NORTH') echo 'selected="selected"'; echo '>WESTERN NORTH</option>
+																					   <option value="VOLTA" '; if($fregion=='VOLTA') echo 'selected="selected"'; echo '>VOLTA</option>
+																				   </select>
+																				   <span class="instruction" style="font-size: 11px;color:#003bb3;">Region of Funeral</span>
+																			   </div>    
+																		   </div>
+										   
+																		   <div class="col-6">
+																				   <div class="form-group">
+																					   <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
+																						   <option name="" value="" style="display:none;">Month of Funeral</option>
+																						   <option value="January" '; if($fmonth=='January') echo 'selected="selected"'; echo '>January</option>
+																						   <option value="Febuary" '; if($fmonth=='Febuary') echo 'selected="selected"'; echo '>Febuary</option>
+																						   <option value="March" '; if($fmonth=='March') echo 'selected="selected"'; echo '>March</option>
+																						   <option value="April" '; if($fmonth=='April') echo 'selected="selected"'; echo '>April</option>
+																						   <option value="May" '; if($fmonth=='May') echo 'selected="selected"'; echo '>May</option>
+																						   <option value="June" '; if($fmonth=='June') echo 'selected="selected"'; echo '>June</option>
+																						   <option value="July" '; if($fmonth=='July') echo 'selected="selected"'; echo '>July</option>
+																						   <option value="August" '; if($fmonth=='August') echo 'selected="selected"'; echo '>August</option>
+																						   <option value="September" '; if($fmonth=='September') echo 'selected="selected"'; echo '>September</option>
+																						   <option value="October" '; if($fmonth=='October') echo 'selected="selected"'; echo '>October</option>
+																						   <option value="November" '; if($fmonth=='November') echo 'selected="selected"'; echo '>November</option>
+																						   <option value="December" '; if($fmonth=='December') echo 'selected="selected"'; echo '>December</option>
+																					   </select>
+																					   <span class="instruction" style="font-size: 11px;color:#003bb3;">Month of Funeral</span>
+																				   </div> 
+																		   </div>
+																		
+																		   <div class="col-6">
+																			   <div class="form-group">
+																				   <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral location"
+																				   class="form-control" placeholder="Funeral Location" required="required"
+																				   value="'.$flocation.'" id="funeralloc" name="funeralloc"
+																				   style="font-size: 16px; height: 50px;" style="width: 200px" />
+																				   <span class="instruction" style="font-size: 11px;color:#003bb3;">Funeral Location</span>
+																			   </div> 
+																		   </div>
 
-																			<div class="col-6">
-																				<div class="form-group">
-																					<input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral location"
-																					class="form-control" placeholder="Funeral Location" required="required"
-																					value="" id="funeralloc" name="funeralloc"
-																					style="font-size: 16px; height: 50px;" style="width: 200px" />
-																					<span class="instruction" style="font-size: 11px;color:#003bb3;">Funeral Location</span>
-																				</div> 
-																			</div>
+																	   </div>
+																   </div>
+																   <div class="col-12">
+																	   <!--Submit-->
+																	   <div class="col-6" style="float:right;">
+																		   <button type="submit" class="btn btn-primary btn-block" id="upd"
+																			   name="upd" style="background-color: green;border-color: green;">Update Event</button>
+																	   </div>
+																   </div>
+															   </div>
+															   </div>  
+														   </div>
+													   </div>
+													   </div>
+													   </div>
+												   </form>
 
-																		</div>
-																	</div>
-																	<div class="col-12">
-																		<!--Submit-->
-																		<div class="col-6" style="float:right;">
-																			<button type="submit" class="btn btn-primary btn-block" id="submitDues"
-																				name="ufadd" style="background-color: green;border-color: green;">Update Event</button>
-																		</div>
-																	</div>
-							
-																</div>
-																</div>  
-															</div>
-														</div>
-														</div>
-														</div>
-													</form>
-													</div>
-													<!--End of Update Funeral Modal -->
+												   <script>
+												   
+													//ajax call for Update Funeral Event
+													$(document).ready(function(){
+														console.log("emma")
+
+														$("#updateFuneralform").on("submit",function(e) {
+
+															$.ajax({
+																type: "POST",
+																url: "updateFuneralEvent.php",
+																data: $("#updateFuneralform").serialize(),
+																success: function(result){
+
+																	$("#message").html(result)
+																}
+															})
+
+															e.preventDefault();
+
+														});
+
+													})
 													
-													';
+													</script>
+												   
+												   <!--End of Update Funeral Modal -->';
 
 											}
 
