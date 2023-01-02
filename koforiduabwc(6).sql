@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306:3306
--- Generation Time: Dec 28, 2022 at 06:14 PM
+-- Generation Time: Jan 02, 2023 at 02:54 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -65,16 +65,18 @@ CREATE TABLE `funerals` (
   `funeral_month` varchar(100) NOT NULL,
   `funeral_location` varchar(100) NOT NULL,
   `AdminID` int(10) NOT NULL,
-  `AddedBy` varchar(100) NOT NULL
+  `AddedBy` varchar(100) NOT NULL,
+  `UpdatedBy` varchar(100) DEFAULT NULL,
+  `update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `funerals`
 --
 
-INSERT INTO `funerals` (`funeral_id`, `funeral_name`, `funeral_date`, `deceased_status`, `deceased_group`, `funeral_region`, `funeral_month`, `funeral_location`, `AdminID`, `AddedBy`) VALUES
-(7, 'Mr. XYZ Funeral', '2022-12-17', 'Not a Member', 'Not Applicable', 'BONO EAST', 'January', 'Location lostic', 8, 'Emmanuel'),
-(8, 'Mr. Mansssss', '2022-12-17', 'Member', 'Second Chance', 'SAVANNAH', 'January', 'Location lostic', 8, 'Emmanuel');
+INSERT INTO `funerals` (`funeral_id`, `funeral_name`, `funeral_date`, `deceased_status`, `deceased_group`, `funeral_region`, `funeral_month`, `funeral_location`, `AdminID`, `AddedBy`, `UpdatedBy`, `update_date`) VALUES
+(7, 'Mr. XYZ Funeral', '2022-12-17', 'Not a Member', 'Not Applicable', 'BONO EAST', 'January', 'Location lostic', 8, 'Emmanuel', 'Emmanuel', '2023-01-02'),
+(8, 'Mr. Mans Funeral Event', '2022-12-17', 'Member', 'Second Chance', 'SAVANNAH', 'January', 'Location lostic', 8, 'Emmanuel', 'Emmanuel', '2023-01-02');
 
 -- --------------------------------------------------------
 
@@ -128,7 +130,7 @@ CREATE TABLE `members` (
 
 INSERT INTO `members` (`MemberID`, `Firstname`, `Lastname`, `Contact`, `Gender`, `Grouptype`, `AdminID`, `AddedBy`, `UpdatedBy`, `Update_date`) VALUES
 (23, 'Emmanuel', 'King', '+233242521565', 'Male', 'Adom', 9, 'Mary', NULL, '0000-00-00'),
-(25, 'Godfred', 'Asante', '+233242521565', 'Male', 'Second Chance', 9, 'Mary', NULL, '0000-00-00');
+(25, 'Godwin', 'Asante', '+233242521565', 'Male', 'Second Chance', 9, 'Mary', 'Emmanuel', '2023-01-01');
 
 -- --------------------------------------------------------
 
@@ -203,7 +205,7 @@ ALTER TABLE `dues`
 -- AUTO_INCREMENT for table `funerals`
 --
 ALTER TABLE `funerals`
-  MODIFY `funeral_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `funeral_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `funeral_contributions`
