@@ -25,12 +25,12 @@ function updatefuneralctrl($a, $b, $c, $d, $e , $f, $g, $h, $i,$j){
 
 
 //controller function to delete a course
-function deletecoursectrl($a){
+function deletefuneralctrl($a){
 	//create a new instance of the class
 	$deletep = new funeral_class;
 
 	//run the delete method
-	$checkdelete = $deletep->delete_course_mthd($a);
+	$checkdelete = $deletep->delete_funeral_mthd($a);
 
 	if ($checkdelete) {
 		return $checkdelete;

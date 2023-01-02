@@ -26,9 +26,9 @@ class funeral_class extends db_connection
 
 
 	//a method to delete a course
-	public function delete_course_mthd($a){
+	public function delete_funeral_mthd($a){
 		//write a query
-		$sql = "DELETE FROM `courses` WHERE `course_id` = '$a'";
+		$sql = "DELETE FROM `funerals` WHERE `funeral_id` = '$a'";
 
 		//return the executed query
 		return $this->db_query($sql);
