@@ -367,7 +367,7 @@ if (isset($_POST['madd'])) {
                     //echo success, if the tutor_profile was successfully created
                             echo "<script>Swal.fire({
 								icon: 'success',
-								title: 'Suuccessful',
+								title: 'Successful',
 								text: 'Member Profile Created',
 							  })</script>";
                 }else{
