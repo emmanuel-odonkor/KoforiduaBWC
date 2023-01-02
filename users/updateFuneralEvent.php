@@ -171,15 +171,15 @@
         if($funeral){
             foreach ($funeral as $value) {
                 
-            $fname=$value['funeral_name'];
-            $fdate=$value['funeral_date'];
-            $dstatus=$value['deceased_status'];
-            $dgroup= $value["deceased_group"];
-            $fregion = $value["funeral_region"];
-            $fmonth = $value["funeral_month"];
-            $flocation = $value["funeral_location"];
-            $fid = $value['funeral_id'];
-            $_SESSION['id'] = $fid;										
+                $fname=$value['funeral_name'];
+                $fdate=$value['funeral_date'];
+                $dstatus=$value['deceased_status'];
+                $dgroup= $value["deceased_group"];
+                $fregion = $value["funeral_region"];
+                $fmonth = $value["funeral_month"];
+                $flocation = $value["funeral_location"];
+                $fid = $value['funeral_id'];
+                $_SESSION['id'] = $fid;										
             
             }
         }

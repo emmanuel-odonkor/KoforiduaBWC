@@ -58,10 +58,32 @@
       background-color:#003bb3 !important;
       border-color: #003bb3 !important;
     }
+
     .footer {
-	bottom: 0;
-	width: 100%;
-}
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
+	@media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+		#welcome {
+        font-size:small;
+    }
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
 
     .footer .foo-top {
         padding: 100px 0 90px;
@@ -107,6 +129,41 @@
       }
     }
 
+	@media only screen and (max-width:992px) {
+      #dashboard {
+        margin-top: 100px !important;
+		margin-bottom: 900px !important;
+      }
+
+	  body{
+		min-height: 70vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:70vh;
+		background-color: #003bb3 !important;
+      }
+    }
+
+	@media only screen and (max-width:576px) {
+      #dashboard {
+        margin-top: 320px !important;
+      }
+	  
+	  body{
+		min-height: 130vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:125vh;
+		background-color: #003bb3 !important;
+      }
+    }
+
 	.dropdown-toggle{
 		color:white;
 	}
@@ -131,11 +188,11 @@
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
 			<li>
@@ -177,8 +234,8 @@
 		</div>
 
 		<div class="container d-flex justify-content-center">
-			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-3 g-4 col-sm-10 card1">
+			<div class="row d-flex justify-content-center mt-lg-5" id="dashboard" style="position: absolute; top: 50%; transform: translate(0, -50%)">
+				<div class="col-lg-3 g-3 col-sm-6 card1">
 					<a href="addMember.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -192,7 +249,7 @@
 					</a>
 				</div>
 
-				<div class="col-lg-3 g-4 col-sm-10 card2">
+				<div class="col-lg-3 g-3 col-sm-6 card2">
 					<a href="viewMe.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect" style="padding: 25px">
 							<div class="iconbox">
@@ -206,7 +263,7 @@
 						</div>
 					</a>
 				</div>
-				<div class="col-lg-3 g-4 col-sm-10 card3">
+				<div class="col-lg-3 g-3 col-sm-6 card3">
 					<a href="updateMemberDetails.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -220,7 +277,7 @@
 					</a>
 				</div>
 
-				<div class="col-lg-3 g-4 col-sm-10 card3">
+				<div class="col-lg-3 g-3 col-sm-6 card3">
 					<a href="funerals.php" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -237,7 +294,8 @@
 </div>
 	
 <!-- Footer start -->
-<footer class="footer" style="position: absolute; background-color: #003bb3">
+<footer class="footer" style="background-color:#003bb3 !important;
+      border-color: #003bb3 !important;">
 		<div class="foo-btm">
 			<div class="container">
 				<div class="row">
@@ -264,5 +322,18 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 	</script>
+	<!-- JS -->
+
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/owl.carousel2.thumbs.min.js"></script>
+<script src="../js/jquery.countdown.min.js"></script>
+<script src="../js/jquery.fancybox.min.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<!-- <script src="../../cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script> -->
+<!-- <script src="../../s3-us-west-2.amazonaws.com/s.cdpn.io/106949/jquery.onscreen.js"></script> -->
+<script src="../js/scripts.js"></script>
+<script src="../js/remitone/corporate_calculator.js"></script>
 </body>
 </html>

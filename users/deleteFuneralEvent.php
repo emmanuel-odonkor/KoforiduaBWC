@@ -14,10 +14,10 @@ if ($fdelete) {
 
 }else{
 	//echo failure if datails not successfully deleted
-				echo "<div class='alert alert-danger'>
-  						<strong>Danger!</strong> Failed to Delete Funeral Event.
-					 </div>";
-				echo "<a href='funeralevents.php'>Retry</a>";
+	echo "<div class='alert alert-danger'>
+			<strong>Danger!</strong> Failed to Delete Funeral Event.
+			</div>";
+	echo "<a href='funeralevents.php'>Retry</a>";
 	
 }
 

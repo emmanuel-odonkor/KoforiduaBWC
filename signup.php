@@ -44,6 +44,18 @@
       border-color: #003bb3 !important;
     }
 
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+	}
+
     
 
     /* Structure for web application in phone view */
@@ -57,6 +69,12 @@
 
       }
 	}
+
+	@media only screen and (max-width:992px) {
+      .header .primary-menu .login-button {
+        margin-top: 75px;
+      }
+    }
 
 
     @media only screen and (max-width:992px) {
@@ -75,7 +93,28 @@
 		background-size:cover;            
 		background-repeat: no-repeat;
 		background-position: top;
+		min-height: 100vh;
 	}
+
+	@media only screen and (max-width:992px) {
+      #second-c {
+        margin-top: 100px;
+		margin-bottom: 100px;
+      }
+    }
+	@media only screen and (max-width:992px) {
+      .header .primary-menu .login-button {
+        margin-top: 75px;
+      }
+    }
+
+	@media only screen and (max-width:444px) {
+		#logoimage {
+        content: url('images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
 
 	#show1 {
         position: absolute;
@@ -102,11 +141,11 @@
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
-			<img src="images/bwcLogo.png" style="width: 150px;" alt="" />
+			<img src="images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
 		<span style="color:white;">Believers Worship Center</span>
 		<nav class="primary-menu" style="margin-right: 75px;">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
 			<li><a href="signup.php" style="font-size: 16px;">Sign up</a></li>
@@ -122,7 +161,7 @@
   <!-- Header end -->
 
   <section class="bannerv7a">
-		<div class="container d-flex justify-content-center">
+		<div class="container d-flex justify-content-center" id="second-c">
 			<div class="card col-lg-7" style="border: none; opacity: 0.8; margin-bottom: 0;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
@@ -144,7 +183,7 @@
 							</div>
 
 							<!--User Details-->
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-4">
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid firstname"
 										class="form-control" placeholder="First Name" required="required"
@@ -152,7 +191,7 @@
 										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-4">
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid lastname"
 										class="form-control" placeholder="Last Name" value="<?php echo $ulname; ?>"
@@ -160,7 +199,7 @@
 										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-3">
 									<input type="text" pattern="[A-Za-z\s-]+"
 											title="Enter a valid username" class="form-control" placeholder="Username"
@@ -168,7 +207,7 @@
 											style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-3 u_number">
 									<input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
 									title="Enter a valid Phone number" class="form-control"
@@ -185,7 +224,7 @@
 								</div>
 							</div>
 
-							<div class="col-6">	
+							<div class="col-lg-6 col-sm-6">	
 
 								<!--Pop up message-->
                                 <div class="form-group mt-4" id="popup_message" style="
@@ -226,7 +265,7 @@
 								</div>
 							</div>
 
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-4" id="cpassword" style="position: relative">
                                     <input type="password" title="Enter a valid password"
                                         class="form-control" placeholder="Confirm Password" required="required"
@@ -253,7 +292,7 @@
 	</section>
 
 <!-- Footer start -->
-<footer class="footer">
+<footer class="footer" style="position: absolute;">
 		<div class="foo-btm">
 			<div class="container">
 				<div class="row">
@@ -286,6 +325,25 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/js/intlTelInput-jquery.min.js"></script>
 	<script src="build/js/intlTelInput.js"></script>
 	<script src="js/country_flag_code.js"></script>
+
+	<!-- JS -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/owl.carousel2.thumbs.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<!-- <script src="../../cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script> -->
+<!-- <script src="../../s3-us-west-2.amazonaws.com/s.cdpn.io/106949/jquery.onscreen.js"></script> -->
+<script src="js/scripts.js"></script>
+<script src="js/remitone/corporate_calculator.js"></script>
 
 	<script>
 		//hide and show password

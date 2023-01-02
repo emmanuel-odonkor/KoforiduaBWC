@@ -44,7 +44,17 @@
       border-color: #003bb3 !important;
     }
 
-    
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+	}
 
     /* Structure for web application in phone view */
 
@@ -61,19 +71,40 @@
 
     @media only screen and (max-width:992px) {
       .header .primary-menu .login-button {
-        margin-top: 150px;
-        padding-bottom: 15px;
+        margin-top: 75px;
       }
     }
 
 	.bannerv7a{
-		background-size:cover;            
+	          
 		background-repeat: no-repeat;
-		background-position: center center;
 		background-image: url('images/homeProphet.jpg') ;
-		background-attachment: fixed;
+		background-position: top;
+		background-size: cover;
+		min-height: 100vh;
 
 	}
+
+
+	@media only screen and (max-width:992px) {
+      #second-c {
+        margin-top: 100px;
+      }
+    }
+
+	@media only screen and (max-width:444px) {
+		#logoimage {
+        content: url('images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
+
+	@media only screen and (max-width:992px) {
+      .header .primary-menu .login-button {
+        margin-top: 75px;
+      }
+    }
 
 	#show1 {
         position: absolute;
@@ -89,11 +120,11 @@
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
 		<a class="" href="index.html">
-			<img src="images/bwcLogo.png" style="width: 150px;" alt="" />
+			<img src="images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
 		<span style="color:white;">Believers Worship Center</span>
 		<nav class="primary-menu" style="margin-right: 75px;">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
 			<li><a href="signup.php" style="font-size: 16px;">Sign up</a></li>
@@ -109,7 +140,7 @@
   <!-- Header end -->
 
   <section class="bannerv7a">
-		<div class="container d-flex justify-content-center">
+		<div class="container d-flex justify-content-center" id="second-c">
 			<div class="card col-lg-5" style="border: none; opacity: 0.9; margin-bottom: 0; height: 550px;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
@@ -162,9 +193,8 @@
 			</div>
 		</div>
 	</section>
-
 <!-- Footer start -->
-<footer class="footer">
+<footer class="footer" style="position: absolute;">
 		<div class="foo-btm">
 			<div class="container">
 				<div class="row">
@@ -190,7 +220,25 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-	</script>
+  </script>
+<!-- JS -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/owl.carousel2.thumbs.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<!-- <script src="../../cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script> -->
+<!-- <script src="../../s3-us-west-2.amazonaws.com/s.cdpn.io/106949/jquery.onscreen.js"></script> -->
+<script src="js/scripts.js"></script>
+<script src="js/remitone/corporate_calculator.js"></script>
 
 	<script>
 		//hide and show password
