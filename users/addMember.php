@@ -59,8 +59,46 @@
       border-color: #003bb3 !important;
     }
 
-    
+	@media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
 
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+		#welcome {
+        font-size:small;
+    }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:992px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
+    
     /* Structure for web application in phone view */
 
     @media only screen and (max-width:800px) {
@@ -90,6 +128,7 @@
 		background-size:cover;            
 		background-repeat: no-repeat;
 		background-position: top;
+		min-height: 100vh;
 	}
 
 	#show1 {
@@ -110,21 +149,119 @@
 		color:white;
 	}
 
+	@media only screen and (max-width:992px) {
+      #second-c {
+        margin-top: 100px;
+		margin-bottom: 100px;
+      }
+    }
+
+	.footer {
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
+	@media only screen and (min-height: 1040px) and (max-width: 992px) {
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+	 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 992px) {
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 576px) {
+	  
+	  body{
+		min-height: 140vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+	}
+
+	
+
   </style>
 	</head>
 	<body class="home-one">
 		<!-- Header start -->
 		<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+		<a class="" href="dashboard.php">
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+			<li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -157,7 +294,7 @@
 
 
   <section class="bannerv7a">
-		<div class="container d-flex justify-content-center">
+		<div class="container d-flex justify-content-center" id="second-c">
 			<div class="card col-lg-7" style="border: none; opacity: 0.8; margin-bottom: 0;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
@@ -178,7 +315,7 @@
 								</div>
 							</div>
 							<!--User Details-->
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-4">
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid firstname"
 										class="form-control" placeholder="First Name" required="required"
@@ -186,7 +323,7 @@
 										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-4">
 									<input type="text" pattern="[A-Za-z\s-]+" title="Enter a valid lastname"
 										class="form-control" placeholder="Last Name" value=""
@@ -194,7 +331,7 @@
 										style="font-size: 16px; height: 50px;" style="width: 200px" />
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-3 u_number">
 									<input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
 									title="Enter a valid Phone number" class="form-control"
@@ -203,7 +340,7 @@
 								</div>
 							</div>
 
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group mt-3">
 										<select id="gender" name="mgender" placeholder="Gender" class="form-control"
 										style="height: 50px;" required>
@@ -275,6 +412,9 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.8/js/intlTelInput-jquery.min.js"></script>
 	<script src="../build/js/intlTelInput.js"></script>
 	<script src="../js/country_flag_code.js"></script>
+		<!-- JS -->
+<script src="../js/scripts.js"></script>
+
 
 	<script>
 		//hide and show password

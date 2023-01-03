@@ -283,7 +283,7 @@
 	<!-- Header start -->
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
+		<a class="" href="dashboard.php">
 			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
 		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
@@ -306,7 +306,7 @@
 			</li>
 			<li id="logout_mobile">
 				<?php if(isset($_SESSION['user'])) : ?>
-					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: red;padding-left:28px !important;">Log Out</a>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
 				<?php endif ?>
 			</li>
 
@@ -438,17 +438,7 @@
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 	</script>
 	<!-- JS -->
-
-<script src="../js/bootstrap.min.js"></script>
-
-<script src="../js/owl.carousel.min.js"></script>
-<script src="../js/owl.carousel2.thumbs.min.js"></script>
-<script src="../js/jquery.countdown.min.js"></script>
-<script src="../js/jquery.fancybox.min.js"></script>
-<script src="../js/jquery.nice-select.min.js"></script>
-<!-- <script src="../../cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script> -->
-<!-- <script src="../../s3-us-west-2.amazonaws.com/s.cdpn.io/106949/jquery.onscreen.js"></script> -->
 <script src="../js/scripts.js"></script>
-<script src="../js/remitone/corporate_calculator.js"></script>
+
 </body>
 </html>

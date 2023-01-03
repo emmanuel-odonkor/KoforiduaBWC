@@ -69,6 +69,19 @@
       }
 	}
 
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+
+	.footer {
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
 
     @media only screen and (max-width:992px) {
       .header .primary-menu .login-button {
@@ -86,6 +99,7 @@
 		background-size:cover;            
 		background-repeat: no-repeat;
 		background-position: top;
+		min-height:100vh;
 	}
 
 	#show1 {
@@ -139,21 +153,132 @@
 			}
 		}
 
+		@media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+		#welcome {
+        font-size:small;
+    }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:992px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
+
+
+	@media only screen and (min-height: 1040px) and (max-width: 992px) {
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+	 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+	@media only screen and (max-height: 667px) and (max-width: 992px) {
+  
+  .footer {
+	position:relative !important;
+	bottom: 0px !important;
+	width: 100%;
+	top:0vh;
+	background-color: #003bb3 !important;
+  }
+
+}
+
+@media only screen and (max-height: 667px) and (max-width: 576px) {
+
+ 
+  .footer {
+	position:relative !important;
+	bottom: 0px !important;
+	width: 100%;
+	top:0vh;
+	background-color: #003bb3 !important;
+  }
+
+}
+
+
+
   </style>
 	</head>
 	<body class="home-one">
 		<!-- Header start -->
 		<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+		<a class="" href="dashboard.php">
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+			<li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -241,7 +366,7 @@
 	</section>
 
 <!-- Footer start -->
-<footer class="footer">
+<footer class="footer" style="position: absolute;">
 		<div class="foo-btm">
 			<div class="container">
 				<div class="row">
@@ -278,6 +403,10 @@
 	<script type="text/javascript" src="JQUERY/jquery-3.4.1.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="JQUERY/jquerywork.js"></script>
+
+
+<script src="../js/scripts.js"></script>
+
 
 	<script>
 		//hide and show password

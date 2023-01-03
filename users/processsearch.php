@@ -118,8 +118,8 @@ function ajaxsearch($shterm)
 
 											<!--Choose Year -->
 											<form id='yearsform' action='/' method='POST' enctype='multipart/form-data'>
-											<div class='row'>
-												<div class='col-8 mt-3'>
+											<div class='row text-center'>
+												<div class='col-lg-8 col-sm-12 mt-3'>
 													<select id='duesyears' name='duesyears' placeholder='Choose Dues Payment Year' class='form-control'
 													required>
 													<option name='' value='nothing' style='display:none;'>Choose Dues Payment Year</option>";
@@ -135,7 +135,7 @@ function ajaxsearch($shterm)
 														}
 													echo "</select>
 												</div>
-												<div class='col-1 mt-2 mx-0'>
+												<div class='col-lg-2 col-sm-12 mt-2 mx-0'>
 													<button type='submit' class='btn btn-primary' id='submitYear'
 														name='yadd' style='color:white;background-color: blue;
 														border:none;min-width:0;min-height:0;'>Search</button>
@@ -300,12 +300,12 @@ function ajaxsearch($shterm)
 										</select>
 									</div>
 								</div>
-								<div class='row'>
-									<div class='col-6'>
+								<div class='row text-center gap-3'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 										<button type='submit' class='btn btn-outline' id='submitYear'
 										name='aadd' style='background-color: white;color:green;border-color: green;'>All Years</button>
 									</div>
-									<div class='col-6'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 									<button data-bs-toggle='modal' data-bs-target='#total' type='button' class='btn btn-primary pay_2'
 									style='background-color:green;border-color: green;'>Total Dues Paid </button>
 									</div>
@@ -375,8 +375,8 @@ function ajaxsearch($shterm)
 
 											<!--Choose Year -->
 											<form id='totalform' action='/' method='POST' enctype='multipart/form-data'>
-												<div class='row col-12 mt-4' style='justify-centent: center;align-items:center;'>
-													<div class='col-8 mt-2'>
+												<div class='row text-center mt-4' style='justify-centent: center;align-items:center;'>
+													<div class='col-lg-8 col-sm-12 mt-2'>
 														<select id='total' name='total' placeholder='Choose Dues Payment Year' class='form-control'
 														required title='Please enter a year to check Total'>
 														<option name='' value='' style='display:none;'>Choose Year</option>";
@@ -392,7 +392,7 @@ function ajaxsearch($shterm)
 															}
 														echo "</select>
 													</div>
-													<div class='col-1 mt-2 mx-0'>
+													<div class='col-lg-2 col-sm-12 mt-2 mx-0'>
 														<button type='submit' class='btn btn-primary' id='totalYear'
 															name='tadd' style='color:white;background-color: blue;
 															border:none;min-width:0;min-height:0;'>Total</button>
@@ -472,12 +472,12 @@ function ajaxsearch($shterm)
 										</select>
 									</div>
 								</div>
-								<div class='row'>
-									<div class='col-6'>
+								<div class='row text-center gap-3'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 										<button type='submit' class='btn btn-outline' id='DuesYear'
 										name='aadd' style='background-color: white;color:green;border-color: green;'>All Years Total</button>
 									</div>
-									<div class='col-6'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 									<button id='stepone' data-bs-dismiss='modal' data-bs-toggle='modal' data-bs-target='#dues' type='button' class='btn btn-outline pay_2'
 									style='background-color:green;border-color: green;color:white;'>Previous</button>
 									</div>
@@ -547,8 +547,8 @@ function ajaxsearch($shterm)
 
 											<!--Choose Year -->
 											<form id='funeral_form' action='/' method='POST' enctype='multipart/form-data'>
-											<div class='row'>
-												<div class='col-8 mt-3'>
+											<div class='row text-center'>
+												<div class='col-lg-8 col-sm-12 mt-3'>
 													<select id='d_status' name='d_status' placeholder='Choose deceased status' class='form-control'
 													required>
 													<option name='' value='nothing' style='display:none;'>Choose Category</option>";
@@ -564,7 +564,7 @@ function ajaxsearch($shterm)
 														}
 													echo "</select>
 												</div>
-												<div class='col-1 mt-2 mx-0'>
+												<div class='col-lg-2 col-sm-12 mt-2 mx-0'>
 													<button type='submit' class='btn btn-primary' id='submitYear'
 														name='yadd' style='color:white;background-color: blue;
 														border:none;min-width:0;min-height:0;'>Search</button>
@@ -721,12 +721,12 @@ function ajaxsearch($shterm)
 										</select>
 									</div>
 								</div>
-								<div class='row'>
-									<div class='col-6'>
+								<div class='row text-center gap-3'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 										<button type='submit' class='btn btn-outline' id='submitYear'
 										name='aadd' style='background-color: white;color:green;border-color: green;'>All Contributions</button>
 									</div>
-									<div class='col-6'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 									<button data-bs-toggle='modal' data-bs-target='#totalContributions' type='button' class='btn btn-primary pay_2'
 									style='background-color:green;border-color: green;'>Total Contri. Paid</button>
 									</div>
@@ -794,8 +794,8 @@ function ajaxsearch($shterm)
 
 											<!--Choose Year -->
 											<form id='totalContributionsform' action='/' method='POST' enctype='multipart/form-data'>
-												<div class='row col-12 mt-4' style='justify-centent: center;align-items:center;'>
-													<div class='col-8 mt-2'>
+												<div class='row text-center mt-4' style='justify-centent: center;align-items:center;'>
+													<div class='col-lg-8 col-sm-12 mt-2'>
 														<select id='totalContrib' name='totalContrib' placeholder='Choose category' class='form-control'
 														required title='Please enter a category to check Total'>
 														<option name='' value='' style='display:none;'>Choose Category</option>";
@@ -811,7 +811,7 @@ function ajaxsearch($shterm)
 															}
 														echo "</select>
 													</div>
-													<div class='col-1 mt-2 mx-0'>
+													<div class='col-lg-2 col-sm-12 mt-2 mx-0'>
 														<button type='submit' class='btn btn-primary' id='totalYear'
 															name='tadd' style='color:white;background-color: blue;
 															border:none;min-width:0;min-height:0;'>Total</button>
@@ -891,12 +891,12 @@ function ajaxsearch($shterm)
 										</select>
 									</div>
 								</div>
-								<div class='row'>
-									<div class='col-6'>
+								<div class='row text-center gap-3'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 										<button type='submit' class='btn btn-outline' id='ContributionsYear'
 										name='aadd' style='background-color: white;color:green;border-color: green;'>All Contrib. Total</button>
 									</div>
-									<div class='col-6'>
+									<div class='col-lg-6 col-sm-6 p-2'>
 									<button id='stepone' data-bs-dismiss='modal' data-bs-toggle='modal' data-bs-target='#funeral' type='button' class='btn btn-outline pay_2'
 									style='background-color:green;border-color: green;color:white;'>Previous</button>
 									</div>
