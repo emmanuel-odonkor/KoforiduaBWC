@@ -106,6 +106,31 @@
       }
     }
 
+	@media only screen and (max-height: 667px) and (max-width: 992px) {
+  
+  .footer {
+	position:relative !important;
+	bottom: 0px !important;
+	width: 100%;
+	top:0vh;
+	background-color: #003bb3 !important;
+  }
+
+}
+
+@media only screen and (max-height: 667px) and (max-width: 576px) {
+
+ 
+  .footer {
+	position:relative !important;
+	bottom: 0px !important;
+	width: 100%;
+	top:0vh;
+	background-color: #003bb3 !important;
+  }
+
+}
+
 	#show1 {
         position: absolute;
         top: 23%;

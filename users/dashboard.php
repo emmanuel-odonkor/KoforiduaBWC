@@ -59,11 +59,16 @@
       border-color: #003bb3 !important;
     }
 
+	body{
+		overflow-x:hidden;
+	}
+
     .footer {
 		position:absolute;
 		bottom: 0px !important;
 		width: 100%;
 	}
+
 
 	@media only screen and (max-width:497px) {
 		#logoimage {
@@ -77,6 +82,26 @@
 		#welcome {
         font-size:small;
     }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:992px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
     }
 
 	@media only screen and (max-width:346px) {
@@ -159,8 +184,79 @@
 		position:relative !important;
 		bottom: 0px !important;
 		width: 100%;
-        top:125vh;
+        top:135vh;
 		background-color: #003bb3 !important;
+      }
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 992px) {
+      #dashboard {
+        margin-top: 150px !important;
+      }
+	  
+	  body{
+		min-height: 80vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:95vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 576px) {
+
+	  #dashboard {
+        margin-top: 370px !important;
+      }
+	  
+	  body{
+		min-height: 140vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:150vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 992px) {
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:90vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+	 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:120vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+
+
+	@media only screen and (max-width:718px) {
+      #topic{
+        line-height: 20px;
+		font-size: 13px;
       }
     }
 
@@ -195,7 +291,26 @@
 			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+			<li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: red;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -229,7 +344,7 @@
 		<div class="col-12 logo-heading" style="margin-top: 130px;">
 				<div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
 					<img src="../images/bwcLogoHome.png" style="width:120px;">
-					<h6 style="color:white;">Koforidua Philadelphia Movement -- Membership Dues and Funeral Contribution Database</h6>
+					<h6 style="color:white;" id="topic">Koforidua Philadelphia Movement -- Membership Dues and Funeral Contribution Database</h6>
 				</div>
 		</div>
 
