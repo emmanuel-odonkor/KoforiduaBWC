@@ -179,6 +179,7 @@
 	  
 	  body{
 		min-height: 130vh;
+		overflow-x: hidden !important;
 	  }
       .footer {
 		position:relative !important;

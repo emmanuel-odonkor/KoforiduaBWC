@@ -56,6 +56,10 @@
       background-size: 300px 100px;
     }
 
+    body{
+            overflow-x: hidden !important;
+        }
+
     footer{
       background-color:#003bb3 !important;
       border-color: #003bb3 !important;
@@ -135,7 +139,162 @@
         margin-top: 270px;
     }
 
+    @media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
 
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+	#welcome {
+        font-size:small;
+    }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:992px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
+
+    .footer {
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
+    @media only screen and (max-width:992px) {
+      #dashboard {
+        margin-top: 280px !important;
+		
+      }
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100vw !important;
+        top:60vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+    @media only screen and (max-width:576px) {
+
+        body{
+            overflow-x: hidden !important;
+        }
+ 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100vw !important;
+        top:60vh;
+		background-color: #003bb3 !important;
+      }
+    }
+
+    @media only screen and (max-height: 667px) and (max-width: 992px) {
+      #dashboard {
+        margin-top: 280px !important;
+      }
+
+      body{
+            overflow-x: hidden !important;
+        }
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:110vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 576px) {
+
+	  #dashboard {
+        margin-top: 300px !important;
+      }
+
+      body{
+            overflow-x: hidden !important;
+        }
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:110vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 992px) {
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:80vh;
+		background-color: #003bb3 !important;
+      }
+
+      body{
+            overflow-x: hidden !important;
+        }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+        
+        body{
+            overflow-x: hidden !important;
+        }
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:80vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+
+	@media only screen and (max-width:718px) {
+      #topic{
+        line-height: 20px;
+		font-size: 13px;
+      }
+    }
 
   </style>
 	</head>
@@ -143,15 +302,34 @@
 	<!-- Header start -->
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+		<a class="" href="dashboard.php">
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+            <li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -182,11 +360,16 @@
   </header>
   <!-- Header end -->
  
-		<div class="col-12 logo-heading" style="margin-top: 130px;">
-				<div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
-					<img src="../images/bwcLogoHome.png" style="width:120px;">
-					<h6 style="color:white;">Koforidua Philadelphia Movement -- Update of Member Dues,Funeral Contributions and Member Registry Information</h6>
-				</div>
+		<div class="col-12 logo-heading" style="margin-top: 65px;">
+        
+        <!--Link to Previous Page -->
+        <a href="dashboard.php" class="previous round mt-5 mx-3" style="text-decoration: none;display: inline-block;padding: 8px 13px;">
+	        <img src="../images/arrow.png" height="15px" width="15px" class="d-flex justify inline-block align-text-top mt-1"/></a>
+
+            <div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
+                <img src="../images/bwcLogoHome.png" style="width:120px;">
+                <h6 style="color:white;" id="topic">Koforidua Philadelphia Movement -- Update of Member Dues,Funeral Contributions and Member Registry Information</h6>
+            </div>
 		</div>
         <!-- Projection of output from AJAX -->
        <div id="message"></div>
@@ -320,8 +503,8 @@
         </form>
 
 		<div class="container d-flex justify-content-center">
-			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-4 g-4 col-sm-10 card1">
+			<div class="row d-flex justify-content-center mt-5" id="dashboard" style="position: absolute; top: 50%; transform: translate(0, -50%)">
+				<div class="col-lg-4 g-4 col-sm-10 card2">
 					<a data-bs-toggle="modal" href="#duesModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -584,11 +767,11 @@
         
        	
 
-        <div class="container2">
+        <!--<div class="container2">
             <div class="text-center">
                 <label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
             </div>
-        </div>
+        </div>-->
 
 	
 <!-- Footer start -->
@@ -622,6 +805,8 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<!-- JS -->
+    <script src="../js/scripts.js"></script>
 
 
     <script>

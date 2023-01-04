@@ -292,8 +292,11 @@
   </header>
   <!-- Header end -->
 
-
   <section class="bannerv7a">
+	   <!--Link to Previous Page -->
+	   <a href="dashboard.php" class="previous round mt-3 mx-3" style="text-decoration: none;display: inline-block;padding: 8px 13px;">
+	        <img src="../images/arrow.png" height="15px" width="15px" class="d-flex justify inline-block align-text-top mt-1"/></a>
+			
 		<div class="container d-flex justify-content-center" id="second-c">
 			<div class="card col-lg-7" style="border: none; opacity: 0.8; margin-bottom: 0;">
 				<div class="card-body">

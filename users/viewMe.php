@@ -311,6 +311,10 @@
 
 
   <section class="bannerv7a">
+		   <!--Link to Previous Page -->
+		   <a href="dashboard.php" class="previous round mt-3 mx-3" style="text-decoration: none;display: inline-block;padding: 8px 13px;">
+	        <img src="../images/arrow.png" height="15px" width="15px" class="d-flex justify inline-block align-text-top mt-1"/></a>
+
 		<div class="container d-flex justify-content-center">
 			<div class="card col-lg-6" style="border: none; margin-bottom: 0;background-color: transparent;">
 				<div class="card-body">
@@ -318,14 +322,14 @@
 						<h3 id="profile" class="card-title text-center"></h3>
 					</div>
 
-					<form action="/" id="searchform" class="mt-lg-2" method="POST" enctype="multipart/form-data">
+					<form action="/" id="searchform" method="POST" enctype="multipart/form-data">
 						<div class="form-row">
 							<!--User Header-->
 							<div class="col-12">
 							<div class="row" style="display: flex; align-items: center;justify-content: center;">
 								<img src="../images/bwcLogoHome.png" style="width:100px;">
 							</div>
-								<div class="form-header mt-4">
+								<div class="form-header">
 									<h6 class="mt-2 text-center">
                                     Koforidua Philadelphia Movement -- View Member Details
 									</h6>
@@ -333,7 +337,7 @@
 							</div>
 							<!--Enter Member ID-->
 							<div class="col-12">
-								<div class="form-group mt-4">
+								<div class="form-group mt-3">
 									<input type="text" pattern="[0-9]+" title="Enter a valid ID"
 										class="form-control" placeholder="Enter ID of Member to display the details" required="required"
 										value="" id="uterm" name="sterm"
