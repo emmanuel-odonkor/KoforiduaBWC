@@ -134,6 +134,167 @@
         margin-top: 270px;
     }
 
+    @media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+	#welcome {
+        font-size:small;
+    }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:991px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
+
+    .footer {
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
+    @media only screen and (max-width:992px) {
+      #dashboard {
+        margin-top: 150px !important;
+		
+      }
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100vw !important;
+        top:70vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+    @media only screen and (max-width:576px) {
+
+        body{
+            overflow-x: hidden !important;
+        }
+ 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100vw !important;
+        top:70vh;
+		background-color: #003bb3 !important;
+      }
+    }
+
+    @media only screen and (max-height: 667px) and (max-width: 992px) {
+      #dashboard {
+        margin-top: 200px !important;
+      }
+
+      body{
+            overflow-x: hidden !important;
+        }
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:110vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 576px) {
+
+	  #dashboard {
+        margin-top: 200px !important;
+      }
+
+      body{
+            overflow-x: hidden !important;
+        }
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:110vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+    @media only screen and (min-height: 1040px) and (max-width: 992px) {
+
+        #dashboard {
+        margin-top: 10px !important;
+      }
+
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:80vh;
+		background-color: #003bb3 !important;
+      }
+
+      body{
+            overflow-x: hidden !important;
+        }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+        
+        body{
+            overflow-x: hidden !important;
+        }
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:80vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+    @media only screen and (max-width:718px) {
+      #topic{
+        line-height: 20px;
+		font-size: 13px;
+      }
+    }
+
 
 
   </style>
@@ -142,15 +303,34 @@
 	<!-- Header start -->
 	<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+		<a class="" href="dashboard.php">
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+            <li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -181,10 +361,15 @@
   </header>
   <!-- Header end -->
  
-		<div class="col-12 logo-heading" style="margin-top: 130px;">
+		<div class="col-12 logo-heading" style="margin-top: 65px;">
+
+        <!--Link to Previous Page -->
+        <a href="dashboard.php" class="previous round mt-5 mx-3" style="text-decoration: none;display: inline-block;padding: 8px 13px;">
+	        <img src="../images/arrow.png" height="15px" width="15px" class="d-flex justify inline-block align-text-top mt-1"/></a>
+
 				<div class="row text-center" style="display: flex; align-items: center;justify-content: center;">
 					<img src="../images/bwcLogoHome.png" style="width:120px;">
-					<h6 style="color:white;">Koforidua Philadelphia Movement -- Funeral Record Informations</h6>
+					<h6 style="color:white;" id="topic">Koforidua Philadelphia Movement -- Funeral Record Informations</h6>
 				</div>
 		</div>
         <!-- Projection of output from AJAX -->
@@ -194,7 +379,7 @@
             <!--Dues Payment Modal-->
             <div class="modal fade" id="funeraladdModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add Funeral Event Section</h5>
@@ -226,7 +411,7 @@
                                                 <span class="instruction" style="font-size: 11px;color:#003bb3;">Be sure to check Funeral Events if funeral is added to avoid data conflict</span>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group">
                                         <input type="text" title="Enter a valid date of funeral" class="form-control"
                                         placeholder="Date of Funeral Event" required="required" id="dof" name="dof"
@@ -234,7 +419,7 @@
                                         style="width: 200px; font-size: medium" onfocus="(this.type='date')"/>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group">
                                         <select id="fmember" name="fmember" placeholder="Deceased Status" class="form-control"
                                             style="height: 50px;" required>
@@ -244,7 +429,7 @@
                                         </select>
                                     </div> 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group">
                                         <select id="dgroup" name="dgroup" placeholder="" class="form-control"
                                             style="height: 50px;" required>
@@ -255,7 +440,7 @@
                                         </select>
                                     </div> 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group">
                                         <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral location"
                                         class="form-control" placeholder="Funeral Location" required="required"
@@ -263,7 +448,7 @@
                                         style="font-size: 16px; height: 50px;" style="width: 200px" />
                                     </div> 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group">
                                             <select id="region" name="region" placeholder="Region" class="form-control" style="height: 50px;" required >
                                                 <option name="" value="" style="display:none;">Region of Funeral</option>
@@ -287,7 +472,7 @@
                                     </div>
 							    </div>
 
-							    <div class="col-6">
+							    <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
                                             <select id="famonth" name="famonth" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
                                                     <option name="" value="" style="display:none;">Month of Funeral</option>
@@ -309,15 +494,19 @@
 
                         </div>
                         </div>
-                        <!--Reset-->
-                        <div class="col-6 mt-3">
-                            <button type="button" id="frreset" name="frreset" class="btn btn-outline"
-                                style="border-color: green;color:green;">Reset Form</button>
-                        </div>
-                        <!--Submit-->
-                        <div class="col-6 mt-3">
-                            <button type="submit" class="btn btn-primary btn-block" id="submitDues"
-                                name="fradd" style="background-color: green;border-color: green;">Add Funeral Event</button>
+                        <div class='col-12' style='display:flex;justify-content:center;align-items:center'>
+                            <div class="row text-center">
+                                 <!--Reset-->
+                                <div class="col-lg-6 col-sm-6 mt-3">
+                                    <button type="button" id="frreset" name="frreset" class="btn btn-outline"
+                                        style="border-color: green;color:green;">Reset Form</button>
+                                </div>
+                                <!--Submit-->
+                                <div class="col-lg-3 col-sm-3 mt-3">
+                                    <button type="submit" class="btn" id="submitDues"
+                                        name="fradd" style="background-color: green;border-color: green;color:white;">Add Funeral Event</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </div>  
@@ -329,8 +518,8 @@
         </form>
 
 		<div class="container d-flex justify-content-center">
-			<div class="row d-flex justify-content-center mt-5" style="position: absolute; top: 50%; transform: translate(0, -50%)">
-				<div class="col-lg-6 g-4 col-sm-10 card1">
+			<div class="row d-flex justify-content-center mt-5" id="dashboard" style="position: absolute; top: 50%; transform: translate(0, -50%)">
+				<div class="col-lg-6 g-4 col-sm-10 card2">
 					<a data-bs-toggle="modal" href="#funeraladdModal" style="color: inherit; text-decoration: none">
 						<div class="card-effect">
 							<div class="iconbox">
@@ -362,11 +551,11 @@
         </div>
 
 
-        <div class="container2">
+        <!--<div class="container2">
             <div class="text-center">
                 <label style="font-size:14px;"><span style="color:white;">Back to</span> <a href="dashboard.php">Dashboard Page</a></label>
             </div>
-        </div>
+        </div>-->
 
 	
 <!-- Footer start -->
@@ -397,6 +586,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
 	</script>
+	<!-- JS -->
+    <script src="../js/scripts.js"></script>
 
 
     <script>
@@ -482,6 +673,19 @@
 		//setting the max and min date value for the calendar to be today's date
         $("#dof").attr("min", minDate);
 </script>
+
+<script>
+  //Showing of Modal after Add Funeral is clicked on other session pages
+
+if(window.location.toString().indexOf("#addFuneral") != -1){
+  $("#funeraladdModal").modal('show');
+  $("#close_b").on("click", function () {
+     $("#funeraladdModal").hide();
+     $("div").removeClass("modal-backdrop fade show");
+  });
+}
+ 
+ </script>
 
 </body>
 </html>

@@ -55,7 +55,6 @@
 	footer{
       background-color:#003bb3 !important;
       border-color: #003bb3 !important;
-	  z-index: -2 !important;
     }
 
     
@@ -89,6 +88,7 @@
 		background-size:cover;            
 		background-repeat: no-repeat;
 		background-position: top;
+		min-height: 100vh;
 	}
 
 	#show1 {
@@ -112,6 +112,125 @@
 	.modal-backdrop{z-index: 1050;}
 	.modal{z-index: 1060;}
 
+	@media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+		#welcome {
+        font-size:small;
+    }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:991px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
+
+	@media only screen and (max-width:992px) {
+      #second-c {
+        margin-top: 100px;
+		margin-bottom: 100px;
+      }
+    }
+
+	.footer {
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+	}
+
+	@media only screen and (min-height: 1040px) and (max-width: 992px) {
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+	 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 992px) {
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 576px) {
+	  
+	  body{
+		min-height: 140vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
+
+
 
   </style>
 	</head>
@@ -119,15 +238,34 @@
 		<!-- Header start -->
 		<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+		<a class="" href="dashboard.php">
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+			<li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -160,7 +298,12 @@
 
 
   <section class="bannerv7a">
-		<div class="container d-flex justify-content-center">
+
+     <!--Link to Previous Page -->
+	 <a href="funerals.php" class="previous round mt-3 mx-3" style="text-decoration: none;display: inline-block;padding: 8px 13px;">
+	        <img src="../images/arrow.png" height="15px" width="15px" class="d-flex justify inline-block align-text-top mt-1"/></a>
+
+		<div class="container d-flex justify-content-center" id="second-c">
 			<div class="card col-lg-12 mt-5" style="border: none;margin-bottom: 0;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
@@ -197,9 +340,11 @@
 
 									$adminuser_id =  $_SESSION['user']['ID'];
 									$adminuser_name =  $_SESSION['user']['Username'];
+
+									$result = $conn->query($sql);
 													
 
-									if($result=$conn->query($sql))
+									if($result->num_rows != 0)
 										{
 
 											$output = '<table class="table table-hover table-bordered text-center">
@@ -254,6 +399,16 @@
 											echo $output;
 
 										}
+										else if($result->num_rows == 0){
+
+											echo '
+											<div class="form-header mt-4" style="background-color: transparent; border-radius: 0.2rem;">
+												<h6 class="mt-2 text-center" style="color:grey;">
+													No Funeral Event Found. Click <a class="addFuneral"  href="#addFuneral" data-bs-toggle="modal">Here</a> to add Funeral Event
+												</h6>
+											</div>'
+										;
+										}
 
 
 									?>
@@ -261,17 +416,17 @@
 							<!-- Table end -->
 
 							
-							<div class="form-group mt-4 col-6 mb-5 text-center">
+							<!--<div class="form-group mt-4 col-6 mb-5 text-center">
 								<div class="col-3">
 									<button type="button" class="btn btn-primary btn-block" id="button3"
 										name="madd" onclick=" window.location.href='funerals.php'" style="background-color: green; border-color: green;float:left;">
 										Back
 									</button>
 								</div>
-								<!--<div class="text-center mt-3">
+								<div class="text-center mt-3">
 									<label style="font-size:14px;">Back to <a href="dashboard.php">Dashboard Page</a></label>
-								</div>-->
-							</div>
+								</div>
+							</div>-->
 						</div>
 				
 				</div>
@@ -313,6 +468,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
   </script>
+  <!-- JS -->
+  <script src="../js/scripts.js"></script>
 
 <script>
 												   
@@ -335,6 +492,13 @@
 			});
 	   
 		})
+</script>
+
+<!--Redirection to funeralevents.php to activate add funeral modal when "Add Funeral" is clicked here-->
+<script>
+	$(".addFuneral").on("click", function () {
+		window.location.href = "funerals.php#addFuneral";
+	});
 </script>
 
 </body>

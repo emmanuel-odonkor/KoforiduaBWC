@@ -55,7 +55,6 @@
 	footer{
       background-color:#003bb3 !important;
       border-color: #003bb3 !important;
-	  z-index: -2 !important;
     }
 
     
@@ -89,6 +88,7 @@
 		background-size:cover;            
 		background-repeat: no-repeat;
 		background-position: top;
+        min-height: 100vh;
 	}
 
 	#show1 {
@@ -112,6 +112,123 @@
 	.modal-backdrop{z-index: 1050;}
 	.modal{z-index: 1060;}
 
+    @media only screen and (max-width:497px) {
+		#logoimage {
+        content: url('../images/bwcLogoHome.png');
+		width: 60px !important;
+
+    }
+    }
+
+	@media only screen and (max-width:404px) {
+		#welcome {
+        font-size:small;
+    }
+    }
+
+	#user_mobile{
+		display:none;
+	}
+	#logout_mobile{
+		display:none;
+	}
+
+	@media only screen and (max-width:991px) {
+		#user_mobile {
+        display:block;
+    }
+		#logout_mobile {
+			display:block;
+    }
+		#user_web{
+		display:none;
+	}
+
+    }
+
+	@media only screen and (max-width:346px) {
+		#welcome {
+        display: none;
+    }
+    }
+
+	@media only screen and (max-width:992px) {
+      #second-c {
+        margin-top: 100px;
+		margin-bottom: 100px;
+      }
+    }
+
+	.footer {
+		position:absolute;
+		bottom: 0px !important;
+		width: 100%;
+	}
+
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+	}
+
+	@media only screen and (min-height: 1040px) and (max-width: 992px) {
+	  
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (min-height: 1040px) and (max-width: 576px) {
+	  
+	 
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 992px) {
+
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+ 
+    }
+
+	@media only screen and (max-height: 667px) and (max-width: 576px) {
+	  
+	  body{
+		min-height: 140vh;
+	  }
+      .footer {
+		position:relative !important;
+		bottom: 0px !important;
+		width: 100%;
+        top:0vh;
+		background-color: #003bb3 !important;
+      }
+
+    }
+
 
   </style>
 	</head>
@@ -119,15 +236,34 @@
 		<!-- Header start -->
 		<header class="header" style="background-color: #003bb3">
 		<div class="container d-flex align-items-center">
-		<a class="" href="index.html">
-			<img src="../images/bwcLogo.png" style="width: 150px;" alt="" />
+		<a class="" href="dashboard.php">
+			<img src="../images/bwcLogo.png" id="logoimage" style="width: 150px;" alt="" />
 		</a>
-		<span style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
+		<span id="welcome" style="color:white;">Welcome <strong><?php echo $_SESSION['user']['Username']; ?></strong> to the Dashboard</span>
 		<nav class="primary-menu">
-			<a id="mobile-menu-toggler" href="#"><i class="fas fa-bars"></i></a>
+			<a id="mobile-menu-toggler" href="#"><i class="fa fa-bars" aria-hidden="true" style='color:white;'></i></a>
 			<ul>
 			<li><a href="https://www.bwcghana.org/" style="font-size: 16px;">Believers Worship Center Website</a></li>
-			<li>
+
+            <li id="user_mobile" style="color:white;padding-left:27px;">
+				Logged In as:
+					<div>
+						<?php if(isset($_SESSION['user'])) : ?>
+						<strong><?php echo $_SESSION['user']['Username']; ?></strong>
+						<small>
+							<i style="color:#888;">(<?php echo ucfirst($_SESSION['user']['usertype']); ?>)</i>
+						</small>
+						<?php endif ?>
+
+					</div>
+			</li>
+			<li id="logout_mobile">
+				<?php if(isset($_SESSION['user'])) : ?>
+					<a class="dropdown-item" href="dashboard.php?logout='1'" style="color: white;padding-left:28px !important;">Log Out</a>
+				<?php endif ?>
+			</li>
+
+			<li id="user_web">
 				<div class="dropdown" >
 					<button class="dropbtn dropdown-toggle"
 						data-toggle="dropdown" style="background-color:transparent;border:none;">
@@ -159,6 +295,11 @@
   <!-- Header end -->
 
   <section class="bannerv7a">
+
+       <!--Link to Previous Page -->
+       <a href="funeralevents.php" class="previous round mt-3 mx-3" style="text-decoration: none;display: inline-block;padding: 8px 13px;">
+	        <img src="../images/arrow.png" height="15px" width="15px" class="d-flex justify inline-block align-text-top mt-1"/></a>
+
         <?php 
         //include the controller
         require('../controllers/funeralcontroller.php');
@@ -228,7 +369,7 @@
         }
         
         ?>
-		<div class="container d-flex justify-content-center">
+		<div class="container d-flex justify-content-center" id="second-c">
 			<div class="card col-lg-7" style="border: none; opacity: 0.8; margin-bottom: 0;">
 				<div class="card-body">
 					<div style="display: flex;justify-content: center;align-items: center;">
@@ -248,7 +389,7 @@
 								</div>
 							</div>
 
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
 								<div class="form-group">
 									<input type="text" pattern="[0-9]+" title="Enter a valid member ID"
 									class="form-control" placeholder="Enter the Funeral ID" required="required" id="fid"
@@ -256,7 +397,7 @@
 								</div> 
 							</div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group mt-3">
                                     <input type="date" title="Enter a valid date" class="form-control"
                                     placeholder="Date" required="required" id="udate" name="udate"
@@ -274,7 +415,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <input type="date" class="form-control"
                                     placeholder="Date of Funeral Event" required="required" id="dof" name="dof"
@@ -285,7 +426,7 @@
                                 </div>    
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                 <select id="dgroup" name="dgroup" placeholder="" class="form-control"
                                     style="height: 50px;" required>
@@ -297,7 +438,7 @@
                                 <span class="instruction" style="font-size: 11px;color:#003bb3;">Deceased Group Type</span>
                                 </div>    
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <select id="fmember" name="fmember" placeholder="Deceased Status" class="form-control"
                                         style="height: 50px;" required>
@@ -309,7 +450,7 @@
                                 </div>    
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <select id="region" name="region" placeholder="Region" class="form-control" style="height: 50px;" required >
                                         <option name="" value="" style="display:none;">Region of Funeral</option>
@@ -334,7 +475,7 @@
                                 </div>    
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
                                         <option name="" value="" style="display:none;">Month of Funeral</option>
@@ -355,7 +496,7 @@
                                 </div> 
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <input type="text" pattern="[A-Za-z.0-9\s-]+" title="Enter a valid funeral location"
                                     class="form-control" placeholder="Funeral Location" required="required"
@@ -417,6 +558,8 @@
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
   </script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- JS -->
+    <script src="../js/scripts.js"></script>
 
 <script>
     //sets the date to today and the future but not the past

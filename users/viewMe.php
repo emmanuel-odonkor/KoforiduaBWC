@@ -174,7 +174,7 @@
 		display:none;
 	}
 
-	@media only screen and (max-width:992px) {
+	@media only screen and (max-width:991px) {
 		#user_mobile {
         display:block;
     }

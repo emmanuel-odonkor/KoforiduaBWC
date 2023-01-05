@@ -66,7 +66,7 @@
                
                                <div class='modal fade' id='updateMember' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
                                aria-labelledby='staticBackdropLabel' aria-hidden='true'>
-                               <div class='modal-dialog modal-dialog-scrollable'>
+                               <div class='modal-dialog'>
                                    <div class='modal-content'>
                                    <div class='modal-header'>
                                        <h5 class='modal-title' id='staticBackdropLabel'>Update Member Info</h5>
@@ -135,7 +135,7 @@
                                                    </div>
        
                                                    <div class='col-lg-6 col-sm-6'>
-                                                        <div class='form-group mt-3 member'>
+                                                        <div class='form-group mt-lg-3 mt-sm-3 member'>
                                                             <select id='grouptype' name='mgroup' placeholder='Gender' class='form-control'
                                                             style='height: 50px;' required>
                                                                 <option name='' value='' style='display:none;'>Group Type (Adom or Second Chance)</option>

@@ -160,7 +160,7 @@
 		display:none;
 	}
 
-	@media only screen and (max-width:992px) {
+	@media only screen and (max-width:991px) {
 		#user_mobile {
         display:block;
     }
@@ -195,7 +195,7 @@
 		position:relative !important;
 		bottom: 0px !important;
 		width: 100vw !important;
-        top:60vh;
+        top:100vh;
 		background-color: #003bb3 !important;
       }
 
@@ -211,7 +211,7 @@
 		position:relative !important;
 		bottom: 0px !important;
 		width: 100vw !important;
-        top:60vh;
+        top:100vh;
 		background-color: #003bb3 !important;
       }
     }
@@ -381,7 +381,7 @@
             <!--Dues Payment Modal-->
             <div class="modal fade" id="duesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Dues Payment Section</h5>
@@ -559,7 +559,7 @@
             <!--Funeral Modal-->
             <div class="modal fade" id="funeralModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Funeral Contribution Section</h5>
