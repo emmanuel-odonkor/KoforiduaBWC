@@ -66,7 +66,7 @@
                
                                <div class='modal fade' id='updateMember' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1'
                                aria-labelledby='staticBackdropLabel' aria-hidden='true'>
-                               <div class='modal-dialog'>
+                               <div class='modal-dialog modal-dialog-scrollable'>
                                    <div class='modal-content'>
                                    <div class='modal-header'>
                                        <h5 class='modal-title' id='staticBackdropLabel'>Update Member Info</h5>
@@ -89,7 +89,7 @@
                                                        </div>
                                                    </div>
                    
-                                                   <div class='col-6'>
+                                                   <div class='col-lg-6 col-sm-6'>
                                                        <div class='form-group mt-4'>
                                                            <input type='text' pattern='[0-9]+' title='Enter a valid member ID'
                                                            class='form-control' placeholder='Enter the Member ID' required='required' id='mid'
@@ -98,8 +98,8 @@
                                                        </div>
                                                    </div>
                    
-                                                   <div class='col-6'>
-                                                       <div class='form-group mt-4'>
+                                                   <div class='col-lg-6 col-sm-6'>
+                                                       <div class='form-group mt-lg-4 mt-sm-4'>
                                                        <input type='text' pattern='[A-Za-z\s-]+' title='Enter a valid firstname'
                                                            class='form-control' placeholder='First Name' required='required'
                                                            value='$fname'  id='mfname' name='mfname'
@@ -107,7 +107,7 @@
                                                        </div>   
                                                    </div>
        
-                                                   <div class='col-6'>
+                                                   <div class='col-lg-6 col-sm-6'>
                                                        <div class='form-group'>
                                                        <input type='text' pattern='[A-Za-z\s-]+' title='Enter a valid lastname'
                                                            class='form-control' placeholder='Last Name' value='$lname'
@@ -116,7 +116,7 @@
                                                        </div>  
                                                    </div>
        
-                                                   <div class='col-6'>
+                                                   <div class='col-lg-6 col-sm-6'>
                                                        <div class='form-group u_number'>
                                                        <input type='tel' pattern='^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
                                                        title='Enter a valid Phone number' class='form-control'
@@ -124,7 +124,7 @@
                                                        id='u_mobile' name='mcontact' style='font-size: 16px; height: 50px' size='90' />
                                                        </div> 
                                                    </div>
-                                                   <div class='col-6'>
+                                                   <div class='col-lg-6 col-sm-6'>
                                                        <div class='form-group mt-3'>
                                                            <input type='date' title='Enter a valid date' class='form-control'
                                                            placeholder='Date' required='required' id='mdate' name='mdate'
@@ -134,7 +134,7 @@
                                                        </div>
                                                    </div>
        
-                                                   <div class='col-6'>
+                                                   <div class='col-lg-6 col-sm-6'>
                                                         <div class='form-group mt-3 member'>
                                                             <select id='grouptype' name='mgroup' placeholder='Gender' class='form-control'
                                                             style='height: 50px;' required>
@@ -148,10 +148,12 @@
                                            </div>
                                            </div>
                                            <!--Submit-->
-                                           <div class='col-12'>
-                                               <div class='col-6 mt-1' style='float:right;'>
-                                                   <button type='submit' class='btn btn-primary btn-block' id='submitUpdate'
-                                                       name='uadd' style='background-color: green;border-color: green;'>Update Member</button>
+                                           <div class='col-12' style='display:flex;justify-content:center;align-items:center'>
+                                                <div class='row text-center'>
+                                                    <div class='col-lg-6 col-sm-6 mt-1'>
+                                                        <button type='submit' class='btn btn-primary btn-block' id='submitUpdate'
+                                                            name='uadd' style='background-color: green;border-color: green;'>Update Member</button>
+                                                    </div>
                                                </div>
                                            </div>	
                                        </div>

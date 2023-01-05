@@ -404,7 +404,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group mt-4">
                                         <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
                                         class="form-control" placeholder="Enter the Member ID" required="required" id="mid"
@@ -413,8 +413,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
-                                    <div class="form-group mt-4">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="form-group mt-lg-4 mt-sm-4">
                                         <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">GHC</span>
                                         <input type="text" pattern="[0-9]+" title="Enter a valid amount" class="form-control"
                                         placeholder="Amount to be Paid" id="amount" name="amount" style="font-size: 16px;height: 50px;text-indent: 37px;" 
@@ -452,7 +452,7 @@
                                     </div>-->
                                 </div>
                                     <!--<div class="form-group mt-1" id="dropdown"></div>--> 
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                     <div class="form-group mt-1">
                                         <input type="text" title="Enter a valid date of payment" class="form-control"
                                         placeholder="Date of Payment" required="required" id="dop" name="dop"
@@ -461,7 +461,7 @@
                                     </div>  
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-6">
                                         <div class="form-group mt-1">
                                             <select id="month" name="month" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
                                                 <option name="" value="" style="display:none;">Month of Payment</option>
@@ -483,15 +483,19 @@
 
                         </div>
                         </div>
-                        <!--Reset-->
-                        <div class="col-6 mt-3">
-                            <button type="button" id="ureset" name="ureset" class="btn btn-outline"
-                                style="border-color: green;color:green;">Reset</button>
-                        </div>
-                        <!--Submit-->
-                        <div class="col-6 mt-3">
-                            <button type="submit" class="btn btn-primary btn-block" id="submitDues"
-                                name="uadd" style="background-color: green;border-color: green;">Pay Dues</button>
+                        <div class='col-12' style='display:flex;justify-content:center;align-items:center'>
+                            <div class="row text-center">
+                                <!--Reset-->
+                                <div class="col-lg-6 col-sm-6 mt-3">
+                                    <button type="button" id="ureset" name="ureset" class="btn btn-outline"
+                                        style="border-color: green;color:green;">Reset</button>
+                                </div>
+                                <!--Submit-->
+                                <div class="col-lg-3 col-sm-3 mt-3">
+                                    <button type="submit" class="btn" id="submitDues"
+                                        name="uadd" style="background-color: green;border-color: green;color:white;">Pay Dues</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </div>  
@@ -577,7 +581,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group mt-4">
                                     <input type="text" pattern="[0-9]+" title="Enter a valid member ID"
                                         class="form-control" placeholder="Enter the Member ID" required="required" id="fid"
@@ -585,15 +589,15 @@
                                         <span class="instruction" style="font-size: 11px;color:#003bb3;">Member ID must be valid</span>
                                 </div> 
                             </div>
-                            <div class="col-6">
-                                <div class="form-group mt-4">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group mt-lg-4 mt-sm-4">
                                     <span style="position: absolute; margin-left: 11px; margin-top: 11px; color:black">GHC</span>
                                     <input type="text" pattern="[0-9]+" title="Enter a valid amount" class="form-control"
                                     placeholder="Amount to be Paid" id="famount" name="famount" style="font-size: 16px;height: 50px;text-indent: 37px;" 
                                     style="width: 200px;" readonly>
                                 </div>    
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <select id="fgrouptype" name="fgroup" placeholder="Group Type" class="form-control"
                                         style="height: 50px;" required>
@@ -603,7 +607,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <select id="dmember" name="dmember" placeholder="Deceased Group" class="form-control"
                                         style="height: 50px;" required>
@@ -655,7 +659,7 @@
                                             style="font-size: 16px; height: 50px;" style="width: 200px" />
                                     </div>-->  
                                 </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group mt-1">
                                     <input type="text" title="Enter a valid date of contribution" class="form-control"
                                     placeholder="Date of Payment" required="required" id="fdoc" name="fdoc"
@@ -664,7 +668,7 @@
                                 </div>  
 							</div>
 
-							<div class="col-6">
+							<div class="col-lg-6 col-sm-6">
                                     <div class="form-group mt-1">
                                         <select id="fmonth" name="fmonth" placeholder="Month(MM)" class="form-control" style="height: 50px;" required >
                                             <option name="" value="" style="display:none;">Month of Payment</option>
@@ -685,15 +689,20 @@
 							</div>
                         </div>
                         </div>
-                        <!--Reset-->
-                        <div class="col-6 mt-3">
-                            <button type="button" id="freset" name="freset" class="btn btn-outline"
-                                style="border-color: green;color:green;">Reset</button>
-                        </div>
-                        <!--Submit-->
-                        <div class="col-6 mt-3">
-                            <button type="submit" class="btn btn-primary btn-block" id="submitContribution"
-                                name="fadd" style="background-color: green;border-color: green;">Pay Contribution</button>
+                        
+                        <div class='col-12' style='display:flex;justify-content:center;align-items:center' >
+                            <div class="row text-center">
+                                <!--Reset-->
+                                <div class="col-lg-6 col-sm-6 mt-3">
+                                    <button type="button" id="freset" name="freset" class="btn btn-outline"
+                                        style="border-color: green;color:green;">Reset</button>
+                                </div>
+                                <!--Submit-->
+                                <div class="col-lg-3 col-sm-3 mt-3">
+                                    <button type="submit" class="btn" id="submitContribution"
+                                        name="fadd" style="background-color: green;border-color: green;color:white;">Pay Contribution</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </div>  
@@ -747,11 +756,13 @@
                         </div>
                         </div>
                       
-                        <div class="col-12">
-                             <!--Submit-->
-                            <div class="col-6 mt-3" style="float:right;">
-                                <button type="submit" class="btn btn-primary btn-block" id="submit"
-                                    name="sadd" style="background-color: green;border-color: green;">Send</button>
+                        <div class='col-12' style='display:flex;justify-content:center;align-items:center'>
+                            <div class="row text-center">
+                                    <!--Submit-->
+                                <div class="col-lg-6 col-sm-6 mt-3">
+                                    <button type="submit" class="btn btn-primary btn-block" id="submit"
+                                        name="sadd" style="background-color: green;border-color: green;">Send</button>
+                                </div>
                             </div>
                         </div>
                     </div>
